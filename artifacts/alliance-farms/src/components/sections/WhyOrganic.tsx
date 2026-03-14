@@ -1,6 +1,9 @@
 import { motion, AnimatePresence } from "framer-motion";
 import { useState } from "react";
 import { X } from "lucide-react";
+import { staggerContainer, fadeUp, fadeUpSoft, scalePop } from "@/lib/animations";
+
+const VIEWPORT = { once: true, margin: "-60px" };
 
 const CARDS = [
   {
@@ -57,47 +60,42 @@ export function WhyOrganic() {
         style={{ backgroundImage: "radial-gradient(circle at 2px 2px, white 1px, transparent 0)", backgroundSize: "40px 40px" }}
       />
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 relative z-10">
-        <div className="text-center mb-20 max-w-3xl mx-auto">
-          <motion.div
-            initial={{ opacity: 0, y: 16 }}
-            whileInView={{ opacity: 1, y: 0 }}
-            viewport={{ once: true }}
-            className="flex items-center justify-center gap-3 mb-4"
-          >
+        <motion.div
+          variants={staggerContainer(0.1)}
+          initial="hidden"
+          whileInView="show"
+          viewport={VIEWPORT}
+          className="text-center mb-20 max-w-3xl mx-auto"
+        >
+          <motion.div variants={fadeUpSoft} className="flex items-center justify-center gap-3 mb-4">
             <span className="h-px w-10 bg-secondary/60" />
             <span className="text-secondary text-xs tracking-[0.3em] uppercase font-semibold">Our Philosophy</span>
             <span className="h-px w-10 bg-secondary/60" />
           </motion.div>
-          <motion.h2
-            initial={{ opacity: 0, y: 20 }}
-            whileInView={{ opacity: 1, y: 0 }}
-            viewport={{ once: true }}
-            transition={{ delay: 0.1 }}
-            className="text-4xl md:text-5xl font-heading mb-6"
-          >
+          <motion.h2 variants={fadeUp} className="text-4xl md:text-5xl font-heading mb-6">
             Why We Choose Organic Farming
           </motion.h2>
-          <motion.p
-            initial={{ opacity: 0, y: 16 }}
-            whileInView={{ opacity: 1, y: 0 }}
-            viewport={{ once: true }}
-            transition={{ delay: 0.2 }}
-            className="text-white/60 text-lg font-light italic leading-relaxed"
-          >
+          <motion.p variants={fadeUpSoft} className="text-white/60 text-lg font-light italic leading-relaxed">
             "This isn't industrial farming. This is real farming — done right, for you, your family, and future generations."
           </motion.p>
-        </div>
+        </motion.div>
 
-        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-5">
+        <motion.div
+          variants={staggerContainer(0.08, 0.05)}
+          initial="hidden"
+          whileInView="show"
+          viewport={VIEWPORT}
+          className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-5"
+        >
           {CARDS.map((card, i) => (
             <motion.div
               key={card.title}
-              initial={{ opacity: 0, y: 40 }}
-              whileInView={{ opacity: 1, y: 0 }}
-              viewport={{ once: true, margin: "-40px" }}
-              transition={{ duration: 0.5, delay: i * 0.08 }}
+              variants={scalePop}
+              whileHover={{ y: -6, scale: 1.02 }}
+              whileTap={{ scale: 0.98 }}
+              transition={{ type: "spring", stiffness: 320, damping: 22 }}
               onClick={() => setSelected(i)}
-              className="group cursor-pointer border border-white/10 rounded-2xl overflow-hidden hover:border-secondary/50 transition-all duration-400 relative"
+              className="group cursor-pointer border border-white/10 rounded-2xl overflow-hidden hover:border-secondary/50 transition-[border-color] duration-300 relative"
               style={{ minHeight: 280 }}
             >
               <div
@@ -126,7 +124,7 @@ export function WhyOrganic() {
               </div>
             </motion.div>
           ))}
-        </div>
+        </motion.div>
       </div>
 
       <AnimatePresence>

@@ -1,0 +1,148 @@
+You are a senior frontend engineer and motion designer.
+
+Upgrade this entire project UI to feel like a **premium modern web app similar to Apple, Stripe, Linear, or Vercel** with extremely smooth animations, polished transitions, and micro-interactions.
+
+Do NOT break the existing functionality.
+
+---
+
+GLOBAL EXPERIENCE
+
+Make the entire website feel smooth and responsive.
+
+• Enable smooth scrolling for the entire page
+• Use hardware-accelerated animations (transform, opacity)
+• Maintain 60fps animations
+• Avoid janky or heavy animations
+
+---
+
+ADVANCED TAB SYSTEM
+
+Completely enhance the tab UI.
+
+When switching tabs:
+• Old tab content fades out smoothly
+• New tab content slides upward slightly while fading in
+• Add subtle scale animation (0.98 → 1)
+
+Tab buttons should include:
+• Animated underline that smoothly slides to the active tab
+• Hover highlight animation
+• Active tab glow or gradient indicator
+• Smooth color transitions
+
+Tab switching must feel **fluid and premium**.
+
+---
+
+SCROLL-TRIGGERED ANIMATIONS
+
+When users scroll down the page:
+
+Animate elements when they enter the viewport:
+• sections
+• cards
+• images
+• headings
+• buttons
+
+Use effects such as:
+• fade up
+• slide in
+• stagger animation for grids
+• soft blur → clear reveal
+
+Use **Intersection Observer or Framer Motion**.
+
+---
+
+PAGE LOAD SEQUENCE
+
+When the page loads:
+
+1. Navbar slides down slightly and fades in
+2. Hero text fades in with staggered animation
+3. Buttons animate in with slight scale effect
+4. Images appear with smooth easing
+
+The load animation should feel elegant and professional.
+
+---
+
+MICRO INTERACTIONS
+
+Add subtle user interaction animations.
+
+Buttons:
+• Slight scale up on hover
+• Press animation when clicked
+
+Cards:
+• Lift slightly on hover
+• Soft shadow expansion
+
+Icons:
+• Small rotation or movement
+
+Inputs:
+• Smooth focus animation
+• Soft glow outline
+
+---
+
+PREMIUM EFFECTS
+
+Add optional high-end effects if possible.
+
+• Scroll progress bar at the top of the page
+• Subtle parallax effect for hero background
+• Floating animation for images or decorative elements
+• Smooth section transitions
+• Gradient animation for buttons or highlights
+
+---
+
+PERFORMANCE
+
+Ensure the site remains fast.
+
+• Use requestAnimationFrame where appropriate
+• Prefer CSS animations where possible
+• Avoid large animation libraries unless needed
+• Optimize for mobile performance
+
+---
+
+TECHNOLOGY
+
+If this project uses React:
+Use **Framer Motion** for animations.
+
+If it is plain HTML/JS:
+Use **GSAP** or **CSS animations**.
+
+---
+
+CODE REQUIREMENTS
+
+• Keep the code modular and readable
+• Comment all animation logic
+• Do not break existing features
+• Ensure responsiveness on mobile and desktop
+
+---
+
+FINAL RESULT
+
+The website should feel:
+
+• smooth
+• modern
+• premium
+• interactive
+• visually polished
+
+similar to **Apple / Stripe / Linear websites**.
+
+Return the **full improved code implementation with animations added**.

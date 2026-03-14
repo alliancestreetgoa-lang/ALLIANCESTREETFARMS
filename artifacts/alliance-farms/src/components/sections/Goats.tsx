@@ -1,4 +1,7 @@
 import { motion } from "framer-motion";
+import { staggerContainer, fadeUp, fadeUpSoft, scalePop } from "@/lib/animations";
+
+const VIEWPORT = { once: true, margin: "-80px" };
 
 const GOAT_BREEDS = [
   {
@@ -31,37 +34,37 @@ export function Goats() {
       />
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 relative z-10">
 
-        <div className="text-center mb-20">
-          <motion.div
-            initial={{ opacity: 0, y: 16 }}
-            whileInView={{ opacity: 1, y: 0 }}
-            viewport={{ once: true }}
-            className="flex items-center justify-center gap-3 mb-4"
-          >
+        <motion.div
+          variants={staggerContainer(0.1)}
+          initial="hidden"
+          whileInView="show"
+          viewport={VIEWPORT}
+          className="text-center mb-20"
+        >
+          <motion.div variants={fadeUpSoft} className="flex items-center justify-center gap-3 mb-4">
             <span className="h-px w-10 bg-secondary/50" />
             <span className="text-secondary text-xs tracking-[0.3em] uppercase font-semibold">Our Goat Breeds</span>
             <span className="h-px w-10 bg-secondary/50" />
           </motion.div>
-          <motion.h2
-            initial={{ opacity: 0, y: 20 }}
-            whileInView={{ opacity: 1, y: 0 }}
-            viewport={{ once: true }}
-            transition={{ delay: 0.1 }}
-            className="font-heading text-4xl md:text-5xl text-[#1a3a14]"
-          >
+          <motion.h2 variants={fadeUp} className="font-heading text-4xl md:text-5xl text-[#1a3a14]">
             Premium Goat Breeds, Born for Goa
           </motion.h2>
-        </div>
+        </motion.div>
 
-        <div className="grid grid-cols-1 lg:grid-cols-2 gap-8 mb-12">
-          {GOAT_BREEDS.map((breed, i) => (
+        <motion.div
+          variants={staggerContainer(0.15, 0.05)}
+          initial="hidden"
+          whileInView="show"
+          viewport={VIEWPORT}
+          className="grid grid-cols-1 lg:grid-cols-2 gap-8 mb-12"
+        >
+          {GOAT_BREEDS.map((breed) => (
             <motion.div
               key={breed.name}
-              initial={{ opacity: 0, y: 30 }}
-              whileInView={{ opacity: 1, y: 0 }}
-              viewport={{ once: true }}
-              transition={{ delay: i * 0.15 }}
-              className="group rounded-2xl overflow-hidden border border-black/6 shadow-lg hover:shadow-xl transition-all duration-400"
+              variants={scalePop}
+              whileHover={{ y: -6, boxShadow: "0 20px 48px rgba(0,0,0,0.12)" }}
+              transition={{ type: "spring", stiffness: 300, damping: 22 }}
+              className="group rounded-2xl overflow-hidden border border-black/6 shadow-lg"
             >
               <div className="relative h-56 overflow-hidden">
                 <img
@@ -95,12 +98,13 @@ export function Goats() {
               </div>
             </motion.div>
           ))}
-        </div>
+        </motion.div>
 
         <motion.div
-          initial={{ opacity: 0, y: 30 }}
+          initial={{ opacity: 0, y: 32 }}
           whileInView={{ opacity: 1, y: 0 }}
-          viewport={{ once: true }}
+          viewport={VIEWPORT}
+          transition={{ type: "spring", stiffness: 240, damping: 26 }}
           className="bg-[#1a3a14] rounded-3xl p-10 sm:p-14 flex flex-col lg:flex-row items-center gap-10"
         >
           <div className="w-32 h-32 rounded-full overflow-hidden flex-shrink-0 border-4 border-secondary/50 shadow-xl ring-4 ring-secondary/10">
@@ -119,9 +123,17 @@ export function Goats() {
             </p>
             <div className="flex flex-wrap gap-2 justify-center lg:justify-start">
               {MILK_TAGS.map((tag, i) => (
-                <span key={i} className="bg-white/10 border border-white/15 text-white/80 text-xs font-semibold px-4 py-2 rounded-full">
+                <motion.span
+                  key={i}
+                  initial={{ opacity: 0, scale: 0.85 }}
+                  whileInView={{ opacity: 1, scale: 1 }}
+                  viewport={{ once: true }}
+                  transition={{ delay: i * 0.06 + 0.2, type: "spring", stiffness: 300, damping: 20 }}
+                  whileHover={{ scale: 1.06 }}
+                  className="bg-white/10 border border-white/15 text-white/80 text-xs font-semibold px-4 py-2 rounded-full cursor-default"
+                >
                   {tag}
-                </span>
+                </motion.span>
               ))}
             </div>
           </div>
