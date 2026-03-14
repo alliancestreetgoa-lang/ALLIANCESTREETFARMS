@@ -1,70 +1,81 @@
 import { motion } from "framer-motion";
-import { cn } from "@/lib/utils";
 
 const TEAM = [
-  { 
-    name: "Shaukin", 
-    role: "Partner", 
-    emoji: "🧑‍🌾", 
-    grad: "from-[#2d5a27] to-[#7a9e6d]", 
-    delay: 0,
-    quote: "Good food begins with good farming. We're here to bring that promise to every family in Goa." 
+  {
+    name: "Shaukin",
+    initials: "S",
+    role: "Partner & Co-Founder",
+    quote: "Good food begins with good farming. We're here to bring that promise to every family in Goa.",
+    color: "from-[#1a3a14] to-[#2d5a27]",
   },
-  { 
-    name: "Stallone Shaikh", 
-    role: "Partner", 
-    emoji: "👨‍🌾", 
-    grad: "from-[#7a9e6d] to-[#c8962a]", 
-    delay: 1.5,
-    quote: "We didn't build a business. We built a farm that we'd be proud to feed our own children from." 
+  {
+    name: "Stallone Shaikh",
+    initials: "SS",
+    role: "Partner & Co-Founder",
+    quote: "We didn't build a business. We built a farm that we'd be proud to feed our own children from.",
+    color: "from-[#5c3d1e] to-[#c8962a]",
   },
 ];
 
 export function Team() {
   return (
-    <section id="team" className="py-24 bg-[#5c3d1e] text-white">
-      <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-        <div className="text-center mb-20 max-w-2xl mx-auto">
-          <span className="text-secondary font-bold tracking-widest text-sm uppercase mb-2 block">
-            Our Team
-          </span>
-          <h2 className="text-4xl md:text-5xl font-heading mb-6">
+    <section id="team" className="py-28 bg-[#faf6ef]">
+      <div className="max-w-5xl mx-auto px-4 sm:px-6 lg:px-8">
+
+        <div className="text-center mb-20">
+          <motion.div
+            initial={{ opacity: 0, y: 16 }}
+            whileInView={{ opacity: 1, y: 0 }}
+            viewport={{ once: true }}
+            className="flex items-center justify-center gap-3 mb-4"
+          >
+            <span className="h-px w-10 bg-secondary/50" />
+            <span className="text-secondary text-xs tracking-[0.3em] uppercase font-semibold">Our Team</span>
+            <span className="h-px w-10 bg-secondary/50" />
+          </motion.div>
+          <motion.h2
+            initial={{ opacity: 0, y: 20 }}
+            whileInView={{ opacity: 1, y: 0 }}
+            viewport={{ once: true }}
+            transition={{ delay: 0.1 }}
+            className="font-heading text-4xl md:text-5xl text-[#1a3a14] mb-6"
+          >
             The Hands Behind the Harvest
-          </h2>
-          <p className="text-white/80 text-lg font-light italic">
-            "Raised on Friendship, Built on Farming. Our mission is rooted in sustainable practices, native livestock, and full transparency. No hormones. No shortcuts. Just clean farming that respects both animals and the land."
-          </p>
+          </motion.h2>
+          <motion.p
+            initial={{ opacity: 0, y: 16 }}
+            whileInView={{ opacity: 1, y: 0 }}
+            viewport={{ once: true }}
+            transition={{ delay: 0.2 }}
+            className="text-[#5c3d1e]/65 text-base font-light italic max-w-2xl mx-auto leading-relaxed"
+          >
+            "Raised on Friendship, Built on Farming. Our mission is rooted in sustainable practices, native livestock, and full transparency. No hormones. No shortcuts. Just clean farming."
+          </motion.p>
         </div>
 
-        <div className="flex flex-wrap justify-center gap-16 md:gap-24">
+        <div className="grid grid-cols-1 md:grid-cols-2 gap-8">
           {TEAM.map((member, i) => (
             <motion.div
               key={member.name}
-              initial={{ opacity: 0, scale: 0.9 }}
-              whileInView={{ opacity: 1, scale: 1 }}
+              initial={{ opacity: 0, y: 30 }}
+              whileInView={{ opacity: 1, y: 0 }}
               viewport={{ once: true }}
-              transition={{ duration: 0.5, delay: i * 0.2 }}
-              className="flex flex-col items-center max-w-sm text-center"
+              transition={{ duration: 0.6, delay: i * 0.15 }}
+              className="bg-white border border-black/6 rounded-2xl p-10 text-center shadow-md hover:shadow-xl transition-shadow duration-300"
             >
-              <div 
-                className={cn(
-                  "w-[140px] h-[140px] rounded-full mb-6 border-4 border-secondary flex items-center justify-center bg-gradient-to-br shadow-xl shadow-black/20 animate-pulse-soft",
-                  member.grad
-                )}
-                style={{ animationDelay: `${member.delay}s` }}
-              >
-                <span className="text-6xl">{member.emoji}</span>
+              <div className={`w-24 h-24 rounded-full bg-gradient-to-br ${member.color} flex items-center justify-center mx-auto mb-6 shadow-lg`}>
+                <span className="font-heading text-2xl font-bold text-white">{member.initials}</span>
               </div>
-              <h3 className="font-heading text-3xl font-bold mb-1">{member.name}</h3>
-              <p className="text-secondary text-sm font-bold tracking-[0.2em] uppercase mb-4">
-                {member.role}
-              </p>
-              <p className="text-white/65 italic font-light">
+              <h3 className="font-heading text-2xl font-bold text-[#1a3a14] mb-1">{member.name}</h3>
+              <p className="text-secondary text-xs font-bold tracking-[0.2em] uppercase mb-6">{member.role}</p>
+              <div className="w-10 h-px bg-secondary/40 mx-auto mb-6" />
+              <p className="text-[#5c3d1e]/65 italic font-light text-sm leading-relaxed">
                 "{member.quote}"
               </p>
             </motion.div>
           ))}
         </div>
+
       </div>
     </section>
   );

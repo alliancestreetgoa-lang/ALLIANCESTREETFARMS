@@ -18,7 +18,7 @@ export function Navbar() {
   const [mobileMenuOpen, setMobileMenuOpen] = useState(false);
 
   useEffect(() => {
-    const handleScroll = () => setScrolled(window.scrollY > 50);
+    const handleScroll = () => setScrolled(window.scrollY > 60);
     window.addEventListener("scroll", handleScroll);
     return () => window.removeEventListener("scroll", handleScroll);
   }, []);
@@ -26,9 +26,9 @@ export function Navbar() {
   return (
     <header
       className={cn(
-        "fixed top-0 left-0 right-0 z-50 transition-all duration-300",
+        "fixed top-0 left-0 right-0 z-50 transition-all duration-500",
         scrolled
-          ? "bg-[#1a1208]/95 backdrop-blur-md py-3 shadow-lg shadow-black/20"
+          ? "bg-[#0f1e0c]/96 backdrop-blur-xl py-3 shadow-xl shadow-black/30 border-b border-white/5"
           : "bg-transparent py-5"
       )}
     >
@@ -37,62 +37,60 @@ export function Navbar() {
           <img
             src="/logo.png"
             alt="Alliance Street Organic Farms Logo"
-            className="h-12 w-auto object-contain drop-shadow-md"
+            className="h-11 w-auto object-contain drop-shadow-md"
           />
           <div className="flex flex-col items-start">
-            <span className="font-heading text-lg md:text-xl text-secondary group-hover:text-white transition-colors duration-300 leading-tight">
+            <span className="font-heading text-base md:text-lg text-white group-hover:text-secondary transition-colors duration-300 leading-tight tracking-wide">
               Alliance Street Organic Farms
             </span>
-            <span className="text-[10px] tracking-[0.2em] text-white/70 uppercase">
+            <span className="text-[9px] tracking-[0.3em] text-secondary/80 uppercase font-semibold">
               Goa, India
             </span>
           </div>
         </a>
 
-        {/* Desktop Nav */}
-        <nav className="hidden lg:flex items-center gap-6">
+        <nav className="hidden lg:flex items-center gap-1">
           {NAV_LINKS.map((link) => (
             <a
               key={link.name}
               href={link.href}
-              className="text-sm font-medium text-white/80 hover:text-secondary transition-colors duration-200"
+              className="relative px-3 py-2 text-sm font-medium text-white/70 hover:text-white transition-colors duration-200 group"
             >
               {link.name}
+              <span className="absolute bottom-0 left-3 right-3 h-px bg-secondary scale-x-0 group-hover:scale-x-100 transition-transform duration-300 origin-left" />
             </a>
           ))}
           <a
             href="#contact"
-            className="ml-4 px-5 py-2 rounded-full bg-secondary text-white text-sm font-bold hover:bg-secondary/90 hover:shadow-lg hover:shadow-secondary/20 transition-all duration-300"
+            className="ml-4 px-5 py-2 rounded-full border border-secondary text-secondary text-sm font-semibold hover:bg-secondary hover:text-white transition-all duration-300"
           >
-            Contact
+            Order Now
           </a>
         </nav>
 
-        {/* Mobile Toggle */}
         <button
           className="lg:hidden text-white p-2"
           onClick={() => setMobileMenuOpen(!mobileMenuOpen)}
         >
-          {mobileMenuOpen ? <X size={24} /> : <Menu size={24} />}
+          {mobileMenuOpen ? <X size={22} /> : <Menu size={22} />}
         </button>
       </div>
 
-      {/* Mobile Nav */}
       <AnimatePresence>
         {mobileMenuOpen && (
           <motion.div
             initial={{ opacity: 0, height: 0 }}
             animate={{ opacity: 1, height: "auto" }}
             exit={{ opacity: 0, height: 0 }}
-            className="lg:hidden bg-[#0f0a04] overflow-hidden"
+            className="lg:hidden bg-[#0a1508]/98 backdrop-blur-xl border-t border-white/5 overflow-hidden"
           >
-            <div className="flex flex-col items-center py-6 gap-4">
+            <div className="flex flex-col items-center py-8 gap-5">
               {NAV_LINKS.map((link) => (
                 <a
                   key={link.name}
                   href={link.href}
                   onClick={() => setMobileMenuOpen(false)}
-                  className="text-white text-lg hover:text-secondary transition-colors"
+                  className="text-white/80 text-base hover:text-secondary transition-colors tracking-wide"
                 >
                   {link.name}
                 </a>
@@ -100,9 +98,9 @@ export function Navbar() {
               <a
                 href="#contact"
                 onClick={() => setMobileMenuOpen(false)}
-                className="mt-4 px-8 py-3 rounded-full bg-secondary text-white font-bold"
+                className="mt-2 px-8 py-3 rounded-full border border-secondary text-secondary font-semibold hover:bg-secondary hover:text-white transition-all duration-300"
               >
-                Contact Us
+                Order Now
               </a>
             </div>
           </motion.div>

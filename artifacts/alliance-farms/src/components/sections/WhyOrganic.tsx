@@ -1,47 +1,69 @@
 import { motion } from "framer-motion";
 
-const PHILOSOPHY_CARDS = [
+const CARDS = [
   { icon: "🚫", title: "Zero Synthetic Inputs", desc: "No antibiotics, no growth hormones, no artificial chemicals. Every product we raise is 100% free from synthetic interventions." },
   { icon: "🌾", title: "Animal Welfare First", desc: "Our animals roam freely on open land with fresh air, clean water, and natural feed. No stress, no crowding — just ethical care." },
   { icon: "🌍", title: "Local Sustainability", desc: "We protect Goa's biodiversity and soil health by farming with nature, not against it — preserving the land for future generations." },
-  { icon: "🏘️", title: "Community-First", desc: "We put quality, not quantity, at the center. Our produce serves local families who deserve clean, honest food without compromise." },
+  { icon: "🏘️", title: "Community-First", desc: "Quality, not quantity, is at the center. Our produce serves local families who deserve clean, honest food without compromise." },
   { icon: "🧬", title: "Native Breed Preservation", desc: "By raising indigenous breeds like Kadaknath, Osmanabadi, and Konkan Kanyal, we protect genetic heritage and biodiversity." },
   { icon: "🔬", title: "Nutritional Superiority", desc: "Organic, free-range produce is scientifically proven to contain higher omega-3s, vitamins, antioxidants, and minerals." },
 ];
 
 export function WhyOrganic() {
   return (
-    <section id="philosophy" className="py-24 bg-gradient-to-br from-[#0d2409] via-[#1a3a14] to-[#2d5a27] text-white">
-      <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-        <div className="text-center mb-16 max-w-3xl mx-auto">
-          <span className="text-secondary font-bold tracking-widest text-sm uppercase mb-2 block">
-            Our Philosophy
-          </span>
-          <h2 className="text-4xl md:text-5xl font-heading mb-6">
+    <section id="philosophy" className="py-28 bg-[#1a3a14] text-white relative overflow-hidden">
+      <div className="absolute inset-0 opacity-5 pointer-events-none"
+        style={{ backgroundImage: "radial-gradient(circle at 2px 2px, white 1px, transparent 0)", backgroundSize: "40px 40px" }}
+      />
+      <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 relative z-10">
+        <div className="text-center mb-20 max-w-3xl mx-auto">
+          <motion.div
+            initial={{ opacity: 0, y: 16 }}
+            whileInView={{ opacity: 1, y: 0 }}
+            viewport={{ once: true }}
+            className="flex items-center justify-center gap-3 mb-4"
+          >
+            <span className="h-px w-10 bg-secondary/60" />
+            <span className="text-secondary text-xs tracking-[0.3em] uppercase font-semibold">Our Philosophy</span>
+            <span className="h-px w-10 bg-secondary/60" />
+          </motion.div>
+          <motion.h2
+            initial={{ opacity: 0, y: 20 }}
+            whileInView={{ opacity: 1, y: 0 }}
+            viewport={{ once: true }}
+            transition={{ delay: 0.1 }}
+            className="text-4xl md:text-5xl font-heading mb-6"
+          >
             Why We Choose Organic Farming
-          </h2>
-          <p className="text-white/80 text-lg md:text-xl font-light italic">
+          </motion.h2>
+          <motion.p
+            initial={{ opacity: 0, y: 16 }}
+            whileInView={{ opacity: 1, y: 0 }}
+            viewport={{ once: true }}
+            transition={{ delay: 0.2 }}
+            className="text-white/60 text-lg font-light italic leading-relaxed"
+          >
             "This isn't industrial farming. This is real farming — done right, for you, your family, and future generations."
-          </p>
+          </motion.p>
         </div>
 
-        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
-          {PHILOSOPHY_CARDS.map((card, i) => (
+        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-5">
+          {CARDS.map((card, i) => (
             <motion.div
               key={card.title}
               initial={{ opacity: 0, y: 40 }}
               whileInView={{ opacity: 1, y: 0 }}
-              viewport={{ once: true, margin: "-50px" }}
-              transition={{ duration: 0.5, delay: i * 0.1 }}
-              className="bg-white/5 border border-white/10 rounded-2xl p-8 hover:bg-white/10 hover:-translate-y-2 transition-all duration-300 group"
+              viewport={{ once: true, margin: "-40px" }}
+              transition={{ duration: 0.5, delay: i * 0.08 }}
+              className="group border border-white/8 rounded-2xl p-8 hover:border-secondary/40 hover:bg-white/5 transition-all duration-300"
             >
-              <div className="text-4xl mb-6 group-hover:scale-110 transition-transform origin-left">
+              <div className="text-3xl mb-5 group-hover:scale-110 transition-transform duration-300 origin-left">
                 {card.icon}
               </div>
-              <h3 className="font-heading text-xl font-bold mb-3 text-white">
+              <h3 className="font-heading text-lg font-bold mb-3 text-white">
                 {card.title}
               </h3>
-              <p className="text-white/70 text-sm leading-relaxed">
+              <p className="text-white/55 text-sm leading-relaxed">
                 {card.desc}
               </p>
             </motion.div>
