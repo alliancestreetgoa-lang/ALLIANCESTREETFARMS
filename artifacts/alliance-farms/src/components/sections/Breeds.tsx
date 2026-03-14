@@ -109,7 +109,7 @@ const RABBIT_BREEDS: Breed[] = [
   },
   {
     name: "Black Giant",
-    image: "/images/breed_black_giant_rabbit.jpg",
+    image: "/images/breed_black_giant_rabbit.png",
     grad: "from-[#3a3a3a] to-[#111111]",
     desc: "Dense, high-yield meat with valuable minerals. Supports active lifestyles.",
     fullDesc: "Dense, high-yield meat with valuable minerals. Supports active lifestyles and sustained physical performance. The Black Giant is prized for its large frame and excellent meat-to-bone ratio.",
