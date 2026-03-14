@@ -1,12 +1,12 @@
 import { motion } from "framer-motion";
 
 const CARDS = [
-  { num: "01", title: "Zero Synthetic Inputs", desc: "No antibiotics, no growth hormones, no artificial chemicals. Every product we raise is 100% free from synthetic interventions.", bgPattern: "radial-gradient(circle at 20% 50%, rgba(200,150,42,0.08) 0%, transparent 50%)" },
-  { num: "02", title: "Animal Welfare First", desc: "Our animals roam freely on open land with fresh air, clean water, and natural feed. No stress, no crowding — just ethical care.", bgPattern: "linear-gradient(135deg, rgba(122,158,109,0.08) 0%, transparent 100%)" },
-  { num: "03", title: "Local Sustainability", desc: "We protect Goa's biodiversity and soil health by farming with nature, not against it — preserving the land for future generations.", bgPattern: "radial-gradient(circle at 80% 20%, rgba(122,158,109,0.08) 0%, transparent 50%)" },
-  { num: "04", title: "Community-First", desc: "Quality, not quantity, is at the center. Our produce serves local families who deserve clean, honest food without compromise.", bgPattern: "linear-gradient(45deg, rgba(200,150,42,0.08) 0%, transparent 100%)" },
-  { num: "05", title: "Native Breed Preservation", desc: "By raising indigenous breeds like Kadaknath, Osmanabadi, and Konkan Kanyal, we protect genetic heritage and biodiversity.", bgPattern: "radial-gradient(circle at 50% 80%, rgba(122,158,109,0.08) 0%, transparent 50%)" },
-  { num: "06", title: "Nutritional Superiority", desc: "Organic, free-range produce is scientifically proven to contain higher omega-3s, vitamins, antioxidants, and minerals.", bgPattern: "linear-gradient(90deg, rgba(200,150,42,0.08) 0%, transparent 100%)" },
+  { num: "01", title: "Zero Synthetic Inputs", desc: "No antibiotics, no growth hormones, no artificial chemicals. Every product we raise is 100% free from synthetic interventions.", bgPattern: "radial-gradient(circle at 20% 50%, rgba(200,150,42,0.08) 0%, transparent 50%)", texturePattern: "radial-gradient(circle at 1px 1px, rgba(200,150,42,0.05) 1px, transparent 1px)" },
+  { num: "02", title: "Animal Welfare First", desc: "Our animals roam freely on open land with fresh air, clean water, and natural feed. No stress, no crowding — just ethical care.", bgPattern: "linear-gradient(135deg, rgba(122,158,109,0.08) 0%, transparent 100%)", texturePattern: "repeating-linear-gradient(90deg, transparent, transparent 2px, rgba(122,158,109,0.03) 2px, rgba(122,158,109,0.03) 4px)" },
+  { num: "03", title: "Local Sustainability", desc: "We protect Goa's biodiversity and soil health by farming with nature, not against it — preserving the land for future generations.", bgPattern: "radial-gradient(circle at 80% 20%, rgba(122,158,109,0.08) 0%, transparent 50%)", texturePattern: "linear-gradient(45deg, rgba(122,158,109,0.03) 25%, transparent 25%, transparent 50%, rgba(122,158,109,0.03) 50%, rgba(122,158,109,0.03) 75%, transparent 75%, transparent)" },
+  { num: "04", title: "Community-First", desc: "Quality, not quantity, is at the center. Our produce serves local families who deserve clean, honest food without compromise.", bgPattern: "linear-gradient(45deg, rgba(200,150,42,0.08) 0%, transparent 100%)", texturePattern: "repeating-linear-gradient(0deg, transparent, transparent 3px, rgba(200,150,42,0.04) 3px, rgba(200,150,42,0.04) 6px)" },
+  { num: "05", title: "Native Breed Preservation", desc: "By raising indigenous breeds like Kadaknath, Osmanabadi, and Konkan Kanyal, we protect genetic heritage and biodiversity.", bgPattern: "radial-gradient(circle at 50% 80%, rgba(122,158,109,0.08) 0%, transparent 50%)", texturePattern: "radial-gradient(circle, rgba(122,158,109,0.04) 1px, transparent 1px)" },
+  { num: "06", title: "Nutritional Superiority", desc: "Organic, free-range produce is scientifically proven to contain higher omega-3s, vitamins, antioxidants, and minerals.", bgPattern: "linear-gradient(90deg, rgba(200,150,42,0.08) 0%, transparent 100%)", texturePattern: "repeating-linear-gradient(45deg, transparent, transparent 2px, rgba(200,150,42,0.03) 2px, rgba(200,150,42,0.03) 4px)" },
 ];
 
 export function WhyOrganic() {
@@ -58,6 +58,7 @@ export function WhyOrganic() {
               className="group border border-white/8 rounded-2xl p-8 hover:border-secondary/40 hover:bg-white/5 transition-all duration-300 relative overflow-hidden"
             >
               <div className="absolute inset-0 opacity-50 pointer-events-none" style={{ backgroundImage: card.bgPattern }} />
+              <div className="absolute inset-0 opacity-100 pointer-events-none" style={{ backgroundImage: card.texturePattern, backgroundSize: "16px 16px" }} />
               <div className="relative z-10">
                 <div className="text-secondary/80 text-xs font-bold tracking-[0.3em] uppercase mb-4">
                   {card.num}
