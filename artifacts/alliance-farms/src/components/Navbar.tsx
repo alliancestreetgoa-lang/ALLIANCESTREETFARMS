@@ -33,13 +33,20 @@ export function Navbar() {
       )}
     >
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 flex items-center justify-between">
-        <a href="#" className="flex flex-col items-start group">
-          <span className="font-heading text-xl md:text-2xl text-secondary group-hover:text-white transition-colors duration-300">
-            Alliance Street Organic Farms
-          </span>
-          <span className="text-[10px] tracking-[0.2em] text-white/70 uppercase">
-            Goa, India
-          </span>
+        <a href="#" className="flex items-center gap-3 group">
+          <img
+            src="/logo.png"
+            alt="Alliance Street Organic Farms Logo"
+            className="h-12 w-auto object-contain drop-shadow-md"
+          />
+          <div className="flex flex-col items-start">
+            <span className="font-heading text-lg md:text-xl text-secondary group-hover:text-white transition-colors duration-300 leading-tight">
+              Alliance Street Organic Farms
+            </span>
+            <span className="text-[10px] tracking-[0.2em] text-white/70 uppercase">
+              Goa, India
+            </span>
+          </div>
         </a>
 
         {/* Desktop Nav */}
