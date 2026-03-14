@@ -1,11 +1,36 @@
 import { motion } from "framer-motion";
 
 const PRODUCTS = [
-  { emoji: "🐓", name: "Desi Chicken", desc: "Free-range native breeds raised on clean feed and open grazing." },
-  { emoji: "🥚", name: "Desi Eggs", desc: "Vitamin-rich country chicken eggs — hormone-free and naturally nutritious." },
-  { emoji: "🐐", name: "Goat Meat", desc: "High-protein, tender meat from Osmanabadi & Konkan Kanyal breeds." },
-  { emoji: "🥛", name: "Goat Milk", desc: "Chemical-free, nutrient-dense milk straight from happy, healthy goats." },
-  { emoji: "🐰", name: "Rabbit Meat", desc: "Lean, low-cholesterol protein from premium rabbit breeds." },
+  {
+    emoji: "🐓",
+    name: "Desi Chicken",
+    desc: "Free-range native breeds raised on clean feed and open grazing.",
+    image: "/images/desi_chicken.jpg",
+  },
+  {
+    emoji: "🥚",
+    name: "Desi Eggs",
+    desc: "Vitamin-rich country chicken eggs — hormone-free and naturally nutritious.",
+    image: "/images/desi_eggs.jpg",
+  },
+  {
+    emoji: "🐐",
+    name: "Goat Meat",
+    desc: "High-protein, tender meat from Osmanabadi & Konkan Kanyal breeds.",
+    image: "/images/goat_meat.jpg",
+  },
+  {
+    emoji: "🥛",
+    name: "Goat Milk",
+    desc: "Chemical-free, nutrient-dense milk straight from happy, healthy goats.",
+    image: "/images/goat_milk.jpg",
+  },
+  {
+    emoji: "🐰",
+    name: "Rabbit Meat",
+    desc: "Lean, low-cholesterol protein from premium rabbit breeds.",
+    image: "/images/rabbit.jpg",
+  },
 ];
 
 export function Products() {
@@ -30,17 +55,27 @@ export function Products() {
               whileInView={{ opacity: 1, y: 0 }}
               viewport={{ once: true, margin: "-50px" }}
               transition={{ duration: 0.5, delay: i * 0.1 }}
-              className="bg-white rounded-2xl p-8 text-center shadow-lg shadow-black/5 border border-black/5 hover:-translate-y-2 hover:shadow-xl hover:border-secondary/30 transition-all duration-300 group cursor-default"
+              className="bg-white rounded-2xl overflow-hidden shadow-lg shadow-black/5 border border-black/5 hover:-translate-y-2 hover:shadow-xl hover:border-secondary/30 transition-all duration-300 group cursor-default"
             >
-              <div className="text-6xl mb-6 transform group-hover:scale-110 transition-transform duration-300 animate-float" style={{ animationDelay: `${i * 0.5}s` }}>
-                {prod.emoji}
+              <div className="relative h-44 overflow-hidden">
+                <img
+                  src={prod.image}
+                  alt={prod.name}
+                  className="w-full h-full object-cover group-hover:scale-110 transition-transform duration-500"
+                />
+                <div className="absolute inset-0 bg-gradient-to-t from-black/40 to-transparent" />
+                <span className="absolute bottom-3 left-3 text-3xl drop-shadow-lg">
+                  {prod.emoji}
+                </span>
               </div>
-              <h3 className="text-xl font-heading font-bold text-foreground mb-3">
-                {prod.name}
-              </h3>
-              <p className="text-muted-foreground text-sm leading-relaxed">
-                {prod.desc}
-              </p>
+              <div className="p-5 text-center">
+                <h3 className="text-lg font-heading font-bold text-foreground mb-2">
+                  {prod.name}
+                </h3>
+                <p className="text-muted-foreground text-sm leading-relaxed">
+                  {prod.desc}
+                </p>
+              </div>
             </motion.div>
           ))}
         </div>

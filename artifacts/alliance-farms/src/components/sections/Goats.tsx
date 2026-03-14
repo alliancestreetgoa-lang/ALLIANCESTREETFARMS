@@ -22,8 +22,16 @@ export function Goats() {
             className="bg-background rounded-2xl overflow-hidden shadow-lg border border-black/5 relative group"
           >
             <div className="h-1.5 w-full bg-gradient-to-r from-secondary to-[#8a6010]" />
+            <div className="relative h-52 overflow-hidden">
+              <img
+                src="/images/osmanabadi_goat.jpg"
+                alt="Osmanabadi Goat"
+                className="w-full h-full object-cover group-hover:scale-105 transition-transform duration-500"
+              />
+              <div className="absolute inset-0 bg-gradient-to-t from-black/50 to-transparent" />
+              <span className="absolute bottom-3 left-4 text-3xl drop-shadow-lg">🐐</span>
+            </div>
             <div className="p-8 sm:p-10">
-              <div className="text-5xl mb-6">🐐</div>
               <span className="text-xs font-bold bg-secondary/10 text-secondary px-3 py-1 rounded-full uppercase tracking-wider mb-4 inline-block">
                 Premium Meat Breed
               </span>
@@ -56,8 +64,16 @@ export function Goats() {
             className="bg-background rounded-2xl overflow-hidden shadow-lg border border-black/5 relative group"
           >
             <div className="h-1.5 w-full bg-gradient-to-r from-[#a0c878] to-accent" />
+            <div className="relative h-52 overflow-hidden">
+              <img
+                src="/images/konkan_kanyal_goat.jpg"
+                alt="Konkan Kanyal Goat"
+                className="w-full h-full object-cover group-hover:scale-105 transition-transform duration-500"
+              />
+              <div className="absolute inset-0 bg-gradient-to-t from-black/50 to-transparent" />
+              <span className="absolute bottom-3 left-4 text-3xl drop-shadow-lg">🌿</span>
+            </div>
             <div className="p-8 sm:p-10">
-              <div className="text-5xl mb-6">🌿</div>
               <span className="text-xs font-bold bg-accent/10 text-accent px-3 py-1 rounded-full uppercase tracking-wider mb-4 inline-block">
                 Goa's Native Breed
               </span>

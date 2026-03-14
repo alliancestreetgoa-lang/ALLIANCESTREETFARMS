@@ -17,7 +17,16 @@ export function Hero() {
   }, []);
 
   return (
-    <section className="relative min-h-screen flex items-center justify-center overflow-hidden bg-gradient-to-br from-[#0d2409] via-[#1a3a14] to-[#2d5a27] pt-20">
+    <section className="relative min-h-screen flex items-center justify-center overflow-hidden pt-20">
+      {/* Real farm background image */}
+      <div className="absolute inset-0">
+        <img
+          src="/images/hero_farm.png"
+          alt="Alliance Street Organic Farm"
+          className="w-full h-full object-cover object-center"
+        />
+        <div className="absolute inset-0 bg-gradient-to-br from-[#0d2409]/88 via-[#1a3a14]/80 to-[#2d5a27]/75" />
+      </div>
       {/* Particles */}
       <div className="absolute inset-0 pointer-events-none">
         {particles.map((p) => (

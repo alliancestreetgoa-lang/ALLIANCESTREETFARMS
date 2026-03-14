@@ -85,6 +85,24 @@ export function DesiEggs() {
 
           {/* Right Column */}
           <div className="space-y-8">
+            {/* Real egg photo */}
+            <motion.div
+              initial={{ opacity: 0, scale: 0.95 }}
+              whileInView={{ opacity: 1, scale: 1 }}
+              viewport={{ once: true }}
+              transition={{ duration: 0.6 }}
+              className="relative h-52 rounded-2xl overflow-hidden shadow-xl"
+            >
+              <img
+                src="/images/eggs_section.jpg"
+                alt="Fresh farm desi eggs"
+                className="w-full h-full object-cover"
+              />
+              <div className="absolute inset-0 bg-gradient-to-t from-black/50 to-transparent flex items-end p-5">
+                <span className="text-white font-heading text-xl font-bold drop-shadow">Farm-fresh, every single day</span>
+              </div>
+            </motion.div>
+
             <motion.div 
               initial={{ opacity: 0, scale: 0.9 }}
               whileInView={{ opacity: 1, scale: 1 }}

@@ -47,11 +47,13 @@ export function About() {
             viewport={{ once: true }}
             className="order-1 lg:order-2 relative"
           >
-            <div className="w-full h-[400px] md:h-[500px] bg-gradient-to-br from-primary to-[#4a3623] rounded-3xl flex items-center justify-center relative overflow-hidden shadow-2xl">
-              <div className="absolute inset-0 opacity-20 bg-[radial-gradient(circle_at_center,white_1px,transparent_1px)] [background-size:24px_24px]" />
-              <div className="text-[8rem] animate-float">
-                🌾
-              </div>
+            <div className="w-full h-[400px] md:h-[500px] rounded-3xl overflow-hidden shadow-2xl relative group">
+              <img
+                src="/images/about_farm.jpg"
+                alt="Alliance Street Organic Farm"
+                className="w-full h-full object-cover group-hover:scale-105 transition-transform duration-700"
+              />
+              <div className="absolute inset-0 bg-gradient-to-t from-black/30 to-transparent" />
             </div>
             
             <motion.div 
