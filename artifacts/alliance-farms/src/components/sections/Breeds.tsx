@@ -11,6 +11,7 @@ type Breed = {
   fullDesc: string;
   badge?: string;
   tags: string[];
+  objectPosition?: string;
 };
 
 const CHICKEN_BREEDS: Breed[] = [
@@ -54,6 +55,7 @@ const CHICKEN_BREEDS: Breed[] = [
     desc: "Produces flavorful, nutrient-dense meat with a robust protein profile supporting muscle development.",
     fullDesc: "Brahma chicken produces flavorful, nutrient-dense meat with a robust protein profile that supports muscle development and long-lasting energy. Eggs provide essential nutrients that complement a natural, protein-focused diet. Ideal for those seeking traditional, hearty nutrition.",
     tags: ["💪 Muscle-Building Protein", "⚡ Sustained Energy", "❤️ Balanced Nutrition"],
+    objectPosition: "center 30%",
   },
   {
     name: "Frizzle Feather",
@@ -164,6 +166,7 @@ function BreedModal({ breed, onClose }: { breed: Breed; onClose: () => void }) {
               src={breed.image}
               alt={breed.name}
               className="w-full h-full object-cover"
+              style={breed.objectPosition ? { objectPosition: breed.objectPosition } : undefined}
             />
             <div className="absolute inset-0 bg-gradient-to-t from-black/60 to-transparent" />
             {breed.badge && (
@@ -282,6 +285,7 @@ export function Breeds() {
                       src={breed.image}
                       alt={breed.name}
                       className="w-full h-full object-cover group-hover:scale-110 transition-transform duration-500"
+                      style={breed.objectPosition ? { objectPosition: breed.objectPosition } : undefined}
                     />
                     <div className="absolute inset-0 bg-gradient-to-t from-black/50 to-transparent" />
                     {breed.badge && (
