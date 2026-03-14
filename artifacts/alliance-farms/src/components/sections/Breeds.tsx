@@ -100,7 +100,7 @@ const RABBIT_BREEDS: Breed[] = [
   },
   {
     name: "New Zealand White",
-    image: "/images/breed_nz_white_rabbit.jpg",
+    image: "/images/breed_nz_white_rabbit.png",
     grad: "from-[#e8e4dc] to-[#b0aca4]",
     desc: "The gold standard worldwide for premium, tender, white meat.",
     fullDesc: "Considered the gold standard of healthy rabbit meat worldwide. Extremely low in fat and calories, making it ideal for weight control and clinical diets. Its meat is white, tender and has a mild, pleasant flavour.",
