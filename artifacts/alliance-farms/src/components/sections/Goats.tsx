@@ -103,7 +103,13 @@ export function Goats() {
           viewport={{ once: true }}
           className="bg-[#1a3a14] rounded-3xl p-10 sm:p-14 flex flex-col lg:flex-row items-center gap-10"
         >
-          <div className="w-20 h-20 rounded-full bg-secondary/20 flex items-center justify-center flex-shrink-0 border-2 border-secondary/40" />
+          <div className="w-32 h-32 rounded-full overflow-hidden flex-shrink-0 border-4 border-secondary/50 shadow-xl ring-4 ring-secondary/10">
+            <img
+              src="/images/goat_milk.jpg"
+              alt="Fresh Goat Milk"
+              className="w-full h-full object-cover"
+            />
+          </div>
           <div className="flex-1 text-center lg:text-left">
             <h3 className="font-heading text-3xl md:text-4xl font-bold text-white mb-3">
               The Goodness of Goat Milk
