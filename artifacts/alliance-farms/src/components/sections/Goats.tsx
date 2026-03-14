@@ -25,8 +25,11 @@ const MILK_TAGS = ["🦴 Calcium-Rich", "💊 Easy to Digest", "🛡️ Immunity
 
 export function Goats() {
   return (
-    <section id="goats" className="py-28 bg-white">
-      <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+    <section id="goats" className="py-28 bg-white relative">
+      <div className="absolute inset-0 opacity-[0.03] pointer-events-none"
+        style={{ backgroundImage: "linear-gradient(90deg, #1a3a14 1px, transparent 1px), linear-gradient(#1a3a14 1px, transparent 1px)", backgroundSize: "24px 24px" }}
+      />
+      <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 relative z-10">
 
         <div className="text-center mb-20">
           <motion.div

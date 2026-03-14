@@ -51,8 +51,11 @@ export function Products() {
   const product = selectedProduct ? PRODUCTS.find(p => p.name === selectedProduct) : null;
 
   return (
-    <section id="products" className="py-28 bg-[#faf6ef]">
-      <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+    <section id="products" className="py-28 bg-[#faf6ef] relative">
+      <div className="absolute inset-0 opacity-[0.02] pointer-events-none"
+        style={{ backgroundImage: "linear-gradient(45deg, #1a3a14 1px, transparent 1px)", backgroundSize: "20px 20px" }}
+      />
+      <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 relative z-10">
         <div className="text-center mb-20">
           <motion.div
             initial={{ opacity: 0, y: 16 }}
