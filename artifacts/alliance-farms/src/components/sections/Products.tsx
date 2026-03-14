@@ -29,7 +29,7 @@ const PRODUCTS = [
     emoji: "🐰",
     name: "Rabbit Meat",
     desc: "Lean, low-cholesterol protein from premium rabbit breeds.",
-    image: "/images/rabbit.jpg",
+    image: "/images/product_rabbit.png",
   },
 ];
 
