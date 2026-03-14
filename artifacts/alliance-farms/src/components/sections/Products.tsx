@@ -2,7 +2,6 @@ import { motion } from "framer-motion";
 
 const PRODUCTS = [
   {
-    emoji: "🐓",
     name: "Desi Chicken",
     tag: "Native Breed",
     desc: "Free-range native breeds raised on clean feed and open grazing.",
@@ -10,7 +9,6 @@ const PRODUCTS = [
     color: "from-[#3d2b1a] to-[#1a3a14]",
   },
   {
-    emoji: "🥚",
     name: "Desi Eggs",
     tag: "Vitamin-Rich",
     desc: "Country chicken eggs — hormone-free and naturally nutritious.",
@@ -18,7 +16,6 @@ const PRODUCTS = [
     color: "from-[#5c3d1e] to-[#8a6010]",
   },
   {
-    emoji: "🐐",
     name: "Goat Meat",
     tag: "High Protein",
     desc: "Tender meat from Osmanabadi & Konkan Kanyal breeds.",
@@ -26,7 +23,6 @@ const PRODUCTS = [
     color: "from-[#1a3a14] to-[#2d5a27]",
   },
   {
-    emoji: "🥛",
     name: "Goat Milk",
     tag: "A2 Protein",
     desc: "Chemical-free, nutrient-dense milk from happy, healthy goats.",
@@ -34,7 +30,6 @@ const PRODUCTS = [
     color: "from-[#2d5a27] to-[#7a9e6d]",
   },
   {
-    emoji: "🐰",
     name: "Rabbit Meat",
     tag: "Low Cholesterol",
     desc: "Lean, low-cholesterol protein from premium rabbit breeds.",
@@ -95,14 +90,18 @@ export function Products() {
                   className="w-full h-full object-cover group-hover:scale-110 transition-transform duration-600"
                 />
                 <div className={`absolute inset-0 bg-gradient-to-t ${prod.color} opacity-60 group-hover:opacity-70 transition-opacity duration-300`} />
+                <div className="absolute inset-0 flex items-center justify-center opacity-0 group-hover:opacity-100 transition-opacity duration-300">
+                  <span className="text-[10px] font-bold tracking-widest uppercase bg-secondary/90 text-white px-3 py-1 rounded-full">
+                    {prod.tag}
+                  </span>
+                </div>
                 <div className="absolute top-3 right-3">
-                  <span className="text-[10px] font-bold tracking-widest uppercase bg-secondary/90 text-white px-2 py-1 rounded-full">
+                  <span className="text-[10px] font-bold tracking-widest uppercase bg-black/50 text-white px-2 py-1 rounded-full">
                     {prod.tag}
                   </span>
                 </div>
               </div>
               <div className="absolute bottom-0 left-0 right-0 p-5 text-white">
-                <div className="text-2xl mb-1">{prod.emoji}</div>
                 <h3 className="font-heading text-lg font-bold mb-1 drop-shadow">{prod.name}</h3>
                 <p className="text-white/75 text-xs leading-relaxed">{prod.desc}</p>
               </div>

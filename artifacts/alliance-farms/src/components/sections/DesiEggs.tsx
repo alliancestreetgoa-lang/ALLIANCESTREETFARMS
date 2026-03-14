@@ -76,7 +76,7 @@ export function DesiEggs() {
                   transition={{ delay: i * 0.07 + 0.2 }}
                   className="flex items-center gap-3 text-[#1a3a14] font-medium text-sm"
                 >
-                  <span className="w-1.5 h-1.5 rounded-full bg-secondary flex-shrink-0" />
+                  <span className="w-1 h-px bg-secondary flex-shrink-0" />
                   {text}
                 </motion.li>
               ))}

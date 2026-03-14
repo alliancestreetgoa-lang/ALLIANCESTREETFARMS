@@ -72,6 +72,9 @@ export function Goats() {
                     {breed.tag}
                   </span>
                 </div>
+                <div className="absolute inset-0 flex items-center justify-center opacity-0 group-hover:opacity-100 transition-opacity duration-300 bg-black/20">
+                  <span className="text-white font-heading text-lg font-bold">Learn More</span>
+                </div>
                 <h3 className="absolute bottom-4 left-5 font-heading text-2xl text-white font-bold drop-shadow">
                   {breed.name}
                 </h3>
@@ -97,7 +100,7 @@ export function Goats() {
           viewport={{ once: true }}
           className="bg-[#1a3a14] rounded-3xl p-10 sm:p-14 flex flex-col lg:flex-row items-center gap-10"
         >
-          <div className="text-7xl animate-float flex-shrink-0">🥛</div>
+          <div className="w-20 h-20 rounded-full bg-secondary/20 flex items-center justify-center flex-shrink-0 border-2 border-secondary/40" />
           <div className="flex-1 text-center lg:text-left">
             <h3 className="font-heading text-3xl md:text-4xl font-bold text-white mb-3">
               The Goodness of Goat Milk

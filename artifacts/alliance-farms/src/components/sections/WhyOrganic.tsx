@@ -1,12 +1,12 @@
 import { motion } from "framer-motion";
 
 const CARDS = [
-  { icon: "🚫", title: "Zero Synthetic Inputs", desc: "No antibiotics, no growth hormones, no artificial chemicals. Every product we raise is 100% free from synthetic interventions." },
-  { icon: "🌾", title: "Animal Welfare First", desc: "Our animals roam freely on open land with fresh air, clean water, and natural feed. No stress, no crowding — just ethical care." },
-  { icon: "🌍", title: "Local Sustainability", desc: "We protect Goa's biodiversity and soil health by farming with nature, not against it — preserving the land for future generations." },
-  { icon: "🏘️", title: "Community-First", desc: "Quality, not quantity, is at the center. Our produce serves local families who deserve clean, honest food without compromise." },
-  { icon: "🧬", title: "Native Breed Preservation", desc: "By raising indigenous breeds like Kadaknath, Osmanabadi, and Konkan Kanyal, we protect genetic heritage and biodiversity." },
-  { icon: "🔬", title: "Nutritional Superiority", desc: "Organic, free-range produce is scientifically proven to contain higher omega-3s, vitamins, antioxidants, and minerals." },
+  { num: "01", title: "Zero Synthetic Inputs", desc: "No antibiotics, no growth hormones, no artificial chemicals. Every product we raise is 100% free from synthetic interventions." },
+  { num: "02", title: "Animal Welfare First", desc: "Our animals roam freely on open land with fresh air, clean water, and natural feed. No stress, no crowding — just ethical care." },
+  { num: "03", title: "Local Sustainability", desc: "We protect Goa's biodiversity and soil health by farming with nature, not against it — preserving the land for future generations." },
+  { num: "04", title: "Community-First", desc: "Quality, not quantity, is at the center. Our produce serves local families who deserve clean, honest food without compromise." },
+  { num: "05", title: "Native Breed Preservation", desc: "By raising indigenous breeds like Kadaknath, Osmanabadi, and Konkan Kanyal, we protect genetic heritage and biodiversity." },
+  { num: "06", title: "Nutritional Superiority", desc: "Organic, free-range produce is scientifically proven to contain higher omega-3s, vitamins, antioxidants, and minerals." },
 ];
 
 export function WhyOrganic() {
@@ -57,8 +57,8 @@ export function WhyOrganic() {
               transition={{ duration: 0.5, delay: i * 0.08 }}
               className="group border border-white/8 rounded-2xl p-8 hover:border-secondary/40 hover:bg-white/5 transition-all duration-300"
             >
-              <div className="text-3xl mb-5 group-hover:scale-110 transition-transform duration-300 origin-left">
-                {card.icon}
+              <div className="text-secondary/80 text-xs font-bold tracking-[0.3em] uppercase mb-4">
+                {card.num}
               </div>
               <h3 className="font-heading text-lg font-bold mb-3 text-white">
                 {card.title}
