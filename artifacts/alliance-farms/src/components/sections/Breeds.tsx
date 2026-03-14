@@ -224,35 +224,38 @@ export function Breeds() {
             Heritage & Native Breeds
           </h2>
 
-          <div className="flex bg-white rounded-full p-1.5 shadow-md shadow-black/5 border border-black/5">
-            <button
-              onClick={() => setActiveTab("chicken")}
-              className={cn(
-                "px-6 py-3 rounded-full text-sm font-bold transition-all duration-300",
-                activeTab === "chicken" ? "bg-secondary text-white shadow-md" : "text-muted-foreground hover:text-foreground"
-              )}
-            >
-              🐓 Chicken Breeds
-            </button>
-            <button
-              onClick={() => setActiveTab("rabbit")}
-              className={cn(
-                "px-6 py-3 rounded-full text-sm font-bold transition-all duration-300",
-                activeTab === "rabbit" ? "bg-secondary text-white shadow-md" : "text-muted-foreground hover:text-foreground"
-              )}
-            >
-              🐰 Rabbit Breeds
-            </button>
+          <div className="flex bg-white rounded-full p-1.5 shadow-md shadow-black/5 border border-black/5 relative">
+            {["chicken", "rabbit"].map((tab) => (
+              <button
+                key={tab}
+                onClick={() => setActiveTab(tab as "chicken" | "rabbit")}
+                className={cn(
+                  "relative px-6 py-3 rounded-full text-sm font-bold transition-colors duration-300 z-10",
+                  activeTab === tab ? "text-white" : "text-muted-foreground hover:text-foreground"
+                )}
+              >
+                {activeTab === tab && (
+                  <motion.span
+                    layoutId="tab-pill"
+                    className="absolute inset-0 bg-secondary rounded-full shadow-md"
+                    transition={{ type: "spring", stiffness: 400, damping: 30 }}
+                  />
+                )}
+                <span className="relative z-10">
+                  {tab === "chicken" ? "🐓 Chicken Breeds" : "🐰 Rabbit Breeds"}
+                </span>
+              </button>
+            ))}
           </div>
         </div>
 
         <AnimatePresence mode="wait">
           <motion.div
             key={activeTab}
-            initial={{ opacity: 0, y: 20 }}
-            animate={{ opacity: 1, y: 0 }}
-            exit={{ opacity: 0, y: -20 }}
-            transition={{ duration: 0.3 }}
+            initial={{ opacity: 0, y: 32, scale: 0.98 }}
+            animate={{ opacity: 1, y: 0, scale: 1 }}
+            exit={{ opacity: 0, y: -24, scale: 0.97 }}
+            transition={{ duration: 0.4, ease: [0.22, 1, 0.36, 1] }}
           >
             {activeTab === "rabbit" && (
               <div className="bg-primary/5 border border-primary/20 text-primary rounded-xl p-4 mb-8 text-center max-w-3xl mx-auto text-sm font-medium">
@@ -268,9 +271,9 @@ export function Breeds() {
               {(activeTab === "chicken" ? CHICKEN_BREEDS : RABBIT_BREEDS).map((breed, i) => (
                 <motion.div
                   key={breed.name}
-                  initial={{ opacity: 0, scale: 0.95 }}
-                  animate={{ opacity: 1, scale: 1 }}
-                  transition={{ delay: i * 0.05 }}
+                  initial={{ opacity: 0, y: 30, scale: 0.94 }}
+                  animate={{ opacity: 1, y: 0, scale: 1 }}
+                  transition={{ delay: i * 0.07, type: "spring", stiffness: 280, damping: 24 }}
                   onClick={() => setSelected(breed)}
                   className="bg-white rounded-2xl overflow-hidden shadow-lg border border-black/5 group hover:-translate-y-2 hover:shadow-xl hover:border-secondary/20 transition-all duration-300 cursor-pointer"
                 >
