@@ -125,7 +125,7 @@ const RABBIT_BREEDS: Breed[] = [
   },
   {
     name: "New Zealand Black",
-    image: "/images/breed_nz_black_rabbit.jpg",
+    image: "/images/breed_nz_black_rabbit.png",
     grad: "from-[#2a2a2a] to-[#0a0a0a]",
     desc: "Lean, clean meat with excellent digestibility. Ideal for families.",
     fullDesc: "Lean, clean meat with excellent digestibility. Ideal for families, athletes, and wellness-focused consumers. Similar in production quality to the New Zealand White but with a distinctive colouring.",
