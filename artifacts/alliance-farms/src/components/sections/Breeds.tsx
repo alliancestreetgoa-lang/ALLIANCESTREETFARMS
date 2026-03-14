@@ -84,7 +84,7 @@ const CHICKEN_BREEDS: Breed[] = [
 const RABBIT_BREEDS: Breed[] = [
   {
     name: "Californian",
-    image: "/images/breed_californian_rabbit.jpg",
+    image: "/images/breed_californian_rabbit.png",
     grad: "from-[#8ea3a6] to-[#4e6063]",
     desc: "Lean, therapeutic-quality meat ideal for cardiovascular health.",
     fullDesc: "Lean, therapeutic-quality meat with excellent protein absorption. Ideal for heart-conscious diets and recovery nutrition. The Californian rabbit's meat is known for its fine texture and clean flavour profile.",
