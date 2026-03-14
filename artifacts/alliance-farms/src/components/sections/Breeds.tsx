@@ -133,7 +133,7 @@ const RABBIT_BREEDS: Breed[] = [
   },
   {
     name: "Dutch",
-    image: "/images/breed_dutch_rabbit.jpg",
+    image: "/images/breed_dutch_rabbit.png",
     grad: "from-[#c2b29f] to-[#7a6a58]",
     desc: "Produces light, easily digestible meat in smaller portions.",
     fullDesc: "Produces light, easily digestible meat in smaller portions. Suitable for gentle diets and health-sensitive individuals. The Dutch rabbit is one of the oldest domestic breeds, valued for its manageable size.",
