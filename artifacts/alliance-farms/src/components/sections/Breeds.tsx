@@ -57,7 +57,7 @@ const CHICKEN_BREEDS: Breed[] = [
   },
   {
     name: "Frizzle Feather",
-    image: "/images/breed_frizzle_chicken.jpg",
+    image: "/images/breed_frizzle_chicken.png",
     grad: "from-[#a0c878] to-[#5a8040]",
     desc: "Naturally raised, protein-rich meat free from intensive farming stress.",
     fullDesc: "While primarily ornamental, Frizzle feather chickens provide meat and eggs comparable to traditional country chickens. Their naturally raised meat is protein-rich and free from intensive farming stress, making it suitable for clean, home-grown nutrition.",
