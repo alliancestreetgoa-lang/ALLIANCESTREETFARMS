@@ -49,7 +49,7 @@ const CHICKEN_BREEDS: Breed[] = [
   },
   {
     name: "Brahma",
-    image: "/images/breed_brahma_chicken.jpg",
+    image: "/images/breed_brahma_chicken.png",
     grad: "from-[#6b5a3a] to-[#3d2e1a]",
     desc: "Produces flavorful, nutrient-dense meat with a robust protein profile supporting muscle development.",
     fullDesc: "Brahma chicken produces flavorful, nutrient-dense meat with a robust protein profile that supports muscle development and long-lasting energy. Eggs provide essential nutrients that complement a natural, protein-focused diet. Ideal for those seeking traditional, hearty nutrition.",
