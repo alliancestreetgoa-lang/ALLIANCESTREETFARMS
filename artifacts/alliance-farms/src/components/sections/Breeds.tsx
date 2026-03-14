@@ -92,7 +92,7 @@ const RABBIT_BREEDS: Breed[] = [
   },
   {
     name: "Grey Giant",
-    image: "/images/breed_grey_giant_rabbit.jpg",
+    image: "/images/breed_grey_giant_rabbit.png",
     grad: "from-[#9a9a9a] to-[#5a5a5a]",
     desc: "High-volume nutrient-rich meat supporting physical performance.",
     fullDesc: "Produces a high volume of nutrient-rich meat packed with essential amino acids. Supports muscle development and long-term vitality. The Grey Giant is one of the most productive meat rabbit breeds.",
