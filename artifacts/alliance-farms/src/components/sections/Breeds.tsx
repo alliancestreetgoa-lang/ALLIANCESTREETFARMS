@@ -117,7 +117,7 @@ const RABBIT_BREEDS: Breed[] = [
   },
   {
     name: "Soviet Chinchilla",
-    image: "/images/breed_soviet_chinchilla_rabbit.jpg",
+    image: "/images/breed_soviet_chinchilla_rabbit.png",
     grad: "from-[#7a8b99] to-[#3c4a56]",
     desc: "Tender, iron-rich meat known for supporting blood health and immunity.",
     fullDesc: "Tender, iron-rich meat known for supporting blood health and immunity. Suitable for balanced nutrition and recovery diets. The Soviet Chinchilla combines excellent meat quality with a calm temperament.",
