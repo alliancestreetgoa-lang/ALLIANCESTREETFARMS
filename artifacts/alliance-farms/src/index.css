@@ -1,0 +1,154 @@
+@import url('https://fonts.googleapis.com/css2?family=Dancing+Script:wght@500;700&family=Lato:wght@300;400;700&family=Playfair+Display:ital,wght@0,400;0,600;0,700;1,400;1,600&display=swap');
+@import "tailwindcss";
+
+@theme inline {
+  --font-sans: 'Lato', sans-serif;
+  --font-heading: 'Playfair Display', serif;
+  --font-script: 'Dancing Script', cursive;
+
+  --color-background: hsl(38 35% 96%); /* #faf6ef */
+  --color-foreground: hsl(33 58% 4%); /* #0f0a04 */
+  
+  --color-primary: hsl(113 39% 25%); /* #2d5a27 */
+  --color-primary-foreground: hsl(38 35% 96%);
+  
+  --color-secondary: hsl(41 65% 47%); /* #c8962a */
+  --color-secondary-foreground: hsl(38 35% 96%);
+  
+  --color-muted: hsl(105 33% 92%); /* #e8f0e4 */
+  --color-muted-foreground: hsl(30 51% 24%); /* #5c3d1e */
+  
+  --color-accent: hsl(104 23% 52%); /* #7a9e6d */
+  --color-accent-foreground: hsl(38 35% 96%);
+  
+  --color-border: hsl(41 30% 80%);
+  --color-ring: hsl(41 65% 47%);
+  
+  --color-card: hsl(0 0% 100%);
+  --color-card-foreground: hsl(33 58% 4%);
+}
+
+:root {
+  --background: 38 35% 96%;
+  --foreground: 33 58% 4%;
+  --primary: 113 39% 25%;
+  --primary-foreground: 38 35% 96%;
+  --secondary: 41 65% 47%;
+  --secondary-foreground: 38 35% 96%;
+  --muted: 105 33% 92%;
+  --muted-foreground: 30 51% 24%;
+  --accent: 104 23% 52%;
+  --accent-foreground: 38 35% 96%;
+  --destructive: 0 84% 60%;
+  --destructive-foreground: 210 40% 98%;
+  --border: 41 30% 80%;
+  --ring: 41 65% 47%;
+  --card: 0 0% 100%;
+  --card-foreground: 33 58% 4%;
+}
+
+@layer base {
+  body {
+    @apply bg-background text-foreground antialiased font-sans scroll-smooth;
+  }
+
+  h1, h2, h3, h4, h5, h6 {
+    font-family: var(--font-heading);
+    @apply font-semibold tracking-tight;
+  }
+}
+
+@layer utilities {
+  .text-shadow-sm {
+    text-shadow: 0 1px 2px rgba(0,0,0,0.5);
+  }
+  .text-shadow-md {
+    text-shadow: 0 2px 4px rgba(0,0,0,0.5);
+  }
+}
+
+/* Custom Animations from Prompt */
+@keyframes fadeUp {
+  from { opacity: 0; transform: translateY(30px); }
+  to { opacity: 1; transform: translateY(0); }
+}
+
+@keyframes fadeIn {
+  from { opacity: 0; }
+  to { opacity: 1; }
+}
+
+@keyframes floatAnim {
+  0%, 100% { transform: translateY(0px); }
+  50% { transform: translateY(-12px); }
+}
+
+@keyframes pulseSoft {
+  0%, 100% { transform: scale(1); }
+  50% { transform: scale(1.04); }
+}
+
+@keyframes particleDrift {
+  0% { transform: translateY(0) translateX(0); opacity: 0; }
+  10% { opacity: 1; }
+  90% { opacity: 0.6; }
+  100% { transform: translateY(-100vh) translateX(30px); opacity: 0; }
+}
+
+@keyframes cloudDrift {
+  from { transform: translateX(-80px); }
+  to { transform: translateX(560px); }
+}
+
+@keyframes grassSway {
+  0%, 100% { transform: rotate(-6deg); transform-origin: bottom center; }
+  50% { transform: rotate(6deg); transform-origin: bottom center; }
+}
+
+@keyframes peck {
+  0%, 100% { transform: translateY(0) rotate(0deg); }
+  50% { transform: translateY(6px) rotate(25deg); }
+}
+
+@keyframes goatTailWag {
+  0%, 100% { transform: rotate(-15deg); transform-origin: top left; }
+  50% { transform: rotate(15deg); transform-origin: top left; }
+}
+
+@keyframes earWiggle {
+  0%, 100% { transform: rotate(0deg); transform-origin: bottom center; }
+  50% { transform: rotate(-8deg); transform-origin: bottom center; }
+}
+
+@keyframes bunnyNose {
+  0%, 100% { transform: scaleX(1); }
+  50% { transform: scaleX(0.7); }
+}
+
+@keyframes butterflyFly {
+  0% { transform: translate(-60px, 280px); opacity: 0; }
+  5% { opacity: 1; }
+  95% { opacity: 1; }
+  100% { transform: translate(520px, 80px); opacity: 0; }
+}
+
+@keyframes twinkle {
+  0%, 100% { opacity: 0.2; r: 1; }
+  50% { opacity: 0.9; r: 2; }
+}
+
+@keyframes hopChick {
+  0%, 100% { transform: translate(0, 0); }
+  25% { transform: translate(8px, -12px); }
+  75% { transform: translate(-8px, -12px); }
+}
+
+.animate-float { animation: floatAnim 4s ease-in-out infinite; }
+.animate-pulse-soft { animation: pulseSoft 3s ease-in-out infinite; }
+.animate-cloud { animation: cloudDrift 20s linear infinite; }
+.animate-cloud-slow { animation: cloudDrift 35s linear infinite; }
+.animate-grass { animation: grassSway 3s ease-in-out infinite; }
+.animate-peck { animation: peck 2s ease-in-out infinite; transform-origin: center; }
+.animate-hop { animation: hopChick 1.5s ease-in-out infinite; }
+.animate-butterfly { animation: butterflyFly 12s linear infinite; }
+.animate-twinkle { animation: twinkle 3s ease-in-out infinite; }

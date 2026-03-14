@@ -1,0 +1,12 @@
+packages:
+  "framer-motion": "For complex scroll reveals, tab transitions, and parallax animations"
+  "clsx": "For conditional class names"
+  "tailwind-merge": "For merging tailwind classes safely"
+  "lucide-react": "For UI icons alongside emojis"
+
+images: []
+
+notes:
+  - "The site is a frontend-only marketing page as requested. All data is hardcoded."
+  - "SVG animations use emojis as requested in the prompt ('All images replaced by emoji')."
+  - "Wouter is used for routing, but hash links use standard <a> tags for smooth scrolling on the same page."
