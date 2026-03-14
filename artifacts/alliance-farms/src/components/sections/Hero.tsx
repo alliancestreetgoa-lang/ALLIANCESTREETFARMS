@@ -61,7 +61,7 @@ export function Hero() {
         >
           <span className="h-px w-12 bg-secondary/70" />
           <span className="text-secondary text-xs tracking-[0.3em] uppercase font-semibold">
-            Goa, India — Est. 2020
+            Goa, India — Est. 2024
           </span>
           <span className="h-px w-12 bg-secondary/70" />
         </motion.div>

@@ -83,7 +83,7 @@ export function About() {
               transition={{ delay: 0.5 }}
               className="absolute -bottom-6 -left-6 bg-[#1a3a14] p-6 rounded-2xl shadow-xl max-w-[200px]"
             >
-              <div className="text-secondary font-heading text-3xl font-bold">2020</div>
+              <div className="text-secondary font-heading text-3xl font-bold">2024</div>
               <div className="text-white/70 text-xs tracking-widest uppercase mt-1">Est. in Goa</div>
             </motion.div>
 
