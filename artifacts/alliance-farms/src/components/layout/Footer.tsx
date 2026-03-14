@@ -33,6 +33,15 @@ export function Footer() {
           ))}
         </div>
 
+        <div className="flex flex-wrap justify-center gap-6 mb-6 text-white/40 text-sm">
+          <a href="tel:+917375096163" className="hover:text-secondary transition-colors duration-200">
+            📞 +91 73750 96163
+          </a>
+          <a href="mailto:alliancestreetorganicfarms@gmail.com" className="hover:text-secondary transition-colors duration-200">
+            ✉ alliancestreetorganicfarms@gmail.com
+          </a>
+        </div>
+
         <p className="text-white/30 text-xs">
           © {new Date().getFullYear()} Alliance Street Organic Farms, Goa, India. All rights reserved.
         </p>

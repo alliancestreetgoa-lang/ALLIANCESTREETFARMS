@@ -30,16 +30,28 @@ export function ContactCTA() {
             Order directly from Alliance Street Organic Farms — Goa's most trusted source for organic desi chicken, eggs, goat meat, and more.
           </p>
 
-          <motion.a
-            href="mailto:hello@alliancestreetfarms.com"
-            whileHover={{ scale: 1.04 }}
-            whileTap={{ scale: 0.98 }}
-            className="inline-flex items-center gap-3 px-10 py-4 bg-secondary text-white rounded-full font-semibold text-base shadow-xl shadow-secondary/30 hover:shadow-secondary/50 transition-shadow duration-300"
-          >
-            <span>📞</span> Contact Us to Order
-          </motion.a>
+          <div className="flex flex-col sm:flex-row items-center justify-center gap-4 mb-12">
+            <motion.a
+              href="tel:+917375096163"
+              whileHover={{ scale: 1.04, y: -2 }}
+              whileTap={{ scale: 0.97 }}
+              transition={{ type: "spring", stiffness: 400, damping: 20 }}
+              className="inline-flex items-center gap-3 px-8 py-4 bg-secondary text-white rounded-full font-semibold text-base shadow-xl shadow-secondary/30 hover:shadow-secondary/50 transition-shadow duration-300"
+            >
+              <span>📞</span> +91 73750 96163
+            </motion.a>
+            <motion.a
+              href="mailto:alliancestreetorganicfarms@gmail.com"
+              whileHover={{ scale: 1.04, y: -2 }}
+              whileTap={{ scale: 0.97 }}
+              transition={{ type: "spring", stiffness: 400, damping: 20 }}
+              className="inline-flex items-center gap-3 px-8 py-4 bg-white/10 border border-white/20 text-white rounded-full font-semibold text-base backdrop-blur-sm hover:bg-white/15 transition-colors duration-300"
+            >
+              <span>✉</span> alliancestreetorganicfarms@gmail.com
+            </motion.a>
+          </div>
 
-          <div className="mt-14 flex flex-wrap justify-center gap-10 text-white/35 text-sm">
+          <div className="mt-6 flex flex-wrap justify-center gap-10 text-white/35 text-sm">
             <span className="flex items-center gap-2">
               <span className="w-1 h-1 rounded-full bg-secondary/60" />
               Goa, India
