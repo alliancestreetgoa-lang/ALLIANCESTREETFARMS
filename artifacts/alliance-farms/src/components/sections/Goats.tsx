@@ -1,4 +1,6 @@
-import { motion } from "framer-motion";
+import { useState } from "react";
+import { motion, AnimatePresence } from "framer-motion";
+import { X } from "lucide-react";
 import { staggerContainer, fadeUp, fadeUpSoft, scalePop } from "@/lib/animations";
 
 const VIEWPORT = { once: true, margin: "-80px" };
@@ -10,6 +12,7 @@ const GOAT_BREEDS = [
     tagColor: "bg-secondary/15 text-secondary",
     image: "/images/osmanabadi_goat.jpg",
     desc: "A hardy, indigenous breed from Maharashtra known for its high-quality meat, adaptability, and excellent disease resistance. Highly valued for its rich, flavorful, and lean meat that is lower in fat compared to exotic breeds.",
+    fullDesc: "The Osmanabadi is one of India's most prized desi goat breeds, originating from the Osmanabad district of Maharashtra. Raised entirely free-range on natural forage, these goats develop lean, deeply flavourful meat with a rich protein profile. Their natural disease resistance means zero antibiotics — exactly the clean-label quality Alliance Street Organic Farms stands for.",
     traits: ["High-protein, lean meat", "Low fat, low cholesterol", "Excellent disease resistance", "Raised free-range, stress-free", "Rich, authentic desi flavor"],
     accentColor: "#c8962a",
   },
@@ -19,6 +22,7 @@ const GOAT_BREEDS = [
     tagColor: "bg-[#2d5a27]/15 text-[#2d5a27]",
     image: "/images/konkan_kanyal_goat.jpg",
     desc: "The primary, well-adapted goat breed in Goa — perfectly suited to the coastal climate and local terrain. Produces nutritious milk and quality meat, thriving on natural grazing with minimal external inputs.",
+    fullDesc: "The Konkan Kanyal is Goa's own native goat breed, perfectly evolved for the coastal humidity, laterite terrain, and native vegetation of the Konkan region. Their milk is naturally rich in A2 protein and calcium, while the meat is tender and mildly flavoured — ideal for Goan cuisine. Thriving with minimal intervention, they are a cornerstone of sustainable, biodiversity-friendly farming.",
     traits: ["Native to Goa's coastal climate", "Nutritious, chemical-free milk", "Naturally adapted — low maintenance", "Supports biodiversity conservation", "Tender, naturally flavored meat"],
     accentColor: "#2d5a27",
   },
@@ -26,7 +30,73 @@ const GOAT_BREEDS = [
 
 const MILK_TAGS = ["🦴 Calcium-Rich", "💊 Easy to Digest", "🛡️ Immunity Building", "❤️ Heart-Healthy", "🧒 Great for Kids", "🌿 Zero Chemicals"];
 
+type GoatBreed = typeof GOAT_BREEDS[number];
+
+function GoatModal({ breed, onClose }: { breed: GoatBreed; onClose: () => void }) {
+  return (
+    <AnimatePresence>
+      <motion.div
+        className="fixed inset-0 z-50 flex items-center justify-center p-4 bg-black/60 backdrop-blur-sm"
+        initial={{ opacity: 0 }}
+        animate={{ opacity: 1 }}
+        exit={{ opacity: 0 }}
+        onClick={onClose}
+      >
+        <motion.div
+          className="bg-white rounded-3xl overflow-hidden shadow-2xl max-w-lg w-full"
+          initial={{ scale: 0.88, opacity: 0, y: 32 }}
+          animate={{ scale: 1, opacity: 1, y: 0 }}
+          exit={{ scale: 0.88, opacity: 0, y: 32 }}
+          transition={{ type: "spring", stiffness: 320, damping: 28 }}
+          onClick={(e) => e.stopPropagation()}
+        >
+          <div className="relative h-60 overflow-hidden">
+            <img
+              src={breed.image}
+              alt={breed.name}
+              className="w-full h-full object-cover"
+            />
+            <div className="absolute inset-0 bg-gradient-to-t from-black/70 to-transparent" />
+            <span className={`absolute top-4 left-4 text-xs font-bold px-3 py-1.5 rounded-full ${breed.tagColor}`}>
+              {breed.tag}
+            </span>
+            <button
+              onClick={onClose}
+              className="absolute top-4 right-4 bg-black/40 hover:bg-black/60 text-white rounded-full p-1.5 transition-colors"
+            >
+              <X size={16} />
+            </button>
+            <h3 className="absolute bottom-4 left-5 font-heading text-2xl text-white font-bold drop-shadow">
+              {breed.name}
+            </h3>
+          </div>
+          <div className="p-8">
+            <p className="text-[#5c3d1e]/75 text-sm leading-relaxed mb-6">{breed.fullDesc}</p>
+            <ul className="space-y-2.5">
+              {breed.traits.map((trait, i) => (
+                <li key={i} className="flex items-center gap-3 text-sm font-medium text-[#1a3a14]">
+                  <span className="w-1.5 h-1.5 rounded-full flex-shrink-0" style={{ backgroundColor: breed.accentColor }} />
+                  {trait}
+                </li>
+              ))}
+            </ul>
+            <button
+              onClick={onClose}
+              className="mt-7 w-full py-3 rounded-xl font-semibold text-white text-sm transition-opacity hover:opacity-90"
+              style={{ backgroundColor: breed.accentColor }}
+            >
+              Close
+            </button>
+          </div>
+        </motion.div>
+      </motion.div>
+    </AnimatePresence>
+  );
+}
+
 export function Goats() {
+  const [selected, setSelected] = useState<GoatBreed | null>(null);
+
   return (
     <section id="goats" className="py-28 bg-white relative">
       <div className="absolute inset-0 opacity-[0.03] pointer-events-none"
@@ -64,7 +134,8 @@ export function Goats() {
               variants={scalePop}
               whileHover={{ y: -6, boxShadow: "0 20px 48px rgba(0,0,0,0.12)" }}
               transition={{ type: "spring", stiffness: 300, damping: 22 }}
-              className="group rounded-2xl overflow-hidden border border-black/6 shadow-lg"
+              className="group rounded-2xl overflow-hidden border border-black/6 shadow-lg cursor-pointer"
+              onClick={() => setSelected(breed)}
             >
               <div className="relative h-56 overflow-hidden">
                 <img
@@ -140,6 +211,8 @@ export function Goats() {
         </motion.div>
 
       </div>
+
+      {selected && <GoatModal breed={selected} onClose={() => setSelected(null)} />}
     </section>
   );
 }
