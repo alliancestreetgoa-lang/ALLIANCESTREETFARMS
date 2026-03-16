@@ -1,0 +1,8 @@
+uploads = []
+generated = []
+
+[[outputs]]
+id = "BFg_AQMsoRI-YAJDsnh66"
+uri = "file://alliance-farms-hostinger.tar.gz"
+type = "unspecified"
+title = "alliance-farms-hostinger.tar.gz — Hostinger Deployment Package"
