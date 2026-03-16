@@ -65,22 +65,14 @@ export function Navbar() {
       )}
     >
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 flex items-center justify-between">
-        <a href="#" onClick={(e) => handleNavClick(e, "#")} className="flex items-center gap-3 group">
+        <a href="#" onClick={(e) => handleNavClick(e, "#")} className="flex items-center group">
           <motion.img
             src="/logo.png"
             alt="Alliance Street Organic Farms Logo"
-            className="h-11 w-auto object-contain drop-shadow-md"
-            whileHover={{ scale: 1.05, rotate: -2 }}
+            className="h-16 w-auto object-contain drop-shadow-md"
+            whileHover={{ scale: 1.05 }}
             transition={{ type: "spring", stiffness: 400, damping: 20 }}
           />
-          <div className="flex flex-col items-start">
-            <span className="font-heading text-base md:text-lg text-white group-hover:text-secondary transition-colors duration-300 leading-tight tracking-wide">
-              Alliance Street Organic Farms
-            </span>
-            <span className="text-[9px] tracking-[0.3em] text-secondary/80 uppercase font-semibold">
-              Goa, India
-            </span>
-          </div>
         </a>
 
         <nav className="hidden lg:flex items-center gap-1">
