@@ -69,7 +69,7 @@ export function Navbar() {
           <motion.img
             src="/logo.png"
             alt="Alliance Street Organic Farms Logo"
-            className="h-11 w-auto object-contain mix-blend-screen"
+            className="h-11 w-auto object-contain drop-shadow-md"
             whileHover={{ scale: 1.05, rotate: -2 }}
             transition={{ type: "spring", stiffness: 400, damping: 20 }}
           />
