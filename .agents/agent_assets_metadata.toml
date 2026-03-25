@@ -6,3 +6,9 @@ id = "BFg_AQMsoRI-YAJDsnh66"
 uri = "file://alliance-farms-hostinger.tar.gz"
 type = "unspecified"
 title = "alliance-farms-hostinger.tar.gz — Hostinger Deployment Package"
+
+[[outputs]]
+id = "jMgPY21Lm9-hzzukG1JC8"
+uri = "file://alliance-farms-netlify.tar.gz"
+type = "unspecified"
+title = "alliance-farms-netlify.tar.gz — Netlify Deployment Package"
