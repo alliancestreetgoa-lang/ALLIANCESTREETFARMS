@@ -1,0 +1,13 @@
+[build]
+  base    = "artifacts/alliance-farms"
+  command = "npm install -g pnpm && pnpm install && pnpm run build"
+  publish = "dist/public"
+
+[build.environment]
+  NODE_ENV  = "production"
+  BASE_PATH = "/"
+
+[[redirects]]
+  from   = "/*"
+  to     = "/index.html"
+  status = 200
