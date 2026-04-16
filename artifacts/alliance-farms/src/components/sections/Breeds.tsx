@@ -26,7 +26,7 @@ const CHICKEN_BREEDS: Breed[] = [
   {
     name: "Sonali",
     image: "/images/breed_sonali_chicken.jpg",
-    grad: "from-[#c8962a] to-[#8a6010]",
+    grad: "from-[#DBA319] to-[#A87A0F]",
     desc: "Offers lean, easily digestible meat suitable for balanced diets. Eggs are rich in iron and B12.",
     fullDesc: "Sonali chicken offers lean, easily digestible meat suitable for balanced and low-fat diets. Its eggs are rich in protein, iron, and vitamin B12, supporting red blood cell formation, metabolism, and cardiovascular health. A reliable choice for families seeking affordable nutrition without compromising quality.",
     tags: ["💪 Lean Protein", "🔥 Low Fat", "❤️ Heart Health", "⚡ Energy Boosting Eggs"],

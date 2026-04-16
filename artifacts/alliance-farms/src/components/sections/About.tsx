@@ -14,7 +14,7 @@ export function About() {
   return (
     <section id="about" className="py-28 bg-[#faf6ef] relative">
       <div className="absolute inset-0 opacity-[0.02] pointer-events-none"
-        style={{ backgroundImage: "repeating-linear-gradient(45deg, transparent, transparent 10px, #c8962a 10px, #c8962a 11px)" }}
+        style={{ backgroundImage: "repeating-linear-gradient(45deg, transparent, transparent 10px, #DBA319 10px, #DBA319 11px)" }}
       />
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 relative z-10">
         <div className="grid grid-cols-1 lg:grid-cols-2 gap-20 items-center">

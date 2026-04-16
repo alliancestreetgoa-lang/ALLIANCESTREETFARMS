@@ -17,7 +17,7 @@ const PRODUCTS = [
     tag: "Vitamin-Rich",
     desc: "Country chicken eggs — hormone-free and naturally nutritious.",
     image: "/images/desi_eggs.jpg",
-    color: "from-[#5c3d1e] to-[#8a6010]",
+    color: "from-[#5c3d1e] to-[#A87A0F]",
     fullDesc: "Our desi eggs come from free-range country chickens living in natural conditions. These eggs are 3x richer in omega-3 fatty acids and have significantly higher vitamin E compared to commercial eggs. The deep orange yolks indicate superior nutritional density and clean, natural feeding practices.",
   },
   {
@@ -185,7 +185,7 @@ export function Products() {
                   onClick={() => setSelectedProduct(null)}
                   whileHover={{ scale: 1.02 }}
                   whileTap={{ scale: 0.98 }}
-                  className="block mt-8 w-full py-4 bg-gradient-to-r from-secondary to-[#a37920] text-white font-bold text-center rounded-xl transition-all duration-300 shadow-lg shadow-secondary/20 hover:shadow-lg hover:shadow-secondary/40"
+                  className="block mt-8 w-full py-4 bg-gradient-to-r from-secondary to-[#A87A0F] text-white font-bold text-center rounded-xl transition-all duration-300 shadow-lg shadow-secondary/20 hover:shadow-lg hover:shadow-secondary/40"
                 >
                   Order {product.name}
                 </motion.a>

@@ -14,7 +14,7 @@ const TEAM = [
     initials: "SS",
     role: "Partner & Co-Founder",
     quote: "We didn't build a business. We built a farm that we'd be proud to feed our own children from.",
-    color: "from-[#5c3d1e] to-[#c8962a]",
+    color: "from-[#5c3d1e] to-[#DBA319]",
   },
 ];
 

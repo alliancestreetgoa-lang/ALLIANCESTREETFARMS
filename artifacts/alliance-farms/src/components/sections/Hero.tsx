@@ -48,7 +48,7 @@ export function Hero() {
         {particles.map((p) => (
           <div
             key={p.id}
-            className="absolute bottom-0 w-1 h-1 rounded-full bg-[#c8962a]/30"
+            className="absolute bottom-0 w-1 h-1 rounded-full bg-[#DBA319]/30"
             style={{ left: p.left, animation: `particleDrift ${p.duration} linear ${p.delay} infinite` }}
           />
         ))}
@@ -117,7 +117,7 @@ export function Hero() {
               whileHover={{ scale: 1.05, y: -2 }}
               whileTap={{ scale: 0.97 }}
               transition={{ type: "spring", stiffness: 400, damping: 20 }}
-              className="group px-9 py-4 rounded-full bg-gradient-to-r from-secondary to-[#a37920] text-white font-semibold text-base shadow-lg shadow-secondary/30 hover:shadow-xl hover:shadow-secondary/40 transition-shadow duration-300 tracking-wide"
+              className="group px-9 py-4 rounded-full bg-gradient-to-r from-secondary to-[#A87A0F] text-white font-semibold text-base shadow-lg shadow-secondary/30 hover:shadow-xl hover:shadow-secondary/40 transition-shadow duration-300 tracking-wide"
             >
               Explore Products
               <span className="inline-block ml-2 group-hover:translate-x-1.5 transition-transform duration-300">→</span>

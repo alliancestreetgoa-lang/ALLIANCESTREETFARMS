@@ -30,7 +30,7 @@ const GOAT_BREEDS = [
       { label: "Primary Use", value: "Meat" },
       { label: "Raising Method", value: "Free-range, Natural Forage" },
     ],
-    accentColor: "#c8962a",
+    accentColor: "#DBA319",
     accentBg: "#fdf5e4",
   },
   {

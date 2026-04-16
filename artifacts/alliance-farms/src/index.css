@@ -12,7 +12,7 @@
   --color-primary: hsl(113 39% 25%); /* #2d5a27 */
   --color-primary-foreground: hsl(38 35% 96%);
   
-  --color-secondary: hsl(41 65% 47%); /* #c8962a */
+  --color-secondary: hsl(43 80% 50%); /* #DBA319 — rich gold */
   --color-secondary-foreground: hsl(38 35% 96%);
   
   --color-muted: hsl(105 33% 92%); /* #e8f0e4 */
@@ -21,8 +21,8 @@
   --color-accent: hsl(104 23% 52%); /* #7a9e6d */
   --color-accent-foreground: hsl(38 35% 96%);
   
-  --color-border: hsl(41 30% 80%);
-  --color-ring: hsl(41 65% 47%);
+  --color-border: hsl(43 30% 80%);
+  --color-ring: hsl(43 80% 50%);
   
   --color-card: hsl(0 0% 100%);
   --color-card-foreground: hsl(33 58% 4%);
@@ -33,7 +33,7 @@
   --foreground: 33 58% 4%;
   --primary: 113 39% 25%;
   --primary-foreground: 38 35% 96%;
-  --secondary: 41 65% 47%;
+  --secondary: 43 80% 50%;
   --secondary-foreground: 38 35% 96%;
   --muted: 105 33% 92%;
   --muted-foreground: 30 51% 24%;
@@ -41,8 +41,8 @@
   --accent-foreground: 38 35% 96%;
   --destructive: 0 84% 60%;
   --destructive-foreground: 210 40% 98%;
-  --border: 41 30% 80%;
-  --ring: 41 65% 47%;
+  --border: 43 30% 80%;
+  --ring: 43 80% 50%;
   --card: 0 0% 100%;
   --card-foreground: 33 58% 4%;
 }
