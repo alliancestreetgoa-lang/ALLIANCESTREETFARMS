@@ -5,7 +5,7 @@ const TEAM = [
   {
     name: "Shaukin Phaterpekar",
     initials: "SP",
-    image: null,
+    image: "/images/team_shaukin.jpg",
     role: "Partner & Co-Founder",
     quote: "Good food begins with good farming. We're here to bring that promise to every family in Goa.",
     color: "from-[#1a3a14] to-[#2d5a27]",
