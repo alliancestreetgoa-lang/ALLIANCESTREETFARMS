@@ -126,7 +126,7 @@ export function DesiEggs() {
                 <div className="p-6 bg-gray-50/60">
                   <h4 className="text-red-500 font-bold text-sm mb-4 tracking-wide">✗ COMMERCIAL EGGS</h4>
                   <ul className="space-y-2.5 text-sm text-gray-500">
-                    {["Pale yellow yolk", "Thin, fragile shell", "Processed feed", "Caged, zero sunlight"].map((t, i) => (
+                    {["Pale yellow yolk", "Thin, fragile shell", "Caged, zero sunlight"].map((t, i) => (
                       <li key={i} className="flex items-center gap-2 line-through decoration-red-300">
                         {t}
                       </li>
