@@ -22,15 +22,26 @@ export function Footer() {
         </div>
 
         <div className="flex justify-center gap-8 mb-12">
-          {["Instagram", "Facebook", "WhatsApp"].map((social) => (
-            <a 
-              key={social} 
-              href="#" 
-              className="text-white/70 hover:text-white font-medium text-sm transition-colors duration-200"
-            >
-              {social}
-            </a>
-          ))}
+          <a
+            href="https://www.instagram.com/alliancestreetorganicfarms/"
+            target="_blank"
+            rel="noopener noreferrer"
+            className="text-white/70 hover:text-white font-medium text-sm transition-colors duration-200"
+          >
+            Instagram
+          </a>
+          <a
+            href="#"
+            className="text-white/70 hover:text-white font-medium text-sm transition-colors duration-200"
+          >
+            Facebook
+          </a>
+          <a
+            href="#"
+            className="text-white/70 hover:text-white font-medium text-sm transition-colors duration-200"
+          >
+            WhatsApp
+          </a>
         </div>
 
         <div className="flex flex-wrap justify-center gap-6 mb-6 text-white/40 text-sm">
