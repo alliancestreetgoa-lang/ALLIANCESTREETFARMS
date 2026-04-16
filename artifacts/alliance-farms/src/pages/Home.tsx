@@ -15,8 +15,10 @@ import { loadSettings, applyMetaTags } from "@/lib/siteSettings";
 
 export default function Home() {
   useEffect(() => {
-    const settings = loadSettings();
-    applyMetaTags(settings);
+    const apply = () => applyMetaTags(loadSettings());
+    apply();
+    window.addEventListener("storage", apply);
+    return () => window.removeEventListener("storage", apply);
   }, []);
 
   return (
