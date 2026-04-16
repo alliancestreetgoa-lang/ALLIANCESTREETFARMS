@@ -33,7 +33,7 @@ export function ContactCTA() {
             <span className="text-secondary italic">Farm-Fresh Food?</span>
           </h2>
 
-          <p className="text-white/60 text-lg mb-12 max-w-xl mx-auto font-light leading-relaxed">
+          <p className="text-white/85 text-lg mb-12 max-w-xl mx-auto font-light leading-relaxed">
             Order directly from Alliance Street Organic Farms — Goa's most trusted source for organic desi chicken, eggs, goat meat, and more.
           </p>
 

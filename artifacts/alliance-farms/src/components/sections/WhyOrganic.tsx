@@ -75,7 +75,7 @@ export function WhyOrganic() {
           <motion.h2 variants={fadeUp} className="text-4xl md:text-5xl font-heading mb-6">
             Why We Choose Organic Farming
           </motion.h2>
-          <motion.p variants={fadeUpSoft} className="text-white/60 text-lg font-light italic leading-relaxed">
+          <motion.p variants={fadeUpSoft} className="text-white/85 text-lg font-light italic leading-relaxed">
             "This isn't industrial farming. This is real farming — done right, for you, your family, and future generations."
           </motion.p>
         </motion.div>
@@ -113,7 +113,7 @@ export function WhyOrganic() {
                   <h3 className="font-heading text-xl font-bold mb-3 text-white leading-tight">
                     {card.title}
                   </h3>
-                  <p className="text-white/65 text-sm leading-relaxed">
+                  <p className="text-white/90 text-sm leading-relaxed">
                     {card.desc}
                   </p>
                 </div>
@@ -167,13 +167,13 @@ export function WhyOrganic() {
               <div className="p-8">
                 <div className="space-y-3">
                   {card.detail.split("\n\n").map((para, idx) => (
-                    <p key={idx} className={para.startsWith("•") ? "hidden" : para.includes("•") ? "hidden" : "text-white/70 text-sm leading-relaxed"}>
+                    <p key={idx} className={para.startsWith("•") ? "hidden" : para.includes("•") ? "hidden" : "text-white/90 text-sm leading-relaxed"}>
                       {para}
                     </p>
                   ))}
                   <ul className="space-y-2 mt-1">
                     {card.detail.split("\n").filter(l => l.startsWith("•")).map((point, idx) => (
-                      <li key={idx} className="flex items-start gap-2 text-sm text-white/70 leading-relaxed">
+                      <li key={idx} className="flex items-start gap-2 text-sm text-white/90 leading-relaxed">
                         <span className="text-secondary mt-0.5 flex-shrink-0">✦</span>
                         <span>{point.replace("• ", "")}</span>
                       </li>

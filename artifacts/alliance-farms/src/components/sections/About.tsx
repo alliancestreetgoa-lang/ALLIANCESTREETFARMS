@@ -36,7 +36,7 @@ export function About() {
               Pure. Honest.<br />Always Fresh.
             </motion.h2>
 
-            <motion.div variants={staggerContainer(0.1)} className="space-y-5 text-[#5c3d1e]/75 text-base mb-10 leading-relaxed font-light">
+            <motion.div variants={staggerContainer(0.1)} className="space-y-5 text-[#5c3d1e] text-base mb-10 leading-relaxed font-light">
               {[
                 "At Alliance Street Organic Farms, we are dedicated to producing premium-quality desi chicken, goat meat, farm-fresh desi eggs, and nutritious goat milk using ethical, eco-conscious farming practices in Goa.",
                 "We specialize in raising native breeds carefully selected for Goa's climate — reared without antibiotics, growth hormones, or artificial chemicals. Every animal is raised on clean feed, open grazing, and natural care.",

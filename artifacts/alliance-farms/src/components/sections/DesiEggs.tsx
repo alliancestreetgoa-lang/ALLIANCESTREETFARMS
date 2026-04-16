@@ -67,7 +67,7 @@ export function DesiEggs() {
             <motion.h2 variants={fadeUp} className="font-heading text-4xl md:text-5xl text-[#1a3a14] mb-6 leading-tight">
               The Power of<br />Country Chicken Eggs
             </motion.h2>
-            <motion.p variants={fadeUpSoft} className="text-[#5c3d1e]/70 text-base mb-10 leading-relaxed font-light">
+            <motion.p variants={fadeUpSoft} className="text-[#5c3d1e] text-base mb-10 leading-relaxed font-light">
               Our desi eggs are laid by free-range native breeds living in open spaces — vastly superior in nutrition to commercial cage-reared eggs.
             </motion.p>
 
@@ -146,7 +146,7 @@ export function DesiEggs() {
                   <div className="text-4xl font-heading font-bold text-secondary mb-1">
                     <Counter end={stat.end} suffix={stat.suffix} delay={stat.delay} />
                   </div>
-                  <div className="text-white/60 text-xs uppercase tracking-widest font-semibold">
+                  <div className="text-white/85 text-xs uppercase tracking-widest font-semibold">
                     {stat.label}
                   </div>
                 </motion.div>

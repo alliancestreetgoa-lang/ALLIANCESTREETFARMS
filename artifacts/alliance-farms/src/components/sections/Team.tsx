@@ -43,7 +43,7 @@ export function Team() {
           <motion.h2 variants={fadeUp} className="font-heading text-4xl md:text-5xl text-[#1a3a14] mb-6">
             The Hands Behind the Harvest
           </motion.h2>
-          <motion.p variants={fadeUpSoft} className="text-[#5c3d1e]/65 text-base font-light italic max-w-2xl mx-auto leading-relaxed">
+          <motion.p variants={fadeUpSoft} className="text-[#5c3d1e] text-base font-light italic max-w-2xl mx-auto leading-relaxed">
             "Raised on Friendship, Built on Farming. Our mission is rooted in sustainable practices, native livestock, and full transparency. No hormones. No shortcuts. Just clean farming."
           </motion.p>
         </motion.div>
@@ -84,7 +84,7 @@ export function Team() {
                 className="w-10 h-px bg-secondary/40 mx-auto mb-6"
               />
 
-              <p className="text-[#5c3d1e]/65 italic font-light text-sm leading-relaxed">
+              <p className="text-[#5c3d1e] italic font-light text-sm leading-relaxed">
                 "{member.quote}"
               </p>
             </motion.div>

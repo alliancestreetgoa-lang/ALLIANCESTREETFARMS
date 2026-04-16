@@ -105,7 +105,7 @@ export function Hero() {
           />
 
           {/* Description */}
-          <motion.p variants={fadeUpSoft} className="text-white/75 text-lg md:text-xl max-w-2xl leading-relaxed font-light">
+          <motion.p variants={fadeUpSoft} className="text-white/90 text-lg md:text-xl max-w-2xl leading-relaxed font-light">
             Premium desi chicken, goat meat, farm-fresh eggs &amp; nutritious goat milk —
             raised without antibiotics, hormones, or artificial chemicals.
           </motion.p>
@@ -139,7 +139,7 @@ export function Hero() {
               <motion.span
                 key={i}
                 variants={fadeUpSoft}
-                className="px-3 py-1 rounded-full bg-white/8 border border-white/15 text-white/70 text-xs font-medium backdrop-blur-sm"
+                className="px-3 py-1 rounded-full bg-white/8 border border-white/20 text-white/85 text-xs font-medium backdrop-blur-sm"
               >
                 {badge}
               </motion.span>
@@ -165,7 +165,7 @@ export function Hero() {
               className="text-center px-6 py-2"
             >
               <div className="text-secondary font-heading text-3xl font-bold">{stat.value}</div>
-              <div className="text-white/60 text-xs tracking-widest uppercase mt-1">{stat.label}</div>
+              <div className="text-white/85 text-xs tracking-widest uppercase mt-1">{stat.label}</div>
             </motion.div>
           ))}
         </div>
