@@ -43,7 +43,7 @@ export function ContactCTA() {
               whileHover={{ scale: 1.04, y: -2 }}
               whileTap={{ scale: 0.97 }}
               transition={{ type: "spring", stiffness: 400, damping: 20 }}
-              className="inline-flex items-center gap-3 px-8 py-4 bg-secondary text-white rounded-full font-semibold text-base shadow-xl shadow-secondary/30 hover:shadow-secondary/50 transition-shadow duration-300"
+              className="inline-flex items-center gap-3 px-8 py-4 bg-secondary text-white rounded-full font-semibold text-base shadow-xl shadow-secondary/30 hover:shadow-secondary/50 transition-shadow duration-300 whitespace-nowrap"
             >
               Call {phone}
             </motion.a>
@@ -52,7 +52,7 @@ export function ContactCTA() {
               whileHover={{ scale: 1.04, y: -2 }}
               whileTap={{ scale: 0.97 }}
               transition={{ type: "spring", stiffness: 400, damping: 20 }}
-              className="inline-flex items-center gap-3 px-8 py-4 bg-white/10 border border-white/20 text-white rounded-full font-semibold text-base backdrop-blur-sm hover:bg-white/15 transition-colors duration-300"
+              className="inline-flex items-center gap-3 px-8 py-4 bg-white/10 border border-white/20 text-white rounded-full font-semibold text-base backdrop-blur-sm hover:bg-white/15 transition-colors duration-300 whitespace-nowrap"
             >
               {email}
             </motion.a>
@@ -63,7 +63,7 @@ export function ContactCTA() {
               whileHover={{ scale: 1.04, y: -2 }}
               whileTap={{ scale: 0.97 }}
               transition={{ type: "spring", stiffness: 400, damping: 20 }}
-              className="inline-flex items-center gap-3 px-8 py-4 bg-[#25D366]/20 border border-[#25D366]/40 text-[#25D366] rounded-full font-semibold text-base hover:bg-[#25D366]/30 transition-colors duration-300"
+              className="inline-flex items-center gap-3 px-8 py-4 bg-[#25D366]/20 border border-[#25D366]/40 text-[#25D366] rounded-full font-semibold text-base hover:bg-[#25D366]/30 transition-colors duration-300 whitespace-nowrap"
             >
               Message us on WhatsApp
             </motion.a>
