@@ -1,4 +1,14 @@
+import { loadSettings } from "@/lib/siteSettings";
+
 export function Footer() {
+  const settings = loadSettings();
+
+  const instagram = settings.instagramUrl || "https://www.instagram.com/alliancestreetorganicfarms/";
+  const facebook = settings.facebookUrl || null;
+  const whatsapp = settings.whatsappUrl || null;
+  const phone = settings.phone || "+91 73750 96163";
+  const email = settings.email || "alliancestreetorganicfarms@gmail.com";
+
   return (
     <footer className="bg-[#0f0a04] py-16 text-center">
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
@@ -8,11 +18,11 @@ export function Footer() {
         <p className="text-white/60 text-xs tracking-[0.3em] uppercase mb-10">
           Pure · Honest · Always Fresh · Goa
         </p>
-        
+
         <div className="flex flex-wrap justify-center gap-6 mb-12">
           {["Animals", "Eggs", "Goats", "Rabbits", "Why Organic", "About", "Team"].map((link) => (
-            <a 
-              key={link} 
+            <a
+              key={link}
               href={`#${link.toLowerCase().replace(" ", "-")}`}
               className="text-white/50 hover:text-secondary text-sm transition-colors duration-200"
             >
@@ -23,33 +33,51 @@ export function Footer() {
 
         <div className="flex justify-center gap-8 mb-12">
           <a
-            href="https://www.instagram.com/alliancestreetorganicfarms/"
+            href={instagram}
             target="_blank"
             rel="noopener noreferrer"
             className="text-white/70 hover:text-white font-medium text-sm transition-colors duration-200"
           >
             Instagram
           </a>
-          <a
-            href="#"
-            className="text-white/70 hover:text-white font-medium text-sm transition-colors duration-200"
-          >
-            Facebook
-          </a>
-          <a
-            href="#"
-            className="text-white/70 hover:text-white font-medium text-sm transition-colors duration-200"
-          >
-            WhatsApp
-          </a>
+          {facebook ? (
+            <a
+              href={facebook}
+              target="_blank"
+              rel="noopener noreferrer"
+              className="text-white/70 hover:text-white font-medium text-sm transition-colors duration-200"
+            >
+              Facebook
+            </a>
+          ) : (
+            <span className="text-white/30 font-medium text-sm cursor-default">Facebook</span>
+          )}
+          {whatsapp ? (
+            <a
+              href={whatsapp}
+              target="_blank"
+              rel="noopener noreferrer"
+              className="text-white/70 hover:text-white font-medium text-sm transition-colors duration-200"
+            >
+              WhatsApp
+            </a>
+          ) : (
+            <span className="text-white/30 font-medium text-sm cursor-default">WhatsApp</span>
+          )}
         </div>
 
         <div className="flex flex-wrap justify-center gap-6 mb-6 text-white/40 text-sm">
-          <a href="tel:+917375096163" className="hover:text-secondary transition-colors duration-200">
-            📞 +91 73750 96163
+          <a
+            href={`tel:${phone.replace(/\s/g, "")}`}
+            className="hover:text-secondary transition-colors duration-200"
+          >
+            {phone}
           </a>
-          <a href="mailto:alliancestreetorganicfarms@gmail.com" className="hover:text-secondary transition-colors duration-200">
-            ✉ alliancestreetorganicfarms@gmail.com
+          <a
+            href={`mailto:${email}`}
+            className="hover:text-secondary transition-colors duration-200"
+          >
+            {email}
           </a>
         </div>
 

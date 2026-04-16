@@ -1,6 +1,13 @@
 import { motion } from "framer-motion";
+import { loadSettings } from "@/lib/siteSettings";
 
 export function ContactCTA() {
+  const settings = loadSettings();
+
+  const phone = settings.phone || "+91 73750 96163";
+  const email = settings.email || "alliancestreetorganicfarms@gmail.com";
+  const whatsapp = settings.whatsappUrl || null;
+
   return (
     <section id="contact" className="py-28 bg-[#1a3a14] relative overflow-hidden">
       <div className="absolute inset-0 opacity-5 pointer-events-none"
@@ -30,26 +37,48 @@ export function ContactCTA() {
             Order directly from Alliance Street Organic Farms — Goa's most trusted source for organic desi chicken, eggs, goat meat, and more.
           </p>
 
-          <div className="flex flex-col sm:flex-row items-center justify-center gap-4 mb-12">
+          <div className="flex flex-col sm:flex-row items-center justify-center gap-4 mb-6">
             <motion.a
-              href="tel:+917375096163"
+              href={`tel:${phone.replace(/\s/g, "")}`}
               whileHover={{ scale: 1.04, y: -2 }}
               whileTap={{ scale: 0.97 }}
               transition={{ type: "spring", stiffness: 400, damping: 20 }}
               className="inline-flex items-center gap-3 px-8 py-4 bg-secondary text-white rounded-full font-semibold text-base shadow-xl shadow-secondary/30 hover:shadow-secondary/50 transition-shadow duration-300"
             >
-              <span>📞</span> +91 73750 96163
+              Call {phone}
             </motion.a>
             <motion.a
-              href="mailto:alliancestreetorganicfarms@gmail.com"
+              href={`mailto:${email}`}
               whileHover={{ scale: 1.04, y: -2 }}
               whileTap={{ scale: 0.97 }}
               transition={{ type: "spring", stiffness: 400, damping: 20 }}
               className="inline-flex items-center gap-3 px-8 py-4 bg-white/10 border border-white/20 text-white rounded-full font-semibold text-base backdrop-blur-sm hover:bg-white/15 transition-colors duration-300"
             >
-              <span>✉</span> alliancestreetorganicfarms@gmail.com
+              {email}
             </motion.a>
           </div>
+
+          {whatsapp && (
+            <motion.div
+              initial={{ opacity: 0, y: 12 }}
+              whileInView={{ opacity: 1, y: 0 }}
+              viewport={{ once: true }}
+              transition={{ duration: 0.5, delay: 0.2 }}
+              className="mb-8"
+            >
+              <motion.a
+                href={whatsapp}
+                target="_blank"
+                rel="noopener noreferrer"
+                whileHover={{ scale: 1.04, y: -2 }}
+                whileTap={{ scale: 0.97 }}
+                transition={{ type: "spring", stiffness: 400, damping: 20 }}
+                className="inline-flex items-center gap-3 px-8 py-4 bg-[#25D366]/20 border border-[#25D366]/40 text-[#25D366] rounded-full font-semibold text-base hover:bg-[#25D366]/30 transition-colors duration-300"
+              >
+                Message us on WhatsApp
+              </motion.a>
+            </motion.div>
+          )}
 
           <div className="mt-6 flex flex-wrap justify-center gap-10 text-white/35 text-sm">
             <span className="flex items-center gap-2">
