@@ -9,6 +9,12 @@ export function Footer() {
   const phone = settings.phone || "+91 73750 96163";
   const email = settings.email || "alliancestreetorganicfarms@gmail.com";
 
+  const socialLinks = [
+    { label: "Instagram", url: instagram },
+    ...(facebook ? [{ label: "Facebook", url: facebook }] : []),
+    { label: "WhatsApp", url: whatsapp },
+  ];
+
   return (
     <footer className="bg-[#0f0a04] py-16 text-center">
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
@@ -32,41 +38,20 @@ export function Footer() {
         </div>
 
         <div className="flex justify-center gap-8 mb-12">
-          <a
-            href={instagram}
-            target="_blank"
-            rel="noopener noreferrer"
-            className="text-white/70 hover:text-white font-medium text-sm transition-colors duration-200"
-          >
-            Instagram
-          </a>
-          {facebook ? (
+          {socialLinks.map(({ label, url }) => (
             <a
-              href={facebook}
+              key={label}
+              href={url}
               target="_blank"
               rel="noopener noreferrer"
               className="text-white/70 hover:text-white font-medium text-sm transition-colors duration-200"
             >
-              Facebook
+              {label}
             </a>
-          ) : (
-            <span className="text-white/30 font-medium text-sm cursor-default">Facebook</span>
-          )}
-          {whatsapp ? (
-            <a
-              href={whatsapp}
-              target="_blank"
-              rel="noopener noreferrer"
-              className="text-white/70 hover:text-white font-medium text-sm transition-colors duration-200"
-            >
-              WhatsApp
-            </a>
-          ) : (
-            <span className="text-white/30 font-medium text-sm cursor-default">WhatsApp</span>
-          )}
+          ))}
         </div>
 
-        <div className="flex flex-wrap justify-center gap-6 mb-6 text-white/40 text-sm">
+        <div className="flex flex-wrap justify-center gap-6 mb-6 text-white/60 text-sm">
           <a
             href={`tel:${phone.replace(/\s/g, "")}`}
             className="hover:text-secondary transition-colors duration-200"
