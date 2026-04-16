@@ -27,7 +27,7 @@ export const DEFAULT_SETTINGS: SiteSettings = {
   email: "alliancestreetorganicfarms@gmail.com",
   instagramUrl: "https://www.instagram.com/alliancestreetorganicfarms/",
   facebookUrl: "",
-  whatsappUrl: "",
+  whatsappUrl: "https://wa.me/qr/ORVOCVVT3QJOJ1",
 };
 
 export function loadSettings(): SiteSettings {

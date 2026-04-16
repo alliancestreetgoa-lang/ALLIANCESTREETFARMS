@@ -5,7 +5,7 @@ export function Footer() {
 
   const instagram = settings.instagramUrl || "https://www.instagram.com/alliancestreetorganicfarms/";
   const facebook = settings.facebookUrl || null;
-  const whatsapp = settings.whatsappUrl || null;
+  const whatsapp = settings.whatsappUrl || "https://wa.me/qr/ORVOCVVT3QJOJ1";
   const phone = settings.phone || "+91 73750 96163";
   const email = settings.email || "alliancestreetorganicfarms@gmail.com";
 

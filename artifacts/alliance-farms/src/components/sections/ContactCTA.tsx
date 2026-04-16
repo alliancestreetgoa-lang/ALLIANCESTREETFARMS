@@ -6,7 +6,7 @@ export function ContactCTA() {
 
   const phone = settings.phone || "+91 73750 96163";
   const email = settings.email || "alliancestreetorganicfarms@gmail.com";
-  const whatsapp = settings.whatsappUrl || null;
+  const whatsapp = settings.whatsappUrl || "https://wa.me/qr/ORVOCVVT3QJOJ1";
 
   return (
     <section id="contact" className="py-28 bg-[#1a3a14] relative overflow-hidden">
