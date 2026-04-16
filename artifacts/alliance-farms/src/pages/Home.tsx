@@ -1,3 +1,4 @@
+import { useEffect } from "react";
 import { Navbar } from "@/components/Navbar";
 import { ScrollProgress } from "@/components/ScrollProgress";
 import { Hero } from "@/components/sections/Hero";
@@ -10,8 +11,14 @@ import { About } from "@/components/sections/About";
 import { Team } from "@/components/sections/Team";
 import { ContactCTA } from "@/components/sections/ContactCTA";
 import { Footer } from "@/components/layout/Footer";
+import { loadSettings, applyMetaTags } from "@/lib/siteSettings";
 
 export default function Home() {
+  useEffect(() => {
+    const settings = loadSettings();
+    applyMetaTags(settings);
+  }, []);
+
   return (
     <div className="min-h-screen bg-background font-sans selection:bg-secondary selection:text-white">
       <ScrollProgress />
