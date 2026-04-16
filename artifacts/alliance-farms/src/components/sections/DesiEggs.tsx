@@ -143,7 +143,16 @@ export function DesiEggs() {
                   transition={{ type: "spring", stiffness: 340, damping: 20 }}
                   className="bg-[#1a3a14] rounded-xl p-6 text-center cursor-default"
                 >
-                  <div className="text-4xl font-heading font-bold text-secondary mb-1">
+                  <div
+                    className="text-4xl font-heading font-bold mb-1"
+                    style={{
+                      background: "linear-gradient(160deg, #f5e070 0%, #ffe87a 25%, #DBA319 50%, #a87a10 70%, #f0cc50 100%)",
+                      WebkitBackgroundClip: "text",
+                      WebkitTextFillColor: "transparent",
+                      backgroundClip: "text",
+                      filter: "drop-shadow(0 1px 6px rgba(219,163,25,0.5))",
+                    }}
+                  >
                     <Counter end={stat.end} suffix={stat.suffix} delay={stat.delay} />
                   </div>
                   <div className="text-white/85 text-xs uppercase tracking-widest font-semibold">
