@@ -42,6 +42,7 @@ export function loadSettings(): SiteSettings {
 
 export function saveSettings(settings: SiteSettings): void {
   localStorage.setItem(STORAGE_KEY, JSON.stringify(settings));
+  window.dispatchEvent(new StorageEvent("storage", { key: STORAGE_KEY }));
 }
 
 export function resetSettings(): void {
