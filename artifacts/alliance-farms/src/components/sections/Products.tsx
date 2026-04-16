@@ -72,7 +72,7 @@ export function Products() {
           <motion.h2 variants={fadeUp} className="font-heading text-4xl md:text-5xl text-[#1a3a14]">
             Farm-Fresh Purity
           </motion.h2>
-          <motion.p variants={fadeUpSoft} className="mt-4 text-[#5c3d1e] text-lg max-w-xl mx-auto font-light">
+          <motion.p variants={fadeUpSoft} className="mt-4 text-[#5c3d1e] text-lg max-w-xl mx-auto font-normal">
             Every product raised without antibiotics, hormones, or artificial chemicals.
           </motion.p>
         </motion.div>

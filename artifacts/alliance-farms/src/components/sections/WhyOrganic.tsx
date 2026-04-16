@@ -75,7 +75,7 @@ export function WhyOrganic() {
           <motion.h2 variants={fadeUp} className="text-4xl md:text-5xl font-heading mb-6">
             Why We Choose Organic Farming
           </motion.h2>
-          <motion.p variants={fadeUpSoft} className="text-white/85 text-lg font-light italic leading-relaxed">
+          <motion.p variants={fadeUpSoft} className="text-white/90 text-lg font-normal italic leading-relaxed">
             "This isn't industrial farming. This is real farming — done right, for you, your family, and future generations."
           </motion.p>
         </motion.div>

@@ -105,7 +105,7 @@ export function Hero() {
           />
 
           {/* Description */}
-          <motion.p variants={fadeUpSoft} className="text-white/90 text-lg md:text-xl max-w-2xl leading-relaxed font-light">
+          <motion.p variants={fadeUpSoft} className="text-white/90 text-lg md:text-xl max-w-2xl leading-relaxed font-normal">
             Premium desi chicken, goat meat, farm-fresh eggs &amp; nutritious goat milk —
             raised without antibiotics, hormones, or artificial chemicals.
           </motion.p>
