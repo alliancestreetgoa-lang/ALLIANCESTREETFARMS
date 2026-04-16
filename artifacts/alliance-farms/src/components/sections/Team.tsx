@@ -5,6 +5,7 @@ const TEAM = [
   {
     name: "Shaukin Phaterpekar",
     initials: "SP",
+    image: null,
     role: "Partner & Co-Founder",
     quote: "Good food begins with good farming. We're here to bring that promise to every family in Goa.",
     color: "from-[#1a3a14] to-[#2d5a27]",
@@ -12,6 +13,7 @@ const TEAM = [
   {
     name: "Stallone Shaikh",
     initials: "SS",
+    image: "/images/team_stallone.jpg",
     role: "Partner & Co-Founder",
     quote: "We didn't build a business. We built a farm that we'd be proud to feed our own children from.",
     color: "from-[#5c3d1e] to-[#DBA319]",
@@ -63,13 +65,22 @@ export function Team() {
               transition={{ type: "spring", stiffness: 320, damping: 22 }}
               className="bg-white border border-black/6 rounded-2xl p-10 text-center shadow-md cursor-default"
             >
-              {/* Animated avatar */}
               <motion.div
-                whileHover={{ scale: 1.08, rotate: 3 }}
+                whileHover={{ scale: 1.05 }}
                 transition={{ type: "spring", stiffness: 360, damping: 18 }}
-                className={`w-24 h-24 rounded-full bg-gradient-to-br ${member.color} flex items-center justify-center mx-auto mb-6 shadow-lg`}
+                className="mx-auto mb-6 w-28 h-28 rounded-full overflow-hidden shadow-lg ring-4 ring-secondary/20"
               >
-                <span className="font-heading text-2xl font-bold text-white">{member.initials}</span>
+                {member.image ? (
+                  <img
+                    src={member.image}
+                    alt={member.name}
+                    className="w-full h-full object-cover object-top"
+                  />
+                ) : (
+                  <div className={`w-full h-full bg-gradient-to-br ${member.color} flex items-center justify-center`}>
+                    <span className="font-heading text-2xl font-bold text-white">{member.initials}</span>
+                  </div>
+                )}
               </motion.div>
 
               <h3 className="font-heading text-2xl font-bold text-[#1a3a14] mb-1">{member.name}</h3>
