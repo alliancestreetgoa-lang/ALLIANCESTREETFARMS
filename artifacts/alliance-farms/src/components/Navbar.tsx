@@ -1,6 +1,7 @@
 import { useState, useEffect } from "react";
 import { motion, AnimatePresence } from "framer-motion";
 import { Menu, X } from "lucide-react";
+import { Link } from "wouter";
 import { cn } from "@/lib/utils";
 
 const NAV_LINKS = [
@@ -117,6 +118,18 @@ export function Navbar() {
               </motion.a>
             );
           })}
+          <motion.div
+            initial={{ opacity: 0, y: -10 }}
+            animate={{ opacity: 1, y: 0 }}
+            transition={{ delay: 0.48, duration: 0.4 }}
+          >
+            <Link
+              href="/blog"
+              className="relative px-3 py-2 text-sm font-medium text-white/70 hover:text-white transition-colors duration-200"
+            >
+              Blog
+            </Link>
+          </motion.div>
           <motion.a
             href="#contact"
             onClick={(e) => handleNavClick(e, "#contact")}
@@ -177,6 +190,19 @@ export function Navbar() {
                   {link.name}
                 </motion.a>
               ))}
+              <motion.div
+                initial={{ opacity: 0, x: -20 }}
+                animate={{ opacity: 1, x: 0 }}
+                transition={{ delay: NAV_LINKS.length * 0.05, duration: 0.3 }}
+              >
+                <Link
+                  href="/blog"
+                  onClick={() => setMobileMenuOpen(false)}
+                  className="block w-full text-center py-3 text-base tracking-wide text-white/80 hover:text-secondary transition-colors"
+                >
+                  Blog
+                </Link>
+              </motion.div>
               <motion.a
                 href="#contact"
                 onClick={(e) => handleNavClick(e, "#contact")}

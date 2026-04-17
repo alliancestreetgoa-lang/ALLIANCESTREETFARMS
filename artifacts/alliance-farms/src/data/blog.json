@@ -1,4 +1,259 @@
 {
   "heading": "From the Farm",
-  "posts": []
+  "subheading": "Stories, insights and honest knowledge from our fields in Goa.",
+  "posts": [
+    {
+      "id": 1,
+      "slug": "why-desi-eggs-are-superior-to-commercial-eggs",
+      "title": "Why Desi Eggs Are Nutritionally Superior to Commercial Eggs",
+      "date": "2025-03-10",
+      "author": "Alliance Street Organic Farms",
+      "readTime": "6 min read",
+      "category": "Nutrition",
+      "excerpt": "The difference between a desi country egg and a commercial cage egg is not just visual — it runs deep into nutritional value, animal welfare, and long-term health. Here's what the science actually says.",
+      "featuredImage": "/images/desi_eggs_hero.jpg",
+      "metaTitle": "Why Desi Eggs Are Nutritionally Superior | Alliance Street Organic Farms",
+      "metaDescription": "Free-range desi eggs have 3× more Omega-3, 2× more Vitamin E, and a richer yolk than commercial cage eggs. Learn why country chicken eggs are the healthier choice.",
+      "content": [
+        {
+          "type": "intro",
+          "text": "Pick up a desi country chicken egg and a commercial supermarket egg side by side. Crack them open. The desi egg yolk is deep amber — almost orange. The commercial egg yolk is a pale, anemic yellow. That difference in colour is not cosmetic. It reflects an enormous nutritional gulf that has real consequences for your family's health."
+        },
+        {
+          "type": "h2",
+          "text": "What Makes a Desi Egg Different?"
+        },
+        {
+          "type": "p",
+          "text": "Desi eggs come from native breed hens — Kadaknath, Aseel, Gramapriya — that roam freely outdoors. They forage on grass, insects, seeds and whatever the earth provides. This natural, varied diet is the engine behind their superior nutritional profile."
+        },
+        {
+          "type": "p",
+          "text": "Commercial eggs, by contrast, come from hybrid White Leghorn hens packed into battery cages with less space than an A4 sheet of paper. They are fed a uniform, processed feed under artificial light to maximise laying cycles. The result is a product engineered for volume — not nutrition."
+        },
+        {
+          "type": "h2",
+          "text": "The Nutritional Numbers"
+        },
+        {
+          "type": "ul",
+          "items": [
+            "Omega-3 Fatty Acids: Desi eggs contain up to 3× more than commercial eggs — critical for brain function, heart health and reducing inflammation.",
+            "Vitamin E: 2× higher in free-range eggs — a powerful antioxidant that protects cells from damage.",
+            "Vitamin D: Nearly 4× more in hens raised in sunlight — essential for bone strength and immune resilience.",
+            "Beta-carotene: The deep orange yolk signals higher beta-carotene content, which the body converts to Vitamin A.",
+            "Protein Quality: Higher levels of essential amino acids with a better leucine-to-protein ratio, important for muscle repair.",
+            "Cholesterol: Contrary to fear, desi eggs have a far better HDL-to-LDL ratio — the 'good' cholesterol outweighs the bad."
+          ]
+        },
+        {
+          "type": "quote",
+          "text": "A hen that lives well lays an egg that nourishes well. There is no shortcut in nature.",
+          "attribution": "Alliance Street Organic Farms"
+        },
+        {
+          "type": "h2",
+          "text": "Zero Antibiotics. Zero Hormones."
+        },
+        {
+          "type": "p",
+          "text": "Commercial poultry operations routinely administer antibiotics — not because hens are sick, but to prevent disease in cramped conditions and promote faster growth. This contributes directly to antibiotic resistance, one of the most serious global health threats of our time."
+        },
+        {
+          "type": "p",
+          "text": "At Alliance Street Organic Farms, our hens receive no antibiotics, no growth hormones, and no synthetic supplements. Their health comes from space, sunlight, clean water and a natural diet — not from pharmaceuticals."
+        },
+        {
+          "type": "h2",
+          "text": "The Yolk Colour Test"
+        },
+        {
+          "type": "p",
+          "text": "A pale yolk is not just aesthetic — it directly tells you the hen's diet was poor in carotenoids, Omega-3 and natural vitamins. A deep amber or orange yolk signals a hen that had access to green plants, insects and sunlight. It is the single fastest visual indicator of an egg's quality."
+        },
+        {
+          "type": "h2",
+          "text": "Better for Children and Elderly"
+        },
+        {
+          "type": "p",
+          "text": "Children and elderly individuals have the highest need for Vitamins D and A, Omega-3s, and quality protein. Desi eggs deliver all of these in a form the body can readily absorb. For growing children especially, the difference in brain development outcomes linked to Omega-3 intake is well-documented."
+        },
+        {
+          "type": "p",
+          "text": "At Alliance Street Organic Farms, we raise native breed hens across open land in Goa. Every egg you buy from us carries the full nutritional promise of a bird that lived as nature intended — free, active, and healthy."
+        }
+      ]
+    },
+    {
+      "id": 2,
+      "slug": "kadaknath-indias-black-gold-of-poultry",
+      "title": "Kadaknath: India's Black Gold of Poultry",
+      "date": "2025-04-02",
+      "author": "Alliance Street Organic Farms",
+      "readTime": "5 min read",
+      "category": "Breeds",
+      "excerpt": "Black skin, black meat, black bones — and a nutritional profile that has made Kadaknath one of India's most prized indigenous chicken breeds. Here is everything you need to know about this extraordinary bird.",
+      "featuredImage": "/images/kadaknath_hero.jpg",
+      "metaTitle": "Kadaknath Chicken: India's Black Gold | Alliance Street Organic Farms Goa",
+      "metaDescription": "Kadaknath is India's most prized indigenous black chicken breed — low fat, high protein, and rich in iron. Learn why we raise Kadaknath at our Goa farm.",
+      "content": [
+        {
+          "type": "intro",
+          "text": "When you first see a Kadaknath chicken, the effect is striking. The feathers are black. The skin is black. The meat is black. Even the bones carry a dark pigment. But beneath that unusual appearance lies one of the most nutritionally dense, therapeutically valued chicken breeds in all of India — and arguably the world."
+        },
+        {
+          "type": "h2",
+          "text": "Where Does Kadaknath Come From?"
+        },
+        {
+          "type": "p",
+          "text": "Kadaknath — also called Kali Masi, meaning 'fowl with black flesh' — is an indigenous breed originating from the tribal regions of Jhabua and Dhar districts in Madhya Pradesh. It has been raised by Bhil and Bhilala tribal communities for centuries and holds a Geographical Indication (GI) tag, protecting its heritage and authenticity."
+        },
+        {
+          "type": "p",
+          "text": "The breed was on the verge of extinction before conservation efforts revived it. Today, it is increasingly sought after by health-conscious consumers and medical practitioners who recognise its unique properties."
+        },
+        {
+          "type": "h2",
+          "text": "What Causes the Black Colour?"
+        },
+        {
+          "type": "p",
+          "text": "The dark pigmentation is caused by a genetic condition called fibromelanosis — an overproduction of melanin that permeates the skin, internal organs, feathers and bones. This is not a disease; it is a natural genetic trait with genuine health benefits."
+        },
+        {
+          "type": "h2",
+          "text": "Nutritional Profile: Why It Stands Apart"
+        },
+        {
+          "type": "ul",
+          "items": [
+            "Protein content: 25–26g per 100g — significantly higher than commercial broiler chicken (18–20g).",
+            "Fat content: Only 0.73–1.03% — one of the leanest meats available anywhere.",
+            "Iron: Exceptionally high — making it ideal for anaemia management and recovery.",
+            "Melanin: A potent antioxidant that combats free radicals and supports immunity.",
+            "18 amino acids including 8 essential amino acids — a near-complete protein source.",
+            "No artificial hormones or growth promoters — a requirement at our farm."
+          ]
+        },
+        {
+          "type": "quote",
+          "text": "Kadaknath is not just food — it is medicine that generations of tribal wisdom recognised long before modern nutrition science caught up.",
+          "attribution": "Alliance Street Organic Farms"
+        },
+        {
+          "type": "h2",
+          "text": "Traditional and Medical Uses"
+        },
+        {
+          "type": "p",
+          "text": "Tribal communities have long prescribed Kadaknath meat and eggs for chronic asthma, nervous disorders, post-partum recovery, and general debility. Modern research is now beginning to validate many of these claims — particularly the breed's anti-inflammatory properties linked to its melanin content and amino acid profile."
+        },
+        {
+          "type": "p",
+          "text": "The eggs are also prized. Kadaknath eggs have a higher Vitamin B12, iron and protein content than regular eggs, with a lower cholesterol reading — making them particularly suitable for cardiac patients and diabetics on doctor-supervised high-protein diets."
+        },
+        {
+          "type": "h2",
+          "text": "How We Raise Kadaknath in Goa"
+        },
+        {
+          "type": "p",
+          "text": "Kadaknath is a hardy, slow-growing bird that thrives on free-range raising — which aligns perfectly with our farming philosophy. At Alliance Street Organic Farms, our Kadaknath flock roams open land, forages naturally, and is raised entirely without antibiotics or chemical supplements."
+        },
+        {
+          "type": "p",
+          "text": "It takes longer to raise a Kadaknath to table size than a commercial broiler — sometimes twice as long. That time is not wasted. It builds depth of flavour, density of nutrition, and quality of life for the bird. We believe that is exactly how it should be."
+        }
+      ]
+    },
+    {
+      "id": 3,
+      "slug": "benefits-of-goat-milk-the-a2-protein-advantage",
+      "title": "The A2 Protein Advantage: Why Goat Milk Is Nature's Perfect Food",
+      "date": "2025-04-28",
+      "author": "Alliance Street Organic Farms",
+      "readTime": "7 min read",
+      "category": "Goat Milk",
+      "excerpt": "Goat milk has been consumed by humans for over 10,000 years. Modern science is now catching up to what traditional knowledge always knew — that goat milk is easier to digest, richer in key nutrients, and structurally superior to cow's milk for most people.",
+      "featuredImage": "/images/goat_milk_hero.jpg",
+      "metaTitle": "Benefits of Goat Milk & A2 Protein | Alliance Street Organic Farms Goa",
+      "metaDescription": "Goat milk is naturally A2, easier to digest, and richer in calcium and healthy fats than cow's milk. Discover the real health benefits of fresh goat milk from our Goa farm.",
+      "content": [
+        {
+          "type": "intro",
+          "text": "Across the Mediterranean, Middle East, India, and sub-Saharan Africa, goat milk has been a dietary cornerstone for millennia. It is the most widely consumed animal milk in the world by population. And yet, in modern urban India, it remains largely overlooked — overshadowed by cow's milk. That is beginning to change as the science of A2 protein and digestive health enters mainstream awareness."
+        },
+        {
+          "type": "h2",
+          "text": "What Is A2 Protein?"
+        },
+        {
+          "type": "p",
+          "text": "All milk contains casein proteins. In commercial cow's milk (from Holstein or Jersey breeds), the dominant form is A1 beta-casein, which upon digestion produces a peptide called BCM-7 (beta-casomorphin-7). BCM-7 has been linked to digestive discomfort, inflammation, and various chronic conditions in sensitive individuals."
+        },
+        {
+          "type": "p",
+          "text": "Goat milk, however, is naturally A2 — it contains A2 beta-casein almost exclusively. A2 protein digests cleanly, without producing BCM-7, making it far gentler on the gut. This is why millions of people who are 'lactose intolerant' or react poorly to cow's milk find they can consume goat milk without any discomfort."
+        },
+        {
+          "type": "h2",
+          "text": "Superior Digestibility: The Science"
+        },
+        {
+          "type": "ul",
+          "items": [
+            "Smaller fat globules: Goat milk fat globules are significantly smaller than cow milk, allowing faster and more complete enzymatic digestion.",
+            "Different fatty acid profile: Higher proportion of medium-chain fatty acids (MCFAs) — caprylic, capric and lauric acids — which are absorbed directly by the gut without bile salts.",
+            "Lower alpha-s1 casein: Goat milk has much lower levels of the protein fraction most responsible for allergic reactions in sensitive individuals.",
+            "Natural emulsification: The fat in goat milk stays naturally suspended rather than separating, making it easier for the body to process."
+          ]
+        },
+        {
+          "type": "h2",
+          "text": "Nutritional Comparison: Goat Milk vs Cow Milk"
+        },
+        {
+          "type": "ul",
+          "items": [
+            "Calcium: Goat milk contains approximately 330mg per cup vs 276mg in cow's milk — 20% more per serving.",
+            "Potassium: Higher in goat milk — important for blood pressure regulation and cardiac health.",
+            "Vitamin A: Goat milk delivers Vitamin A in a pre-formed, bioavailable state — no conversion needed unlike beta-carotene in plants.",
+            "Magnesium and phosphorus: Both higher in goat milk — essential for bone density and energy metabolism.",
+            "Copper and zinc: Goat milk is a richer source of both trace minerals, which support immune function and wound healing."
+          ]
+        },
+        {
+          "type": "quote",
+          "text": "If you struggle with cow's milk but love dairy, goat milk is not a compromise — it is an upgrade.",
+          "attribution": "Alliance Street Organic Farms"
+        },
+        {
+          "type": "h2",
+          "text": "Benefits for Specific Groups"
+        },
+        {
+          "type": "p",
+          "text": "Children with mild dairy sensitivity often tolerate goat milk well — and the calcium density supports healthy bone development. Elderly individuals benefit from the easier digestibility and the bone-protective mineral profile. Those recovering from illness or surgery find the medium-chain fatty acids in goat milk provide a quickly accessible energy source without taxing the digestive system."
+        },
+        {
+          "type": "p",
+          "text": "Post-natal mothers across South Asian traditional medicine have long used goat milk to replenish mineral and fat stores lost during pregnancy and lactation. Modern dietitians increasingly endorse this practice."
+        },
+        {
+          "type": "h2",
+          "text": "Our Konkan Kanyal Goats"
+        },
+        {
+          "type": "p",
+          "text": "At Alliance Street Organic Farms, our goat milk comes primarily from Konkan Kanyal — Goa's native coastal breed, perfectly adapted to local terrain and humidity. Raised entirely on natural grazing with no feed additives, their milk is as clean as milk can be."
+        },
+        {
+          "type": "p",
+          "text": "We do not homogenise or ultra-pasteurise our milk, which preserves its natural fat structure and enzyme content. What you receive is fresh, whole goat milk — collected hygienically and delivered quickly. Nature's perfect food, unchanged."
+        }
+      ]
+    }
+  ]
 }
