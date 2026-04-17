@@ -121,7 +121,19 @@ export function Navbar() {
           <motion.div
             initial={{ opacity: 0, y: -10 }}
             animate={{ opacity: 1, y: 0 }}
-            transition={{ delay: 0.48, duration: 0.4 }}
+            transition={{ delay: 0.46, duration: 0.4 }}
+          >
+            <Link
+              href="/products"
+              className="relative px-3 py-2 text-sm font-medium text-white/70 hover:text-white transition-colors duration-200"
+            >
+              Shop
+            </Link>
+          </motion.div>
+          <motion.div
+            initial={{ opacity: 0, y: -10 }}
+            animate={{ opacity: 1, y: 0 }}
+            transition={{ delay: 0.52, duration: 0.4 }}
           >
             <Link
               href="/blog"
@@ -194,6 +206,19 @@ export function Navbar() {
                 initial={{ opacity: 0, x: -20 }}
                 animate={{ opacity: 1, x: 0 }}
                 transition={{ delay: NAV_LINKS.length * 0.05, duration: 0.3 }}
+              >
+                <Link
+                  href="/products"
+                  onClick={() => setMobileMenuOpen(false)}
+                  className="block w-full text-center py-3 text-base tracking-wide text-white/80 hover:text-secondary transition-colors"
+                >
+                  Shop
+                </Link>
+              </motion.div>
+              <motion.div
+                initial={{ opacity: 0, x: -20 }}
+                animate={{ opacity: 1, x: 0 }}
+                transition={{ delay: (NAV_LINKS.length + 1) * 0.05, duration: 0.3 }}
               >
                 <Link
                   href="/blog"

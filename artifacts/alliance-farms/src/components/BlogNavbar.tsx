@@ -7,7 +7,12 @@ import { cn } from "@/lib/utils";
 export function BlogNavbar() {
   const [scrolled, setScrolled] = useState(false);
   const [location] = useLocation();
-  const isOnList = location === "/blog";
+
+  const backLink = location.startsWith("/blog/")
+    ? { href: "/blog", label: "All Posts" }
+    : location.startsWith("/products/")
+    ? { href: "/products", label: "All Products" }
+    : null;
 
   useEffect(() => {
     const handleScroll = () => setScrolled(window.scrollY > 60);
@@ -47,13 +52,13 @@ export function BlogNavbar() {
         </Link>
 
         <nav className="flex items-center gap-4">
-          {!isOnList && (
+          {backLink && (
             <Link
-              href="/blog"
+              href={backLink.href}
               className="flex items-center gap-2 text-white/70 hover:text-secondary text-sm font-medium transition-colors duration-200"
             >
               <ArrowLeft size={15} />
-              All Posts
+              {backLink.label}
             </Link>
           )}
           <Link

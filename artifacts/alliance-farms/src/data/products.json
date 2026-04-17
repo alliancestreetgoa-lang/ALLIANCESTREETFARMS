@@ -5,43 +5,108 @@
   "items": [
     {
       "name": "Desi Chicken",
+      "slug": "desi-chicken",
       "tag": "Native Breed",
+      "price": "₹450 / kg",
       "desc": "Free-range native breeds raised on clean feed and open grazing.",
       "image": "/images/desi_chicken.jpg",
+      "images": ["/images/desi_chicken.jpg"],
       "color": "from-[#3d2b1a] to-[#1a3a14]",
-      "fullDesc": "Our desi chickens are raised in free-range conditions on natural feed, without antibiotics or hormones. Native breeds like Kadaknath, Srinidhi, and Sonali are selected for their superior meat quality and nutritional content. The result is flavorful, protein-rich meat that's perfect for health-conscious families."
+      "description": "Our desi chickens are raised in free-range conditions on natural feed, without antibiotics or hormones. Native breeds like Kadaknath, Srinidhi, and Sonali are selected for their superior meat quality and nutritional content. The result is flavourful, protein-rich meat that is perfect for health-conscious families. Slow-grown, ethically raised, and delivered fresh from our Goa farm.",
+      "highlights": [
+        "Native breeds — Kadaknath, Srinidhi, Sonali",
+        "Zero antibiotics or growth hormones",
+        "Free-range, open-land raised",
+        "Higher protein than commercial chicken",
+        "No artificial feed additives",
+        "Slow-grown for superior flavour"
+      ],
+      "metaTitle": "Fresh Desi Chicken Goa | Alliance Street Organic Farms",
+      "metaDescription": "Buy free-range desi chicken from native breeds (Kadaknath, Srinidhi) raised without antibiotics in Goa. 100% organic, farm-fresh. ₹450/kg."
     },
     {
       "name": "Desi Eggs",
+      "slug": "desi-eggs",
       "tag": "Vitamin-Rich",
+      "price": "₹15 / egg",
       "desc": "Country chicken eggs — hormone-free and naturally nutritious.",
       "image": "/images/desi_eggs.jpg",
+      "images": ["/images/desi_eggs.jpg"],
       "color": "from-[#5c3d1e] to-[#A87A0F]",
-      "fullDesc": "Our desi eggs come from free-range country chickens living in natural conditions. These eggs are 3x richer in omega-3 fatty acids and have significantly higher vitamin E compared to commercial eggs. The deep orange yolks indicate superior nutritional density and clean, natural feeding practices."
+      "description": "Our desi eggs come from free-range country chickens living in natural conditions with access to sunlight, open grazing, and clean water. These eggs are 3× richer in Omega-3 fatty acids and have significantly higher Vitamin E and Vitamin D compared to commercial eggs. The deep orange yolk is a direct indicator of superior nutritional density and clean, natural feeding practices. No caging, no artificial light cycles — ever.",
+      "highlights": [
+        "3× more Omega-3 than commercial eggs",
+        "2× more Vitamin E",
+        "Deep orange yolk — naturally nutrient-dense",
+        "No cage rearing, no artificial lighting",
+        "Zero antibiotics or hormones",
+        "Better for children and the elderly"
+      ],
+      "metaTitle": "Farm-Fresh Desi Eggs Goa | Alliance Street Organic Farms",
+      "metaDescription": "Buy free-range country chicken eggs from Goa — 3× more Omega-3, deep orange yolk, zero antibiotics. Naturally nutritious. ₹15/egg."
     },
     {
       "name": "Goat Meat",
+      "slug": "goat-meat",
       "tag": "High Protein",
+      "price": "₹600 / kg",
       "desc": "Tender meat from Osmanabadi & Konkan Kanyal breeds.",
       "image": "/images/goat_meat.jpg",
+      "images": ["/images/goat_meat.jpg"],
       "color": "from-[#1a3a14] to-[#2d5a27]",
-      "fullDesc": "Premium goat meat from indigenous Indian breeds — Osmanabadi and Konkan Kanyal. These breeds are naturally adapted to Goa's climate and produce tender, lean meat with exceptional flavor. Low in fat and cholesterol, it's ideal for health-conscious diets while maintaining authentic taste."
+      "description": "Premium goat meat from indigenous Indian breeds — Osmanabadi and Konkan Kanyal — perfectly adapted to Goa's coastal climate. These breeds are raised entirely free-range on natural grazing without any chemical supplements, producing tender, lean meat with exceptional depth of flavour. Low in fat and cholesterol compared to other red meats, our chevon and mutton is ideal for health-conscious diets that don't compromise on taste.",
+      "highlights": [
+        "Indigenous breeds — Osmanabadi & Konkan Kanyal",
+        "Raised fully free-range in Goa",
+        "Lower fat than commercial goat meat",
+        "No feed additives or supplements",
+        "Rich, authentic desi flavour",
+        "Halal-friendly, ethically slaughtered"
+      ],
+      "metaTitle": "Fresh Goat Meat Goa | Mutton & Chevon | Alliance Street Organic Farms",
+      "metaDescription": "Buy fresh goat meat (mutton/chevon) from indigenous Osmanabadi & Konkan Kanyal breeds in Goa. Free-range, no chemicals. ₹600/kg."
     },
     {
       "name": "Goat Milk",
+      "slug": "goat-milk",
       "tag": "A2 Protein",
+      "price": "₹80 / litre",
       "desc": "Chemical-free, nutrient-dense milk from happy, healthy goats.",
       "image": "/images/goat_milk.jpg",
+      "images": ["/images/goat_milk.jpg"],
       "color": "from-[#2d5a27] to-[#7a9e6d]",
-      "fullDesc": "Our goat milk is naturally rich in A2 protein, making it easier to digest than cow's milk. Sourced daily from free-grazing goats raised without chemicals, it's packed with calcium, vitamins, and essential nutrients. Perfect for families seeking alternatives to conventional dairy."
+      "description": "Our goat milk comes from Konkan Kanyal goats grazing naturally across our Goa farmland. Naturally A2, it is easier to digest than cow's milk — ideal for people who experience discomfort with conventional dairy. Packed with calcium, magnesium, and essential vitamins, our milk is collected fresh daily and delivered without homogenisation or ultra-pasteurisation. What you get is real, whole goat milk — exactly as nature intended.",
+      "highlights": [
+        "Naturally A2 beta-casein protein",
+        "Easier to digest than cow's milk",
+        "Sourced from Konkan Kanyal goats",
+        "No homogenisation or ultra-pasteurisation",
+        "Rich in calcium, magnesium & Vitamin A",
+        "Suitable for lactose-sensitive individuals"
+      ],
+      "metaTitle": "Fresh Goat Milk Goa | A2 Protein | Alliance Street Organic Farms",
+      "metaDescription": "Buy fresh A2 goat milk from Konkan Kanyal goats in Goa. Easier to digest, naturally nutritious, no chemicals. ₹80/litre."
     },
     {
       "name": "Rabbit Meat",
+      "slug": "rabbit-meat",
       "tag": "Low Cholesterol",
+      "price": "₹700 / kg",
       "desc": "Lean, low-cholesterol protein from premium rabbit breeds.",
       "image": "/images/product_rabbit.png",
+      "images": ["/images/product_rabbit.png"],
       "color": "from-[#5c3d1e] to-[#3d2b1a]",
-      "fullDesc": "Rabbit meat is among the leanest meats available, with minimal cholesterol and maximum protein efficiency. Our premium rabbit breeds (Californian, New Zealand White, and Grey Giant) produce fine-textured, delicate meat ideal for gourmet cooking and therapeutic diets."
+      "description": "Rabbit meat is among the leanest and most protein-efficient meats available anywhere. With minimal cholesterol and an impressive protein-to-fat ratio, it is increasingly prescribed by nutritionists and physicians for therapeutic diets. Our premium rabbit breeds — Californian, New Zealand White, and Grey Giant — produce fine-textured, delicate meat with a mild, clean flavour that suits a wide range of cuisines from Goan to continental.",
+      "highlights": [
+        "Lowest cholesterol of any common meat",
+        "High biological value protein",
+        "Breeds: Californian, New Zealand White, Grey Giant",
+        "Fine-textured, mild-flavoured meat",
+        "Ideal for therapeutic & weight-conscious diets",
+        "Raised without antibiotics or growth promoters"
+      ],
+      "metaTitle": "Fresh Rabbit Meat Goa | Alliance Street Organic Farms",
+      "metaDescription": "Buy lean, low-cholesterol rabbit meat from premium breeds raised without antibiotics in Goa. Ideal for health-conscious diets. ₹700/kg."
     }
   ]
 }

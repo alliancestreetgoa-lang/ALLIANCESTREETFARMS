@@ -126,7 +126,7 @@ export function Products() {
                 </div>
 
                 <p className="text-[#5c3d1e] text-lg leading-relaxed mb-6">
-                  {product.fullDesc}
+                  {product.description}
                 </p>
 
                 <div className="grid grid-cols-2 gap-4">
