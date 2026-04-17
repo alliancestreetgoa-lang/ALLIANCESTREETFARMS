@@ -1,4 +1,4 @@
-import { useState } from "react";
+import { useState, useEffect } from "react";
 import { motion, AnimatePresence } from "framer-motion";
 import { X } from "lucide-react";
 import { cn } from "@/lib/utils";
@@ -91,8 +91,21 @@ export function Breeds() {
   const [activeTab, setActiveTab] = useState<"chicken" | "rabbit">("chicken");
   const [selected, setSelected] = useState<Breed | null>(null);
 
+  useEffect(() => {
+    const activate = () => {
+      if (window.location.hash === "#rabbit-breeds") {
+        setActiveTab("rabbit");
+        document.getElementById("breeds")?.scrollIntoView({ behavior: "smooth" });
+      }
+    };
+    activate();
+    window.addEventListener("hashchange", activate);
+    return () => window.removeEventListener("hashchange", activate);
+  }, []);
+
   return (
     <section id="breeds" className="py-24 bg-background">
+      <span id="rabbit-breeds" className="block" style={{ marginTop: "-80px", paddingTop: "80px", visibility: "hidden", pointerEvents: "none" }} />
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
         <div className="flex flex-col items-center mb-12">
           <span className="text-secondary font-bold tracking-widest text-sm uppercase mb-2">

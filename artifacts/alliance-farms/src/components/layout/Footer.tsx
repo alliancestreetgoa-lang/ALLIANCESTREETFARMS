@@ -30,7 +30,7 @@ export function Footer() {
             { label: "Products",    href: "/#products"   },
             { label: "Breeds",      href: "/#breeds"     },
             { label: "Eggs",        href: "/#eggs"       },
-            { label: "Rabbits",     href: "/#products"   },
+            { label: "Rabbits",     href: "/#rabbit-breeds" },
             { label: "Why Organic", href: "/#philosophy" },
             { label: "About",       href: "/#about"      },
             { label: "Team",        href: "/#team"       },
