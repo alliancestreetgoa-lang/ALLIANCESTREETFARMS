@@ -68,7 +68,7 @@ export function Team() {
                 <motion.div
                   whileHover={{ scale: 1.06 }}
                   transition={{ type: "spring", stiffness: 360, damping: 18 }}
-                  className="absolute -top-14 w-28 h-28 rounded-full overflow-hidden ring-4 ring-white shadow-xl"
+                  className="absolute -top-[84px] w-[168px] h-[168px] rounded-full overflow-hidden ring-4 ring-white shadow-xl"
                 >
                   {member.image ? (
                     <img
@@ -85,7 +85,7 @@ export function Team() {
               </div>
 
               {/* Body */}
-              <div className="pt-16 pb-8 px-8 text-center">
+              <div className="pt-[100px] pb-8 px-8 text-center">
                 <h3 className="font-heading text-2xl font-bold text-[#1a3a14] mb-1">{member.name}</h3>
                 <span className="inline-block bg-secondary/10 text-secondary text-[10px] font-bold tracking-[0.22em] uppercase px-3 py-1 rounded-full mb-6">
                   {member.role}
