@@ -1,0 +1,34 @@
+[
+  {
+    "id": "home",
+    "title": "Home",
+    "slug": "home",
+    "content": "Welcome to Alliance Street Organic Farms — Goa's most trusted source for organic desi chicken, goat meat, farm-fresh eggs and goat milk. Every product is raised without antibiotics, hormones, or artificial chemicals.",
+    "metaTitle": "Alliance Street Organic Farms — Pure. Honest. Always Fresh.",
+    "metaDescription": "Premium organic desi chicken, goat meat, country eggs & goat milk raised in Goa, India. Zero antibiotics. Zero shortcuts. Order fresh."
+  },
+  {
+    "id": "about",
+    "title": "About Us",
+    "slug": "about",
+    "content": "Alliance Street Organic Farms was founded in 2024 with a single mission — to bring honestly raised, chemical-free food directly to Goan families. We raise native breeds in open pastures, free from antibiotics and artificial feed, and sell directly to consumers.",
+    "metaTitle": "About Us | Alliance Street Organic Farms",
+    "metaDescription": "Learn about Alliance Street Organic Farms — founded in Goa in 2024 to bring pure, ethical, antibiotic-free food directly to families."
+  },
+  {
+    "id": "blog",
+    "title": "Blog",
+    "slug": "blog",
+    "content": "Stories, insights and honest knowledge from our fields in Goa. We write about native breeds, organic farming practices, nutrition, and the truth about what you eat.",
+    "metaTitle": "From the Farm — Blog | Alliance Street Organic Farms",
+    "metaDescription": "Stories, insights and honest knowledge from Alliance Street Organic Farms in Goa — covering desi eggs, native breeds, goat milk and organic farming."
+  },
+  {
+    "id": "products",
+    "title": "Products",
+    "slug": "products",
+    "content": "Shop farm-fresh desi chicken, goat meat, country eggs and goat milk from Alliance Street Organic Farms, Goa. No antibiotics, no hormones — ever.",
+    "metaTitle": "Our Products | Alliance Street Organic Farms",
+    "metaDescription": "Shop farm-fresh desi chicken, goat meat, country eggs and goat milk from Alliance Street Organic Farms, Goa. No antibiotics, no hormones — ever."
+  }
+]

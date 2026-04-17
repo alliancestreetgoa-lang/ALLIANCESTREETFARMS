@@ -1,6 +1,6 @@
 import { useState } from "react";
 import { loginAdmin, isAdminLoggedIn, logoutAdmin } from "@/lib/adminAuth";
-import { getCmsSettings } from "@/lib/cms";
+import { getCmsSettings, getCmsPages, saveCmsPages, type CmsPage } from "@/lib/cms";
 import { blog, products } from "@/lib/cms";
 
 // ─── Types ────────────────────────────────────────────────────────────────────
@@ -258,46 +258,269 @@ function DashboardView({ onNavigate }: { onNavigate: (s: Section) => void }) {
 
 // ─── Pages ────────────────────────────────────────────────────────────────────
 
-function PagesView() {
+function slugify(str: string): string {
+  return str
+    .toLowerCase()
+    .trim()
+    .replace(/[^a-z0-9\s-]/g, "")
+    .replace(/\s+/g, "-")
+    .replace(/-+/g, "-")
+    .replace(/^-|-$/g, "");
+}
+
+const BLANK_PAGE: Omit<CmsPage, "id"> = {
+  title: "",
+  slug: "",
+  content: "",
+  metaTitle: "",
+  metaDescription: "",
+};
+
+function PageForm({
+  initial,
+  onSave,
+  onCancel,
+  isNew,
+}: {
+  initial: CmsPage | typeof BLANK_PAGE;
+  onSave: (p: CmsPage | typeof BLANK_PAGE) => void;
+  onCancel: () => void;
+  isNew: boolean;
+}) {
+  const [draft, setDraft] = useState(initial);
+  const [slugTouched, setSlugTouched] = useState(!isNew);
+
+  const set = (key: keyof typeof BLANK_PAGE, val: string) => {
+    setDraft((prev) => {
+      const next = { ...prev, [key]: val };
+      if (key === "title" && !slugTouched) {
+        next.slug = slugify(val);
+      }
+      return next;
+    });
+  };
+
+  const inputCls =
+    "w-full border border-black/12 rounded-xl px-4 py-2.5 text-sm focus:outline-none focus:ring-2 focus:ring-[#2d5a27]/40 focus:border-[#2d5a27] bg-white transition-colors";
+
   return (
     <div className="space-y-6">
-      <div>
-        <h1 className="text-xl font-bold text-[#1a3a14]">Pages</h1>
-        <p className="text-sm text-black/40 mt-0.5">Edit the content sections of your homepage</p>
+      <div className="flex items-center gap-3">
+        <button
+          onClick={onCancel}
+          className="flex items-center gap-1.5 text-sm font-medium text-black/40 hover:text-black/70 transition-colors"
+        >
+          ← Back
+        </button>
+        <span className="text-black/20">/</span>
+        <h1 className="text-xl font-bold text-[#1a3a14]">
+          {isNew ? "New Page" : `Edit: ${(initial as CmsPage).title || "Page"}`}
+        </h1>
       </div>
 
-      <Card title="Hero Section">
-        <Field label="Eyebrow label" value="Welcome to Alliance Street Organic Farms" />
-        <Field label="Headline — line 1" value="Where Ethical Farming" />
-        <Field label="Headline — line 2 (gold italic)" value="Meets Excellence" />
-        <Field
-          label="Sub-copy"
-          value="Premium desi chicken, goat meat, farm-fresh eggs & nutritious goat milk — raised without antibiotics, hormones, or artificial chemicals."
-          multiline
-        />
-        <div className="grid grid-cols-2 gap-4">
-          <Field label="Primary button label" value="Explore Products" />
-          <Field label="Secondary button label" value="Our Story" />
+      <Card title="Page Content">
+        <div>
+          <label className="block text-xs font-semibold text-[#1a3a14]/80 uppercase tracking-wider mb-1">
+            Title <span className="text-red-400">*</span>
+          </label>
+          <input
+            type="text"
+            value={draft.title}
+            onChange={(e) => set("title", e.target.value)}
+            placeholder="e.g. About Us"
+            className={inputCls}
+          />
+        </div>
+
+        <div>
+          <label className="block text-xs font-semibold text-[#1a3a14]/80 uppercase tracking-wider mb-1">
+            Slug
+            <span className="ml-2 text-[10px] font-normal text-black/30 normal-case tracking-normal">
+              {!slugTouched && "auto-generated from title"}
+            </span>
+          </label>
+          <div className="relative">
+            <span className="absolute left-4 top-1/2 -translate-y-1/2 text-sm text-black/30 select-none">/</span>
+            <input
+              type="text"
+              value={draft.slug}
+              onChange={(e) => {
+                setSlugTouched(true);
+                set("slug", e.target.value.toLowerCase().replace(/[^a-z0-9-]/g, ""));
+              }}
+              placeholder="page-url"
+              className={`${inputCls} pl-7`}
+            />
+          </div>
+        </div>
+
+        <div>
+          <label className="block text-xs font-semibold text-[#1a3a14]/80 uppercase tracking-wider mb-1">Content</label>
+          <textarea
+            rows={6}
+            value={draft.content}
+            onChange={(e) => set("content", e.target.value)}
+            placeholder="Page body text or description…"
+            className={`${inputCls} resize-none`}
+          />
         </div>
       </Card>
 
-      <Card title="About Section">
-        <Field label="Section heading" value="Born from the Soil of Goa" />
-        <Field
-          label="Body text"
-          value="Alliance Street Organic Farms was founded in 2024 with a single mission — to bring honestly raised, chemical-free food directly to Goan families."
-          multiline
-        />
-        <Field label="Founded year" value="2024" />
+      <Card title="SEO">
+        <div>
+          <label className="block text-xs font-semibold text-[#1a3a14]/80 uppercase tracking-wider mb-1">
+            Meta Title
+            <span className="ml-2 text-[10px] font-normal text-black/30 normal-case">shown in browser tab &amp; Google</span>
+          </label>
+          <input
+            type="text"
+            value={draft.metaTitle}
+            onChange={(e) => set("metaTitle", e.target.value)}
+            placeholder="Page Title | Alliance Street Organic Farms"
+            className={inputCls}
+          />
+          <p className={`text-xs mt-1 ${draft.metaTitle.length > 60 ? "text-orange-500" : "text-black/30"}`}>
+            {draft.metaTitle.length}/60 characters recommended
+          </p>
+        </div>
+
+        <div>
+          <label className="block text-xs font-semibold text-[#1a3a14]/80 uppercase tracking-wider mb-1">
+            Meta Description
+            <span className="ml-2 text-[10px] font-normal text-black/30 normal-case">shown in Google search results</span>
+          </label>
+          <textarea
+            rows={3}
+            value={draft.metaDescription}
+            onChange={(e) => set("metaDescription", e.target.value)}
+            placeholder="A short description of this page for search engines (150–160 chars)…"
+            className={`${inputCls} resize-none`}
+          />
+          <p className={`text-xs mt-1 ${draft.metaDescription.length > 160 ? "text-orange-500" : "text-black/30"}`}>
+            {draft.metaDescription.length}/160 characters recommended
+          </p>
+        </div>
       </Card>
 
-      <Card title="Contact Section">
-        <Field label="Heading" value="Ready for Real Farm-Fresh Food?" />
-        <Field label="Sub-copy" value="Order directly from Alliance Street Organic Farms — Goa's most trusted source for organic desi chicken, eggs, goat meat, and more." multiline />
-      </Card>
+      <div className="flex items-center gap-3 justify-end">
+        <Btn onClick={onCancel}>Cancel</Btn>
+        <Btn
+          variant="primary"
+          onClick={() => {
+            if (!draft.title.trim()) return;
+            onSave(draft);
+          }}
+        >
+          {isNew ? "Create Page" : "Save Changes"}
+        </Btn>
+      </div>
+    </div>
+  );
+}
 
-      <div className="flex gap-3 justify-end">
-        <Btn variant="primary">Save Changes</Btn>
+function PagesView() {
+  const [pages, setPages] = useState<CmsPage[]>(getCmsPages);
+  const [view, setView] = useState<"list" | "add" | "edit">("list");
+  const [editing, setEditing] = useState<CmsPage | null>(null);
+  const [toast, setToast] = useState("");
+
+  const persist = (updated: CmsPage[]) => {
+    setPages(updated);
+    saveCmsPages(updated);
+  };
+
+  const showToast = (msg: string) => {
+    setToast(msg);
+    setTimeout(() => setToast(""), 2500);
+  };
+
+  const handleSaveNew = (draft: CmsPage | typeof BLANK_PAGE) => {
+    const newPage: CmsPage = {
+      ...(draft as CmsPage),
+      id: draft.slug || `page-${Date.now()}`,
+    };
+    persist([...pages, newPage]);
+    showToast("Page created");
+    setView("list");
+  };
+
+  const handleSaveEdit = (draft: CmsPage | typeof BLANK_PAGE) => {
+    persist(pages.map((p) => (p.id === editing!.id ? { ...(draft as CmsPage), id: editing!.id } : p)));
+    showToast("Changes saved");
+    setView("list");
+  };
+
+  const handleDelete = (id: string) => {
+    if (!confirm("Delete this page? This cannot be undone.")) return;
+    persist(pages.filter((p) => p.id !== id));
+    showToast("Page deleted");
+  };
+
+  if (view === "add") {
+    return <PageForm initial={BLANK_PAGE} onSave={handleSaveNew} onCancel={() => setView("list")} isNew />;
+  }
+
+  if (view === "edit" && editing) {
+    return <PageForm initial={editing} onSave={handleSaveEdit} onCancel={() => setView("list")} isNew={false} />;
+  }
+
+  return (
+    <div className="space-y-6">
+      {toast && (
+        <div className="fixed bottom-6 right-6 z-50 bg-[#1a3a14] text-white text-sm font-semibold px-5 py-3 rounded-2xl shadow-xl">
+          {toast}
+        </div>
+      )}
+
+      <div className="flex items-center justify-between">
+        <div>
+          <h1 className="text-xl font-bold text-[#1a3a14]">Pages</h1>
+          <p className="text-sm text-black/40 mt-0.5">{pages.length} page{pages.length !== 1 ? "s" : ""}</p>
+        </div>
+        <Btn variant="primary" onClick={() => setView("add")}>+ New Page</Btn>
+      </div>
+
+      <div className="bg-white rounded-2xl border border-black/6 shadow-sm overflow-hidden">
+        {pages.length === 0 ? (
+          <div className="py-16 text-center text-black/30">
+            <p className="text-4xl mb-3">□</p>
+            <p className="text-sm font-medium">No pages yet</p>
+            <p className="text-xs mt-1">Click "+ New Page" to create one</p>
+          </div>
+        ) : (
+          <table className="w-full text-sm">
+            <thead>
+              <tr className="border-b border-black/6 bg-black/2">
+                <th className="text-left px-5 py-3.5 text-xs font-semibold text-black/40 uppercase tracking-wider">Title</th>
+                <th className="text-left px-5 py-3.5 text-xs font-semibold text-black/40 uppercase tracking-wider hidden sm:table-cell">Slug</th>
+                <th className="text-left px-5 py-3.5 text-xs font-semibold text-black/40 uppercase tracking-wider hidden md:table-cell">Meta Title</th>
+                <th className="px-5 py-3.5" />
+              </tr>
+            </thead>
+            <tbody className="divide-y divide-black/5">
+              {pages.map((page) => (
+                <tr key={page.id} className="hover:bg-black/[0.015] transition-colors group">
+                  <td className="px-5 py-4">
+                    <p className="font-medium text-[#1a3a14]">{page.title}</p>
+                    <p className="text-xs text-black/30 mt-0.5 line-clamp-1 md:hidden">{page.metaDescription}</p>
+                  </td>
+                  <td className="px-5 py-4 hidden sm:table-cell">
+                    <code className="text-xs bg-black/5 px-2 py-1 rounded-lg text-black/50">/{page.slug}</code>
+                  </td>
+                  <td className="px-5 py-4 hidden md:table-cell">
+                    <p className="text-xs text-black/40 truncate max-w-xs">{page.metaTitle}</p>
+                  </td>
+                  <td className="px-5 py-4">
+                    <div className="flex items-center gap-2 justify-end">
+                      <Btn onClick={() => { setEditing(page); setView("edit"); }}>Edit</Btn>
+                      <Btn variant="danger" onClick={() => handleDelete(page.id)}>Delete</Btn>
+                    </div>
+                  </td>
+                </tr>
+              ))}
+            </tbody>
+          </table>
+        )}
       </div>
     </div>
   );

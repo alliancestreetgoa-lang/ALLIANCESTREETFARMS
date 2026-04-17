@@ -1,6 +1,7 @@
 import settingsData from "@/data/settings.json";
 import seoData from "@/data/seo.json";
 import pagesData from "@/data/pages.json";
+import cmsPagesData from "@/data/cms_pages.json";
 import productsData from "@/data/products.json";
 import breedsData from "@/data/breeds.json";
 import goatsData from "@/data/goats.json";
@@ -9,6 +10,29 @@ import testimonialsData from "@/data/testimonials.json";
 import blogData from "@/data/blog.json";
 
 const STORAGE_KEY = "asof_site_settings";
+const PAGES_STORAGE_KEY = "asof_cms_pages";
+
+export interface CmsPage {
+  id: string;
+  title: string;
+  slug: string;
+  content: string;
+  metaTitle: string;
+  metaDescription: string;
+}
+
+export function getCmsPages(): CmsPage[] {
+  try {
+    const raw = localStorage.getItem(PAGES_STORAGE_KEY);
+    return raw ? JSON.parse(raw) : (cmsPagesData as CmsPage[]);
+  } catch {
+    return cmsPagesData as CmsPage[];
+  }
+}
+
+export function saveCmsPages(pages: CmsPage[]): void {
+  localStorage.setItem(PAGES_STORAGE_KEY, JSON.stringify(pages));
+}
 
 export type SectionId = keyof typeof seoData.pages;
 
