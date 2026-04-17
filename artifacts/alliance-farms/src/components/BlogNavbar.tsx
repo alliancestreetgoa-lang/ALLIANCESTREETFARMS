@@ -3,8 +3,10 @@ import { motion } from "framer-motion";
 import { ArrowLeft } from "lucide-react";
 import { Link, useLocation } from "wouter";
 import { cn } from "@/lib/utils";
+import { getCmsSettings } from "@/lib/cms";
 
 export function BlogNavbar() {
+  const s = getCmsSettings();
   const [scrolled, setScrolled] = useState(false);
   const [location] = useLocation();
 
@@ -35,18 +37,18 @@ export function BlogNavbar() {
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 flex items-center justify-between">
         <Link href="/" className="flex items-center gap-3 group">
           <motion.img
-            src="/logo.png"
-            alt="Alliance Street Organic Farms"
+            src={s.logoUrl}
+            alt={s.logoAlt}
             className="h-11 w-auto object-contain drop-shadow-md"
             whileHover={{ scale: 1.05, rotate: -2 }}
             transition={{ type: "spring", stiffness: 400, damping: 20 }}
           />
           <div className="flex flex-col items-start">
             <span className="font-heading text-base md:text-lg text-white group-hover:text-secondary transition-colors duration-300 leading-tight tracking-wide">
-              Alliance Street Organic Farms
+              {s.farmName}
             </span>
             <span className="text-[9px] tracking-[0.3em] text-secondary/80 uppercase font-semibold">
-              Goa, India
+              {s.location}
             </span>
           </div>
         </Link>

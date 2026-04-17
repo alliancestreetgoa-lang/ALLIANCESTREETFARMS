@@ -3,7 +3,8 @@ import { motion } from "framer-motion";
 import { Link } from "wouter";
 import { Calendar, Clock, Tag, ArrowRight } from "lucide-react";
 import { BlogNavbar } from "@/components/BlogNavbar";
-import { blog } from "@/lib/cms";
+import { PageFooter } from "@/components/PageFooter";
+import { blog, getCmsSettings } from "@/lib/cms";
 import { applyMetaTags } from "@/lib/siteSettings";
 import { staggerContainer, fadeUp, fadeUpSoft } from "@/lib/animations";
 
@@ -160,12 +161,7 @@ export default function Blog() {
         </div>
       </section>
 
-      {/* Footer strip */}
-      <footer className="py-8 bg-[#1a3a14] text-center">
-        <p className="text-white/40 text-sm">
-          © {new Date().getFullYear()} Alliance Street Organic Farms, Goa, India
-        </p>
-      </footer>
+      <PageFooter />
     </div>
   );
 }

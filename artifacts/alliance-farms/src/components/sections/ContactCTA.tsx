@@ -4,9 +4,9 @@ import { getCmsSettings } from "@/lib/cms";
 export function ContactCTA() {
   const settings = getCmsSettings();
 
-  const phone = settings.phone || "+91 73750 96163";
-  const email = settings.email || "alliancestreetorganicfarms@gmail.com";
-  const whatsapp = settings.whatsappUrl || "https://wa.me/qr/ORVOCVVT3QJOJ1";
+  const phone = settings.phone;
+  const email = settings.email;
+  const whatsapp = settings.whatsappUrl;
 
   return (
     <section id="contact" className="py-28 bg-[#1a3a14] relative overflow-hidden">
@@ -34,7 +34,7 @@ export function ContactCTA() {
           </h2>
 
           <p className="text-white/90 text-lg mb-12 max-w-xl mx-auto font-normal leading-relaxed">
-            Order directly from Alliance Street Organic Farms — Goa's most trusted source for organic desi chicken, eggs, goat meat, and more.
+            Order directly from {settings.farmName} — Goa's most trusted source for organic desi chicken, eggs, goat meat, and more.
           </p>
 
           <div className="flex flex-col sm:flex-row items-center justify-center gap-4 mb-12">
@@ -72,7 +72,7 @@ export function ContactCTA() {
           <div className="mt-6 flex flex-wrap justify-center gap-10 text-white/35 text-sm">
             <span className="flex items-center gap-2">
               <span className="w-1 h-1 rounded-full bg-secondary/60" />
-              Goa, India
+              {settings.location}
             </span>
             <span className="flex items-center gap-2">
               <span className="w-1 h-1 rounded-full bg-secondary/60" />

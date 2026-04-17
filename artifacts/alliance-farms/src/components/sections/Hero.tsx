@@ -1,7 +1,7 @@
 import { useEffect, useState, useRef } from "react";
 import { motion, useScroll, useTransform } from "framer-motion";
 import { staggerContainer, fadeUp, fadeUpSoft, blurClear, EASE_OUT_EXPO } from "@/lib/animations";
-import { getCmsHero } from "@/lib/cms";
+import { getCmsHero, getCmsSettings } from "@/lib/cms";
 
 const STATS = [
   { value: "100%", label: "Certified Organic" },
@@ -11,6 +11,7 @@ const STATS = [
 ];
 
 export function Hero() {
+  const s = getCmsSettings();
   const [particles, setParticles] = useState<Array<{ id: number; left: string; delay: string; duration: string }>>([]);
   const [heroData, setHeroData] = useState(() => getCmsHero());
   const heroRef = useRef<HTMLElement>(null);
@@ -80,7 +81,7 @@ export function Hero() {
               className="h-px w-12 bg-secondary/70 block"
             />
             <span className="text-secondary text-xs tracking-[0.3em] uppercase font-semibold">
-              Goa, India — Est. 2024
+              {s.location} — Est. {s.established}
             </span>
             <motion.span
               initial={{ scaleX: 0 }} animate={{ scaleX: 1 }}

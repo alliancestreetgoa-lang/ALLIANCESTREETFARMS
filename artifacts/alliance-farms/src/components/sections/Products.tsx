@@ -2,11 +2,12 @@ import { useState } from "react";
 import { motion, AnimatePresence } from "framer-motion";
 import { X } from "lucide-react";
 import { staggerContainer, fadeUp, fadeUpSoft, scalePop } from "@/lib/animations";
-import { products as cmsProducts } from "@/lib/cms";
+import { products as cmsProducts, getCmsSettings } from "@/lib/cms";
 
 const PRODUCTS = cmsProducts.items;
 
 export function Products() {
+  const s = getCmsSettings();
   const [selectedProduct, setSelectedProduct] = useState<string | null>(null);
 
   const product = selectedProduct ? PRODUCTS.find(p => p.name === selectedProduct) : null;
@@ -136,7 +137,7 @@ export function Products() {
                   </div>
                   <div className="bg-[#faf6ef] rounded-xl p-4 border border-[#1a3a14]/10">
                     <div className="text-xs font-bold text-secondary uppercase tracking-widest mb-2">Source</div>
-                    <p className="text-[#1a3a14] text-sm">Goa, India — Direct from Farm</p>
+                    <p className="text-[#1a3a14] text-sm">{s.location} — Direct from Farm</p>
                   </div>
                 </div>
 

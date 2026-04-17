@@ -3,7 +3,8 @@ import { motion } from "framer-motion";
 import { Link, useParams } from "wouter";
 import { ArrowLeft, Check, ShoppingBag } from "lucide-react";
 import { BlogNavbar } from "@/components/BlogNavbar";
-import { products } from "@/lib/cms";
+import { PageFooter } from "@/components/PageFooter";
+import { products, getCmsSettings } from "@/lib/cms";
 import { applyMetaTags } from "@/lib/siteSettings";
 import { fadeUp, fadeUpSoft, staggerContainer } from "@/lib/animations";
 
@@ -100,7 +101,7 @@ export default function ProductDetail() {
               </motion.p>
               <motion.a
                 variants={fadeUpSoft}
-                href="https://wa.me/qr/ORVOCVVT3QJOJ1"
+                href={getCmsSettings().whatsappUrl}
                 target="_blank"
                 rel="noopener noreferrer"
                 whileHover={{ scale: 1.03 }}
@@ -189,12 +190,12 @@ export default function ProductDetail() {
             </div>
             <div className="flex items-center justify-between text-sm">
               <span className="text-[#5c3d1e]/60 font-medium">Source</span>
-              <span className="text-[#1a3a14] font-medium">Goa, India</span>
+              <span className="text-[#1a3a14] font-medium">{getCmsSettings().location}</span>
             </div>
           </div>
 
           <a
-            href="https://wa.me/qr/ORVOCVVT3QJOJ1"
+            href={getCmsSettings().whatsappUrl}
             target="_blank"
             rel="noopener noreferrer"
             className="block mt-5 w-full py-3 text-center rounded-xl bg-[#1a3a14] text-white text-sm font-semibold hover:bg-secondary transition-colors duration-300"
@@ -277,12 +278,7 @@ export default function ProductDetail() {
         </section>
       )}
 
-      <footer className="py-8 bg-[#0f1e0c] text-center">
-        <p className="text-white/40 text-sm">
-          © {new Date().getFullYear()} Alliance Street Organic Farms, Goa,
-          India
-        </p>
-      </footer>
+      <PageFooter />
     </div>
   );
 }

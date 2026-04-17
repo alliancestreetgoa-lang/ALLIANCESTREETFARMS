@@ -3,7 +3,8 @@ import { motion } from "framer-motion";
 import { Link, useParams } from "wouter";
 import { Calendar, Clock, Tag, ArrowRight, ArrowLeft } from "lucide-react";
 import { BlogNavbar } from "@/components/BlogNavbar";
-import { blog } from "@/lib/cms";
+import { PageFooter } from "@/components/PageFooter";
+import { blog, getCmsSettings } from "@/lib/cms";
 import { applyMetaTags } from "@/lib/siteSettings";
 import { fadeUp, fadeUpSoft, staggerContainer } from "@/lib/animations";
 
@@ -238,7 +239,7 @@ export default function BlogPost() {
           <div>
             <p className="font-semibold text-[#1a3a14] text-sm">{post.author}</p>
             <p className="text-[#5c3d1e]/60 text-xs mt-0.5">
-              Organic farmers in Goa, India — raising native breeds ethically since 2024.
+              Organic farmers in {getCmsSettings().location} — raising native breeds ethically since {getCmsSettings().established}.
             </p>
           </div>
         </div>
@@ -289,12 +290,7 @@ export default function BlogPost() {
         </section>
       )}
 
-      {/* Footer strip */}
-      <footer className="py-8 bg-[#1a3a14] text-center">
-        <p className="text-white/40 text-sm">
-          © {new Date().getFullYear()} Alliance Street Organic Farms, Goa, India
-        </p>
-      </footer>
+      <PageFooter />
     </div>
   );
 }

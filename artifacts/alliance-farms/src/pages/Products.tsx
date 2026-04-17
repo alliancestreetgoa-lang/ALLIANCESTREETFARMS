@@ -3,7 +3,8 @@ import { motion } from "framer-motion";
 import { Link } from "wouter";
 import { ArrowRight, Tag } from "lucide-react";
 import { BlogNavbar } from "@/components/BlogNavbar";
-import { products } from "@/lib/cms";
+import { PageFooter } from "@/components/PageFooter";
+import { products, getCmsSettings } from "@/lib/cms";
 import { applyMetaTags } from "@/lib/siteSettings";
 import { staggerContainer, fadeUp, fadeUpSoft, scalePop } from "@/lib/animations";
 
@@ -140,7 +141,7 @@ export default function ProductsPage() {
             home delivery in Goa.
           </p>
           <a
-            href="https://wa.me/qr/ORVOCVVT3QJOJ1"
+            href={getCmsSettings().whatsappUrl}
             target="_blank"
             rel="noopener noreferrer"
             className="inline-flex items-center gap-2 px-8 py-3.5 rounded-full bg-secondary text-white font-semibold hover:bg-[#A87A0F] transition-colors duration-300"
@@ -150,12 +151,7 @@ export default function ProductsPage() {
         </div>
       </section>
 
-      <footer className="py-8 bg-[#0f1e0c] text-center">
-        <p className="text-white/40 text-sm">
-          © {new Date().getFullYear()} Alliance Street Organic Farms, Goa,
-          India
-        </p>
-      </footer>
+      <PageFooter />
     </div>
   );
 }

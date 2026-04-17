@@ -3,11 +3,11 @@ import { getCmsSettings } from "@/lib/cms";
 export function Footer() {
   const settings = getCmsSettings();
 
-  const instagram = settings.instagramUrl || "https://www.instagram.com/alliancestreetorganicfarms/";
+  const instagram = settings.instagramUrl;
   const facebook = settings.facebookUrl || null;
-  const whatsapp = settings.whatsappUrl || "https://wa.me/qr/ORVOCVVT3QJOJ1";
-  const phone = settings.phone || "+91 73750 96163";
-  const email = settings.email || "alliancestreetorganicfarms@gmail.com";
+  const whatsapp = settings.whatsappUrl;
+  const phone = settings.phone;
+  const email = settings.email;
 
   const socialLinks = [
     { label: "Instagram", url: instagram },
@@ -19,10 +19,10 @@ export function Footer() {
     <footer className="bg-[#0f0a04] py-16 text-center">
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
         <h2 className="font-heading text-2xl text-secondary mb-2">
-          Alliance Street Organic Farms
+          {settings.farmName}
         </h2>
         <p className="text-white/60 text-xs tracking-[0.3em] uppercase mb-10">
-          Pure · Honest · Always Fresh · Goa
+          {settings.footerTagline} · {settings.location}
         </p>
 
         <div className="flex flex-wrap justify-center gap-6 mb-12">
@@ -67,7 +67,7 @@ export function Footer() {
         </div>
 
         <p className="text-white/30 text-xs">
-          © {new Date().getFullYear()} Alliance Street Organic Farms, Goa, India. All rights reserved.
+          © {new Date().getFullYear()} {settings.farmName}, {settings.location}. All rights reserved.
         </p>
       </div>
     </footer>

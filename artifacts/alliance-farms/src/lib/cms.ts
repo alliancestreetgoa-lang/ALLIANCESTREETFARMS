@@ -40,12 +40,18 @@ function buildFullTitle(title: string): string {
 export function getCmsSettings() {
   const o = getStoredOverrides();
   return {
-    ...settingsData,
-    phone: o.phone || settingsData.phone,
-    email: o.email || settingsData.email,
-    whatsappUrl: o.whatsappUrl || settingsData.whatsappUrl,
+    farmName:     settingsData.farmName,
+    tagline:      settingsData.tagline,
+    footerTagline: settingsData.footerTagline,
+    location:     settingsData.location,
+    established:  settingsData.established,
+    logoUrl:      settingsData.logoUrl,
+    logoAlt:      settingsData.logoAlt,
+    phone:        o.phone        || settingsData.phone,
+    email:        o.email        || settingsData.email,
+    whatsappUrl:  o.whatsappUrl  || settingsData.whatsappUrl,
     instagramUrl: o.instagramUrl || settingsData.instagramUrl,
-    facebookUrl: o.facebookUrl ?? settingsData.facebookUrl,
+    facebookUrl:  o.facebookUrl  ?? settingsData.facebookUrl,
   };
 }
 

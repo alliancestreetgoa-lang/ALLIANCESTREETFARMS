@@ -1,8 +1,11 @@
 {
   "farmName": "Alliance Street Organic Farms",
   "tagline": "Pure. Honest. Always Fresh.",
+  "footerTagline": "Pure · Honest · Always Fresh",
   "location": "Goa, India",
   "established": "2024",
+  "logoUrl": "/logo.png",
+  "logoAlt": "Alliance Street Organic Farms Logo",
   "phone": "+91 73750 96163",
   "email": "alliancestreetorganicfarms@gmail.com",
   "whatsappUrl": "https://wa.me/qr/ORVOCVVT3QJOJ1",
