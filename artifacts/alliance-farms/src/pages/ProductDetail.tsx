@@ -1,18 +1,26 @@
-import { useEffect } from "react";
+import { useEffect, useState } from "react";
 import { motion } from "framer-motion";
 import { Link, useParams } from "wouter";
 import { ArrowLeft, Check, ShoppingBag } from "lucide-react";
 import { BlogNavbar } from "@/components/BlogNavbar";
 import { PageFooter } from "@/components/PageFooter";
-import { products, getCmsSettings } from "@/lib/cms";
+import { getCmsProducts, getCmsSettings } from "@/lib/cms";
 import { applyMetaTags } from "@/lib/siteSettings";
 import { fadeUp, fadeUpSoft, staggerContainer } from "@/lib/animations";
 
 const VIEWPORT = { once: true, margin: "-40px" };
 
 export default function ProductDetail() {
+  const [catalog, setCatalog] = useState(getCmsProducts);
+
+  useEffect(() => {
+    const refresh = () => setCatalog(getCmsProducts());
+    window.addEventListener("storage", refresh);
+    return () => window.removeEventListener("storage", refresh);
+  }, []);
+
   const { slug } = useParams<{ slug: string }>();
-  const product = products.items.find((p) => p.slug === slug);
+  const product = catalog.items.find((p) => p.slug === slug);
 
   useEffect(() => {
     if (!product) return;
@@ -53,7 +61,7 @@ export default function ProductDetail() {
     );
   }
 
-  const relatedProducts = products.items
+  const relatedProducts = catalog.items
     .filter((p) => p.slug !== slug)
     .slice(0, 3);
 

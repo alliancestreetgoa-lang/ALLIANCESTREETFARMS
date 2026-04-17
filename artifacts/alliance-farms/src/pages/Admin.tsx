@@ -3,7 +3,7 @@ import { loginAdmin, isAdminLoggedIn, logoutAdmin } from "@/lib/adminAuth";
 import {
   getCmsSettings, getCmsPages, saveCmsPages, type CmsPage,
   getCmsBlog, saveCmsBlog, type CmsBlogPost,
-  products,
+  getCmsProducts, saveCmsProducts, type CmsProduct,
 } from "@/lib/cms";
 
 // ─── Types ────────────────────────────────────────────────────────────────────
@@ -184,7 +184,7 @@ function Btn({
 function DashboardView({ onNavigate }: { onNavigate: (s: Section) => void }) {
   const s = getCmsSettings();
   const posts = getCmsBlog().posts;
-  const prods = products.items;
+  const prods = getCmsProducts().items;
 
   return (
     <div className="space-y-6">
@@ -897,66 +897,383 @@ function BlogView() {
 
 // ─── Products ─────────────────────────────────────────────────────────────────
 
-function ProductsView() {
-  const prods = products.items;
+const COLOR_PRESETS = [
+  { label: "Dark Brown → Forest Green", value: "from-[#3d2b1a] to-[#1a3a14]" },
+  { label: "Brown → Gold", value: "from-[#5c3d1e] to-[#A87A0F]" },
+  { label: "Forest → Medium Green", value: "from-[#1a3a14] to-[#2d5a27]" },
+  { label: "Medium → Light Green", value: "from-[#2d5a27] to-[#7a9e6d]" },
+  { label: "Brown → Dark Brown", value: "from-[#5c3d1e] to-[#3d2b1a]" },
+];
+
+const BLANK_PRODUCT: CmsProduct = {
+  name: "",
+  slug: "",
+  tag: "",
+  price: "",
+  desc: "",
+  image: "",
+  images: [],
+  color: COLOR_PRESETS[0].value,
+  description: "",
+  highlights: [],
+  metaTitle: "",
+  metaDescription: "",
+};
+
+function slugifyProduct(str: string): string {
+  return str.toLowerCase().trim().replace(/[^a-z0-9]+/g, "-").replace(/^-|-$/g, "");
+}
+
+function ProductForm({
+  initial,
+  onSave,
+  onCancel,
+  isNew,
+}: {
+  initial: CmsProduct;
+  onSave: (p: CmsProduct) => void;
+  onCancel: () => void;
+  isNew: boolean;
+}) {
+  const [draft, setDraft] = useState<CmsProduct & { highlightsText: string }>(() => ({
+    ...initial,
+    highlightsText: (initial.highlights ?? []).join("\n"),
+  }));
+  const [slugTouched, setSlugTouched] = useState(!isNew);
+
+  const inputCls =
+    "w-full border border-black/12 rounded-xl px-4 py-2.5 text-sm focus:outline-none focus:ring-2 focus:ring-[#2d5a27]/40 focus:border-[#2d5a27] bg-white transition-colors";
+
+  const set = (field: string, val: string) => {
+    setDraft((d) => {
+      const next = { ...d, [field]: val };
+      if (field === "name" && !slugTouched) next.slug = slugifyProduct(val);
+      return next;
+    });
+    if (field === "slug") setSlugTouched(true);
+  };
+
+  const handleSave = () => {
+    if (!draft.name.trim()) return;
+    const highlights = draft.highlightsText
+      .split("\n")
+      .map((l) => l.trim())
+      .filter(Boolean);
+    const imageUrl = draft.image.trim();
+    onSave({
+      name: draft.name,
+      slug: draft.slug || slugifyProduct(draft.name),
+      tag: draft.tag,
+      price: draft.price,
+      desc: draft.desc,
+      image: imageUrl,
+      images: imageUrl ? [imageUrl] : [],
+      color: draft.color,
+      description: draft.description,
+      highlights,
+      metaTitle: draft.metaTitle,
+      metaDescription: draft.metaDescription,
+    });
+  };
 
   return (
     <div className="space-y-6">
+      <div className="flex items-center gap-3">
+        <button
+          onClick={onCancel}
+          className="flex items-center gap-1.5 text-sm font-medium text-black/40 hover:text-black/70 transition-colors"
+        >
+          ← Back
+        </button>
+        <span className="text-black/20">/</span>
+        <h1 className="text-xl font-bold text-[#1a3a14]">
+          {isNew ? "New Product" : `Edit: ${draft.name || "Product"}`}
+        </h1>
+      </div>
+
+      <Card title="Product Details">
+        <div>
+          <label className="block text-xs font-semibold text-[#1a3a14]/80 uppercase tracking-wider mb-1">
+            Name <span className="text-red-400">*</span>
+          </label>
+          <input
+            type="text"
+            value={draft.name}
+            onChange={(e) => set("name", e.target.value)}
+            placeholder="e.g. Desi Chicken"
+            className={inputCls}
+          />
+        </div>
+
+        <div>
+          <label className="block text-xs font-semibold text-[#1a3a14]/80 uppercase tracking-wider mb-1">
+            Slug
+            <span className="ml-2 text-[10px] font-normal text-black/30 normal-case tracking-normal">
+              {!slugTouched && "auto-generated from name"}
+            </span>
+          </label>
+          <div className="relative">
+            <span className="absolute left-4 top-1/2 -translate-y-1/2 text-sm text-black/30 select-none">/products/</span>
+            <input
+              type="text"
+              value={draft.slug}
+              onChange={(e) => {
+                setSlugTouched(true);
+                set("slug", e.target.value.toLowerCase().replace(/[^a-z0-9-]/g, ""));
+              }}
+              placeholder="product-url"
+              className={`${inputCls} pl-[5.5rem]`}
+            />
+          </div>
+        </div>
+
+        <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
+          <div>
+            <label className="block text-xs font-semibold text-[#1a3a14]/80 uppercase tracking-wider mb-1">Tag / Badge</label>
+            <input
+              type="text"
+              value={draft.tag}
+              onChange={(e) => set("tag", e.target.value)}
+              placeholder="e.g. Native Breed, A2 Protein"
+              className={inputCls}
+            />
+          </div>
+          <div>
+            <label className="block text-xs font-semibold text-[#1a3a14]/80 uppercase tracking-wider mb-1">Price</label>
+            <input
+              type="text"
+              value={draft.price}
+              onChange={(e) => set("price", e.target.value)}
+              placeholder="e.g. ₹450 / kg"
+              className={inputCls}
+            />
+          </div>
+        </div>
+
+        <div>
+          <label className="block text-xs font-semibold text-[#1a3a14]/80 uppercase tracking-wider mb-1">Short Description (card preview)</label>
+          <input
+            type="text"
+            value={draft.desc}
+            onChange={(e) => set("desc", e.target.value)}
+            placeholder="One-line description shown on product cards"
+            className={inputCls}
+          />
+        </div>
+
+        <div>
+          <label className="block text-xs font-semibold text-[#1a3a14]/80 uppercase tracking-wider mb-1">Image URL</label>
+          <input
+            type="text"
+            value={draft.image}
+            onChange={(e) => set("image", e.target.value)}
+            placeholder="/images/your-photo.jpg"
+            className={inputCls}
+          />
+          {draft.image && (
+            <div className="mt-2 h-24 w-32 rounded-xl overflow-hidden border border-black/8">
+              <img
+                src={draft.image}
+                alt="Preview"
+                className="w-full h-full object-cover"
+                onError={(e) => { (e.currentTarget as HTMLImageElement).style.display = "none"; }}
+              />
+            </div>
+          )}
+        </div>
+
+        <div>
+          <label className="block text-xs font-semibold text-[#1a3a14]/80 uppercase tracking-wider mb-1">Card Gradient Color</label>
+          <select
+            value={draft.color}
+            onChange={(e) => set("color", e.target.value)}
+            className={inputCls}
+          >
+            {COLOR_PRESETS.map((preset) => (
+              <option key={preset.value} value={preset.value}>{preset.label}</option>
+            ))}
+          </select>
+        </div>
+      </Card>
+
+      <Card title="Full Description & Highlights">
+        <div>
+          <label className="block text-xs font-semibold text-[#1a3a14]/80 uppercase tracking-wider mb-1">Full Description</label>
+          <textarea
+            rows={5}
+            value={draft.description}
+            onChange={(e) => set("description", e.target.value)}
+            placeholder="Detailed description shown on the product detail page…"
+            className={`${inputCls} resize-none`}
+          />
+        </div>
+        <div>
+          <label className="block text-xs font-semibold text-[#1a3a14]/80 uppercase tracking-wider mb-1">
+            Key Highlights
+            <span className="ml-2 text-[10px] font-normal text-black/30 normal-case tracking-normal">one per line</span>
+          </label>
+          <textarea
+            rows={7}
+            value={draft.highlightsText}
+            onChange={(e) => set("highlightsText", e.target.value)}
+            placeholder={"Zero antibiotics or hormones\nFree-range, open-land raised\nHigher protein than commercial chicken"}
+            className={`${inputCls} resize-y`}
+          />
+        </div>
+      </Card>
+
+      <Card title="SEO">
+        <div>
+          <label className="block text-xs font-semibold text-[#1a3a14]/80 uppercase tracking-wider mb-1">Meta Title</label>
+          <input
+            type="text"
+            value={draft.metaTitle}
+            onChange={(e) => set("metaTitle", e.target.value)}
+            placeholder="Product Name | Alliance Street Organic Farms"
+            className={inputCls}
+          />
+          <p className={`text-xs mt-1 ${draft.metaTitle.length > 60 ? "text-orange-500" : "text-black/30"}`}>
+            {draft.metaTitle.length}/60 characters recommended
+          </p>
+        </div>
+        <div>
+          <label className="block text-xs font-semibold text-[#1a3a14]/80 uppercase tracking-wider mb-1">Meta Description</label>
+          <textarea
+            rows={3}
+            value={draft.metaDescription}
+            onChange={(e) => set("metaDescription", e.target.value)}
+            placeholder="Short description for Google search results (150–160 chars)…"
+            className={`${inputCls} resize-none`}
+          />
+          <p className={`text-xs mt-1 ${draft.metaDescription.length > 160 ? "text-orange-500" : "text-black/30"}`}>
+            {draft.metaDescription.length}/160 characters recommended
+          </p>
+        </div>
+      </Card>
+
+      <div className="flex items-center gap-3 justify-end">
+        <Btn onClick={onCancel}>Cancel</Btn>
+        <Btn variant="primary" onClick={handleSave}>
+          {isNew ? "Add Product" : "Save Changes"}
+        </Btn>
+      </div>
+    </div>
+  );
+}
+
+function ProductsView() {
+  const [items, setItems] = useState<CmsProduct[]>(() => getCmsProducts().items);
+  const [view, setView] = useState<"list" | "add" | "edit">("list");
+  const [editing, setEditing] = useState<CmsProduct | null>(null);
+  const [toast, setToast] = useState("");
+
+  const persist = (updated: CmsProduct[]) => {
+    saveCmsProducts(updated);
+    setItems(updated);
+  };
+
+  const showToast = (msg: string) => {
+    setToast(msg);
+    setTimeout(() => setToast(""), 2500);
+  };
+
+  const handleSaveNew = (product: CmsProduct) => {
+    persist([...items, product]);
+    showToast("Product added");
+    setView("list");
+  };
+
+  const handleSaveEdit = (product: CmsProduct) => {
+    persist(items.map((p) => (p.slug === product.slug ? product : p)));
+    showToast("Product saved");
+    setView("list");
+  };
+
+  const handleDelete = (slug: string) => {
+    if (!confirm("Delete this product? This cannot be undone.")) return;
+    persist(items.filter((p) => p.slug !== slug));
+    showToast("Product deleted");
+  };
+
+  if (view === "add") {
+    return <ProductForm initial={BLANK_PRODUCT} onSave={handleSaveNew} onCancel={() => setView("list")} isNew />;
+  }
+
+  if (view === "edit" && editing) {
+    return <ProductForm initial={editing} onSave={handleSaveEdit} onCancel={() => setView("list")} isNew={false} />;
+  }
+
+  return (
+    <div className="space-y-6">
+      {toast && (
+        <div className="fixed bottom-6 right-6 z-50 bg-[#1a3a14] text-white text-sm font-semibold px-5 py-3 rounded-2xl shadow-xl">
+          {toast}
+        </div>
+      )}
+
       <div className="flex items-center justify-between">
         <div>
           <h1 className="text-xl font-bold text-[#1a3a14]">Products</h1>
-          <p className="text-sm text-black/40 mt-0.5">{prods.length} products listed</p>
+          <p className="text-sm text-black/40 mt-0.5">{items.length} product{items.length !== 1 ? "s" : ""} listed</p>
         </div>
-        <Btn variant="primary">+ New Product</Btn>
+        <Btn variant="primary" onClick={() => setView("add")}>+ New Product</Btn>
       </div>
 
       <div className="bg-white rounded-2xl border border-black/6 shadow-sm overflow-hidden">
-        <table className="w-full text-sm">
-          <thead>
-            <tr className="border-b border-black/6 bg-black/2">
-              <th className="text-left px-5 py-3.5 text-xs font-semibold text-black/40 uppercase tracking-wider">Product</th>
-              <th className="text-left px-5 py-3.5 text-xs font-semibold text-black/40 uppercase tracking-wider hidden sm:table-cell">Tag</th>
-              <th className="text-left px-5 py-3.5 text-xs font-semibold text-black/40 uppercase tracking-wider">Price</th>
-              <th className="text-left px-5 py-3.5 text-xs font-semibold text-black/40 uppercase tracking-wider hidden md:table-cell">Slug</th>
-              <th className="px-5 py-3.5" />
-            </tr>
-          </thead>
-          <tbody className="divide-y divide-black/5">
-            {prods.map((p) => (
-              <tr key={p.slug} className="hover:bg-black/[0.02] transition-colors">
-                <td className="px-5 py-4">
-                  <div className="flex items-center gap-3">
-                    <div className="w-10 h-10 rounded-lg overflow-hidden bg-[#1a3a14]/8 flex-shrink-0">
-                      <img
-                        src={p.images?.[0] || ""}
-                        alt={p.name}
-                        className="w-full h-full object-cover"
-                        onError={(e) => {
-                          (e.currentTarget as HTMLImageElement).style.display = "none";
-                        }}
-                      />
-                    </div>
-                    <div>
-                      <p className="font-medium text-[#1a3a14]">{p.name}</p>
-                      <p className="text-xs text-black/40 mt-0.5 line-clamp-1 hidden md:block">{p.desc}</p>
-                    </div>
-                  </div>
-                </td>
-                <td className="px-5 py-4 hidden sm:table-cell">
-                  <Badge color="gold">{p.tag}</Badge>
-                </td>
-                <td className="px-5 py-4 font-semibold text-[#A87A0F]">{p.price}</td>
-                <td className="px-5 py-4 text-black/40 font-mono text-xs hidden md:table-cell">{p.slug}</td>
-                <td className="px-5 py-4">
-                  <div className="flex items-center gap-2 justify-end">
-                    <Btn>Edit</Btn>
-                    <Btn variant="danger">Delete</Btn>
-                  </div>
-                </td>
+        {items.length === 0 ? (
+          <div className="py-16 text-center text-black/30">
+            <p className="text-4xl mb-3">🛒</p>
+            <p className="text-sm font-medium">No products yet</p>
+            <p className="text-xs mt-1">Click "+ New Product" to add your first item</p>
+          </div>
+        ) : (
+          <table className="w-full text-sm">
+            <thead>
+              <tr className="border-b border-black/6 bg-black/2">
+                <th className="text-left px-5 py-3.5 text-xs font-semibold text-black/40 uppercase tracking-wider">Product</th>
+                <th className="text-left px-5 py-3.5 text-xs font-semibold text-black/40 uppercase tracking-wider hidden sm:table-cell">Tag</th>
+                <th className="text-left px-5 py-3.5 text-xs font-semibold text-black/40 uppercase tracking-wider">Price</th>
+                <th className="text-left px-5 py-3.5 text-xs font-semibold text-black/40 uppercase tracking-wider hidden md:table-cell">Slug</th>
+                <th className="px-5 py-3.5" />
               </tr>
-            ))}
-          </tbody>
-        </table>
+            </thead>
+            <tbody className="divide-y divide-black/5">
+              {items.map((p) => (
+                <tr key={p.slug} className="hover:bg-black/[0.015] transition-colors group">
+                  <td className="px-5 py-4">
+                    <div className="flex items-center gap-3">
+                      <div className="w-10 h-10 rounded-lg overflow-hidden bg-[#1a3a14]/8 flex-shrink-0">
+                        <img
+                          src={p.images?.[0] || p.image || ""}
+                          alt={p.name}
+                          className="w-full h-full object-cover"
+                          onError={(e) => {
+                            (e.currentTarget as HTMLImageElement).style.display = "none";
+                          }}
+                        />
+                      </div>
+                      <div>
+                        <p className="font-medium text-[#1a3a14]">{p.name}</p>
+                        <p className="text-xs text-black/40 mt-0.5 line-clamp-1 hidden md:block">{p.desc}</p>
+                      </div>
+                    </div>
+                  </td>
+                  <td className="px-5 py-4 hidden sm:table-cell">
+                    <Badge color="gold">{p.tag || "—"}</Badge>
+                  </td>
+                  <td className="px-5 py-4 font-semibold text-[#A87A0F]">{p.price}</td>
+                  <td className="px-5 py-4 text-black/40 font-mono text-xs hidden md:table-cell">{p.slug}</td>
+                  <td className="px-5 py-4">
+                    <div className="flex items-center gap-2 justify-end">
+                      <Btn onClick={() => { setEditing(p); setView("edit"); }}>Edit</Btn>
+                      <Btn variant="danger" onClick={() => handleDelete(p.slug)}>Delete</Btn>
+                    </div>
+                  </td>
+                </tr>
+              ))}
+            </tbody>
+          </table>
+        )}
       </div>
     </div>
   );

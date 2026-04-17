@@ -1,16 +1,24 @@
-import { useEffect } from "react";
+import { useEffect, useState } from "react";
 import { motion } from "framer-motion";
 import { Link } from "wouter";
 import { ArrowRight, Tag } from "lucide-react";
 import { BlogNavbar } from "@/components/BlogNavbar";
 import { PageFooter } from "@/components/PageFooter";
-import { products, getCmsSettings } from "@/lib/cms";
+import { getCmsProducts, getCmsSettings } from "@/lib/cms";
 import { applyMetaTags } from "@/lib/siteSettings";
 import { staggerContainer, fadeUp, fadeUpSoft, scalePop } from "@/lib/animations";
 
 const VIEWPORT = { once: true, margin: "-60px" };
 
 export default function ProductsPage() {
+  const [catalog, setCatalog] = useState(getCmsProducts);
+
+  useEffect(() => {
+    const refresh = () => setCatalog(getCmsProducts());
+    window.addEventListener("storage", refresh);
+    return () => window.removeEventListener("storage", refresh);
+  }, []);
+
   useEffect(() => {
     applyMetaTags({
       fullTitle: "Our Products | Alliance Street Organic Farms",
@@ -51,19 +59,19 @@ export default function ProductsPage() {
             variants={fadeUpSoft}
             className="inline-block text-secondary font-semibold tracking-[0.2em] text-xs uppercase mb-4"
           >
-            ✦ {products.sectionLabel}
+            ✦ {catalog.sectionLabel}
           </motion.span>
           <motion.h1
             variants={fadeUp}
             className="font-heading text-4xl md:text-6xl text-white mb-5 leading-tight"
           >
-            {products.heading}
+            {catalog.heading}
           </motion.h1>
           <motion.p
             variants={fadeUpSoft}
             className="text-white/70 text-lg max-w-xl mx-auto font-normal leading-relaxed"
           >
-            {products.description}
+            {catalog.description}
           </motion.p>
         </motion.div>
       </section>
@@ -78,7 +86,7 @@ export default function ProductsPage() {
             viewport={VIEWPORT}
             variants={staggerContainer(0.09)}
           >
-            {products.items.map((product, i) => (
+            {catalog.items.map((product, i) => (
               <motion.div
                 key={product.slug}
                 variants={fadeUp}

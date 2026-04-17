@@ -1,15 +1,21 @@
-import { useState } from "react";
+import { useState, useEffect } from "react";
 import { motion, AnimatePresence } from "framer-motion";
 import { X } from "lucide-react";
 import { staggerContainer, fadeUp, fadeUpSoft, scalePop } from "@/lib/animations";
-import { products as cmsProducts, getCmsSettings } from "@/lib/cms";
-
-const PRODUCTS = cmsProducts.items;
+import { getCmsProducts, getCmsSettings } from "@/lib/cms";
 
 export function Products() {
   const s = getCmsSettings();
+  const [catalog, setCatalog] = useState(getCmsProducts);
   const [selectedProduct, setSelectedProduct] = useState<string | null>(null);
 
+  useEffect(() => {
+    const refresh = () => setCatalog(getCmsProducts());
+    window.addEventListener("storage", refresh);
+    return () => window.removeEventListener("storage", refresh);
+  }, []);
+
+  const PRODUCTS = catalog.items;
   const product = selectedProduct ? PRODUCTS.find(p => p.name === selectedProduct) : null;
 
   return (

@@ -74,6 +74,53 @@ export function saveCmsBlog(posts: CmsBlogPost[]): void {
   window.dispatchEvent(new Event("storage"));
 }
 
+// ─── Products CMS ─────────────────────────────────────────────────────────────
+
+const PRODUCTS_STORAGE_KEY = "asof_cms_products";
+
+export interface CmsProduct {
+  name: string;
+  slug: string;
+  tag: string;
+  price: string;
+  desc: string;
+  image: string;
+  images: string[];
+  color: string;
+  description: string;
+  highlights: string[];
+  metaTitle: string;
+  metaDescription: string;
+}
+
+export interface CmsProductCatalog {
+  sectionLabel: string;
+  heading: string;
+  description: string;
+  items: CmsProduct[];
+}
+
+export function getCmsProducts(): CmsProductCatalog {
+  try {
+    const raw = localStorage.getItem(PRODUCTS_STORAGE_KEY);
+    if (raw) {
+      const stored = JSON.parse(raw);
+      return {
+        sectionLabel: productsData.sectionLabel,
+        heading: productsData.heading,
+        description: productsData.description,
+        items: stored,
+      };
+    }
+  } catch { /* fall through */ }
+  return productsData as CmsProductCatalog;
+}
+
+export function saveCmsProducts(items: CmsProduct[]): void {
+  localStorage.setItem(PRODUCTS_STORAGE_KEY, JSON.stringify(items));
+  window.dispatchEvent(new Event("storage"));
+}
+
 export type SectionId = keyof typeof seoData.pages;
 
 export interface ResolvedSeo {
