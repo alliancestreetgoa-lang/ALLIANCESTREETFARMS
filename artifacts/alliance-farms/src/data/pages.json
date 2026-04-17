@@ -4,7 +4,7 @@
     "tagline": "Welcome to Alliance Street Organic Farms",
     "headline": "Where Ethical Farming",
     "subheadline": "Meets Excellence",
-    "description": "Premium desi chicken, goat meat, farm-fresh eggs & nutritious goat milk — raised without antibiotics, hormones, or artificial chemicals.",
+    "description": "Premium desi chicken, farm-fresh eggs & rabbit meat — raised without antibiotics, hormones, or artificial chemicals.",
     "ctaPrimary": "Explore Products",
     "ctaSecondary": "Our Story",
     "badges": ["100% Organic", "Native Breeds", "No Antibiotics", "Free Range"]
@@ -13,7 +13,7 @@
     "sectionLabel": "Our Story",
     "heading": "Pure. Honest.\nAlways Fresh.",
     "paragraphs": [
-      "At Alliance Street Organic Farms, we are dedicated to producing premium-quality desi chicken, goat meat, farm-fresh desi eggs, and nutritious goat milk using ethical, eco-conscious farming practices in Goa.",
+      "At Alliance Street Organic Farms, we are dedicated to producing premium-quality desi chicken, farm-fresh desi eggs, and rabbit meat using ethical, eco-conscious farming practices in Goa.",
       "We specialize in raising native breeds carefully selected for Goa's climate — reared without antibiotics, growth hormones, or artificial chemicals. Every animal is raised on clean feed, open grazing, and natural care.",
       "Our products aren't just food — they're part of a healthier lifestyle, sourced with integrity and delivered with pride."
     ],
@@ -78,13 +78,6 @@
     "commercialItems": ["Pale yellow yolk", "Thin, fragile shell", "Caged, zero sunlight"],
     "image": "/images/eggs_section.jpg"
   },
-  "goats": {
-    "sectionLabel": "Our Goat Breeds",
-    "heading": "Premium Goat Breeds, Born for Goa",
-    "milkHeading": "The Goodness of Goat Milk",
-    "milkDescription": "Easier to digest than cow's milk and naturally rich in A2 protein, calcium, and essential vitamins. Sourced daily from our free-grazing, chemical-free goats.",
-    "milkTags": ["🦴 Calcium-Rich", "💊 Easy to Digest", "🛡️ Immunity Building", "❤️ Heart-Healthy", "🧒 Great for Kids", "🌿 Zero Chemicals"]
-  },
   "whyOrganic": {
     "sectionLabel": "Our Philosophy",
     "heading": "Why We Choose Organic Farming",
@@ -93,6 +86,6 @@
   "contact": {
     "sectionLabel": "Order Now",
     "heading": "Ready for Real\nFarm-Fresh Food?",
-    "description": "Order directly from Alliance Street Organic Farms — Goa's most trusted source for organic desi chicken, eggs, goat meat, and more."
+    "description": "Order directly from Alliance Street Organic Farms — Goa's most trusted source for organic desi chicken, eggs, rabbit meat, and more."
   }
 }

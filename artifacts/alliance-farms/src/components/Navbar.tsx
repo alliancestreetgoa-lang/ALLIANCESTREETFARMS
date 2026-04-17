@@ -9,7 +9,6 @@ const NAV_LINKS = [
   { name: "Products", href: "#products" },
   { name: "Breeds", href: "#breeds" },
   { name: "Eggs", href: "#eggs" },
-  { name: "Goats", href: "#goats" },
   { name: "Why Organic", href: "#philosophy" },
   { name: "About", href: "#about" },
   { name: "Team", href: "#team" },

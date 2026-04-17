@@ -24,12 +24,12 @@ export default function ProductsPage() {
       fullTitle: "Our Products | Alliance Street Organic Farms",
       title: "Our Products",
       description:
-        "Shop farm-fresh desi chicken, goat meat, country eggs and goat milk from Alliance Street Organic Farms, Goa. No antibiotics, no hormones — ever.",
+        "Shop farm-fresh desi chicken, country eggs and rabbit meat from Alliance Street Organic Farms, Goa. No antibiotics, no hormones — ever.",
       keywords:
-        "buy desi chicken goa, goat meat goa, fresh country eggs goa, goat milk goa, organic products india",
+        "buy desi chicken goa, fresh country eggs goa, rabbit meat goa, organic products india",
       ogTitle: "Farm-Fresh Products | Alliance Street Organic Farms",
       ogDescription:
-        "Desi chicken, goat meat, country eggs and goat milk — farmed ethically in Goa with no antibiotics or hormones.",
+        "Desi chicken, country eggs and rabbit meat — farmed ethically in Goa with no antibiotics or hormones.",
       ogImage: "/images/og_products.jpg",
       ogType: "website",
       twitterCard: "summary_large_image",

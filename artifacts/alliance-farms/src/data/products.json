@@ -46,48 +46,6 @@
       "metaDescription": "Buy free-range country chicken eggs from Goa — 3× more Omega-3, deep orange yolk, zero antibiotics. Naturally nutritious. ₹15/egg."
     },
     {
-      "name": "Goat Meat",
-      "slug": "goat-meat",
-      "tag": "High Protein",
-      "price": "₹600 / kg",
-      "desc": "Tender meat from Osmanabadi & Konkan Kanyal breeds.",
-      "image": "/images/goat_meat.jpg",
-      "images": ["/images/goat_meat.jpg"],
-      "color": "from-[#1a3a14] to-[#2d5a27]",
-      "description": "Premium goat meat from indigenous Indian breeds — Osmanabadi and Konkan Kanyal — perfectly adapted to Goa's coastal climate. These breeds are raised entirely free-range on natural grazing without any chemical supplements, producing tender, lean meat with exceptional depth of flavour. Low in fat and cholesterol compared to other red meats, our chevon and mutton is ideal for health-conscious diets that don't compromise on taste.",
-      "highlights": [
-        "Indigenous breeds — Osmanabadi & Konkan Kanyal",
-        "Raised fully free-range in Goa",
-        "Lower fat than commercial goat meat",
-        "No feed additives or supplements",
-        "Rich, authentic desi flavour",
-        "Halal-friendly, ethically slaughtered"
-      ],
-      "metaTitle": "Fresh Goat Meat Goa | Mutton & Chevon | Alliance Street Organic Farms",
-      "metaDescription": "Buy fresh goat meat (mutton/chevon) from indigenous Osmanabadi & Konkan Kanyal breeds in Goa. Free-range, no chemicals. ₹600/kg."
-    },
-    {
-      "name": "Goat Milk",
-      "slug": "goat-milk",
-      "tag": "A2 Protein",
-      "price": "₹80 / litre",
-      "desc": "Chemical-free, nutrient-dense milk from happy, healthy goats.",
-      "image": "/images/goat_milk.jpg",
-      "images": ["/images/goat_milk.jpg"],
-      "color": "from-[#2d5a27] to-[#7a9e6d]",
-      "description": "Our goat milk comes from Konkan Kanyal goats grazing naturally across our Goa farmland. Naturally A2, it is easier to digest than cow's milk — ideal for people who experience discomfort with conventional dairy. Packed with calcium, magnesium, and essential vitamins, our milk is collected fresh daily and delivered without homogenisation or ultra-pasteurisation. What you get is real, whole goat milk — exactly as nature intended.",
-      "highlights": [
-        "Naturally A2 beta-casein protein",
-        "Easier to digest than cow's milk",
-        "Sourced from Konkan Kanyal goats",
-        "No homogenisation or ultra-pasteurisation",
-        "Rich in calcium, magnesium & Vitamin A",
-        "Suitable for lactose-sensitive individuals"
-      ],
-      "metaTitle": "Fresh Goat Milk Goa | A2 Protein | Alliance Street Organic Farms",
-      "metaDescription": "Buy fresh A2 goat milk from Konkan Kanyal goats in Goa. Easier to digest, naturally nutritious, no chemicals. ₹80/litre."
-    },
-    {
       "name": "Rabbit Meat",
       "slug": "rabbit-meat",
       "tag": "Low Cholesterol",

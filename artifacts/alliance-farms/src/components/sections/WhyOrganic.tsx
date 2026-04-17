@@ -18,7 +18,7 @@ const CARDS = [
     title: "Animal Welfare First",
     desc: "Our animals roam freely on open land with fresh air, clean water, and natural feed. No stress, no crowding — just ethical care.",
     image: "/images/desi_chicken.jpg",
-    detail: "We believe the quality of what you eat is a direct reflection of how it was raised. Stressed animals produce inferior, less nutritious food — and that's simply not acceptable to us.\n\n• All chickens are free-range across over 2 acres of open land.\n• Goats graze on natural Goan vegetation, not manufactured pellets.\n• No cages, no cramped enclosures, no unnecessary handling.\n• Animals are given space, shade, and community — just as nature intended.\n• Our rabbits are raised in colony-style setups, not isolated wire cages.\n\nHappy, healthy animals produce nutritionally superior food. That is the foundation of everything we do.",
+    detail: "We believe the quality of what you eat is a direct reflection of how it was raised. Stressed animals produce inferior, less nutritious food — and that's simply not acceptable to us.\n\n• All chickens are free-range across over 2 acres of open land.\n• No cages, no cramped enclosures, no unnecessary handling.\n• Animals are given space, shade, and community — just as nature intended.\n• Our rabbits are raised in colony-style setups, not isolated wire cages.\n\nHappy, healthy animals produce nutritionally superior food. That is the foundation of everything we do.",
   },
   {
     num: "03",
@@ -37,16 +37,16 @@ const CARDS = [
   {
     num: "05",
     title: "Native Breed Preservation",
-    desc: "By raising indigenous breeds like Kadaknath, Osmanabadi, and Konkan Kanyal, we protect genetic heritage and biodiversity.",
+    desc: "By raising indigenous breeds like Kadaknath, Aseel, and Gramapriya, we protect genetic heritage and biodiversity.",
     image: "/images/breed_kadaknath_chicken.jpg",
-    detail: "India's indigenous livestock breeds are among the world's most genetically resilient and nutritionally superior animals — yet many face extinction because industrial farming favors foreign hybrid breeds optimized purely for volume.\n\n• Kadaknath chicken: native to Madhya Pradesh, its black meat contains 25% more protein and double the iron of commercial breeds.\n• Osmanabadi goat: Marathwada-origin breed perfectly adapted to the Deccan climate, producing exceptionally lean, flavorful meat.\n• Konkan Kanyal goat: native to coastal Maharashtra and Goa — critically rare and uniquely suited to our terrain.\n• Aseel and Gramapriya chickens: ancient desi breeds with disease resistance built over centuries of natural selection.\n\nBy raising these breeds, we protect India's agricultural heritage for generations ahead.",
+    detail: "India's indigenous livestock breeds are among the world's most genetically resilient and nutritionally superior animals — yet many face extinction because industrial farming favors foreign hybrid breeds optimized purely for volume.\n\n• Kadaknath chicken: native to Madhya Pradesh, its black meat contains 25% more protein and double the iron of commercial breeds.\n• Aseel chicken: one of India's oldest fighting breeds, raised for centuries for its lean, flavourful meat and natural disease resistance.\n• Gramapriya chicken: a hardy, dual-purpose breed developed for Indian conditions — superior adaptability and rich meat quality.\n• Sonali and Srinidhi chickens: high-performance native breeds prized for their nutritional profile and resilience.\n\nBy raising these breeds, we protect India's agricultural heritage for generations ahead.",
   },
   {
     num: "06",
     title: "Nutritional Superiority",
     desc: "Organic, free-range produce is scientifically proven to contain higher omega-3s, vitamins, antioxidants, and minerals.",
-    image: "/images/goat_milk.jpg",
-    detail: "The nutritional gap between organic free-range produce and commercially farmed alternatives is not subtle — it's dramatic and scientifically documented.\n\n• Free-range eggs contain up to 6x more Vitamin D, 2x more omega-3 fatty acids, and significantly less saturated fat than caged eggs.\n• Grass-fed goat milk has 3–5x more CLA (conjugated linoleic acid), a cancer-fighting fatty acid, versus grain-fed alternatives.\n• Desi chicken meat contains more iron, zinc, and B-vitamins than commercial broiler varieties.\n• Organic meats have 47% more omega-3s and higher antioxidant levels across all tested products.\n• No synthetic hormones means your body processes these foods exactly as nature designed.\n\nYou are not just buying food. You are buying health.",
+    image: "/images/desi_eggs.jpg",
+    detail: "The nutritional gap between organic free-range produce and commercially farmed alternatives is not subtle — it's dramatic and scientifically documented.\n\n• Free-range eggs contain up to 6x more Vitamin D, 2x more omega-3 fatty acids, and significantly less saturated fat than caged eggs.\n• Desi chicken meat contains more iron, zinc, and B-vitamins than commercial broiler varieties.\n• Rabbit meat has the highest protein-to-fat ratio of any common meat and the lowest cholesterol — ideal for therapeutic diets.\n• Organic meats have 47% more omega-3s and higher antioxidant levels across all tested products.\n• No synthetic hormones means your body processes these foods exactly as nature designed.\n\nYou are not just buying food. You are buying health.",
   },
 ];
 

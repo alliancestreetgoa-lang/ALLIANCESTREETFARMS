@@ -13,7 +13,6 @@ const VIEWPORT = { once: true, margin: "-60px" };
 const CATEGORY_COLORS: Record<string, string> = {
   Nutrition: "bg-emerald-100 text-emerald-800",
   Breeds: "bg-amber-100 text-amber-800",
-  "Goat Milk": "bg-sky-100 text-sky-800",
   Farming: "bg-purple-100 text-purple-800",
 };
 
@@ -39,9 +38,9 @@ export default function Blog() {
       fullTitle: "From the Farm — Blog | Alliance Street Organic Farms",
       title: "From the Farm — Blog",
       description:
-        "Stories, insights and honest knowledge from Alliance Street Organic Farms in Goa — covering desi eggs, native breeds, goat milk and organic farming.",
+        "Stories, insights and honest knowledge from Alliance Street Organic Farms in Goa — covering desi eggs, native breeds, and organic farming.",
       keywords:
-        "organic farming blog goa, desi eggs blog, kadaknath chicken, goat milk benefits, alliance street organic farms blog",
+        "organic farming blog goa, desi eggs blog, kadaknath chicken, native breeds india, alliance street organic farms blog",
       ogTitle: "From the Farm — Blog | Alliance Street Organic Farms",
       ogDescription:
         "Honest stories and farm knowledge from our fields in Goa — nutrition, native breeds, and why organic farming matters.",

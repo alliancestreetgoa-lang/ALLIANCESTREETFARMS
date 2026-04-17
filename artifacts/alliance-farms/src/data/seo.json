@@ -4,10 +4,10 @@
   "titleFormat": "{pageTitle} | {siteName}",
   "default": {
     "title": "Real Eggs. Real Farm. Real Goa.",
-    "description": "Alliance Street Organic Farms — Premium desi chicken, goat meat, farm-fresh eggs & nutritious goat milk raised without antibiotics in Goa, India.",
-    "keywords": "organic farm goa, desi chicken, goat meat, fresh eggs, goat milk, organic food india",
+    "description": "Alliance Street Organic Farms — Premium desi chicken, farm-fresh eggs & rabbit meat raised without antibiotics in Goa, India.",
+    "keywords": "organic farm goa, desi chicken, fresh eggs, rabbit meat, organic food india",
     "ogTitle": "Alliance Street Organic Farms — Pure. Honest. Always Fresh.",
-    "ogDescription": "Premium desi chicken, goat meat, farm-fresh eggs & nutritious goat milk. Raised ethically in Goa without antibiotics or hormones.",
+    "ogDescription": "Premium desi chicken, farm-fresh eggs & rabbit meat. Raised ethically in Goa without antibiotics or hormones.",
     "ogImage": "/images/og_default.jpg",
     "ogType": "website",
     "twitterCard": "summary_large_image"
@@ -15,18 +15,18 @@
   "pages": {
     "home": {
       "title": "Real Eggs. Real Farm. Real Goa.",
-      "description": "Alliance Street Organic Farms — Premium desi chicken, goat meat, farm-fresh eggs & nutritious goat milk raised without antibiotics in Goa, India.",
-      "keywords": "organic farm goa, desi eggs, goat milk goa, desi chicken goa, organic food india",
+      "description": "Alliance Street Organic Farms — Premium desi chicken, farm-fresh eggs & rabbit meat raised without antibiotics in Goa, India.",
+      "keywords": "organic farm goa, desi eggs, desi chicken goa, rabbit meat goa, organic food india",
       "ogTitle": "Alliance Street Organic Farms — Pure. Honest. Always Fresh.",
-      "ogDescription": "Premium desi chicken, goat meat, farm-fresh eggs & nutritious goat milk. Raised ethically in Goa without antibiotics or hormones.",
+      "ogDescription": "Premium desi chicken, farm-fresh eggs & rabbit meat. Raised ethically in Goa without antibiotics or hormones.",
       "ogImage": "/images/og_default.jpg"
     },
     "products": {
       "title": "Our Products",
-      "description": "Shop farm-fresh desi chicken, goat meat, country eggs and goat milk from Alliance Street Organic Farms, Goa. No antibiotics, no hormones — ever.",
-      "keywords": "buy desi chicken goa, goat meat goa, fresh country eggs goa, goat milk goa, organic products india",
+      "description": "Shop farm-fresh desi chicken, country eggs and rabbit meat from Alliance Street Organic Farms, Goa. No antibiotics, no hormones — ever.",
+      "keywords": "buy desi chicken goa, fresh country eggs goa, rabbit meat goa, organic products india",
       "ogTitle": "Farm-Fresh Products | Alliance Street Organic Farms",
-      "ogDescription": "Desi chicken, goat meat, country eggs and goat milk — farmed ethically in Goa with no antibiotics or hormones.",
+      "ogDescription": "Desi chicken, country eggs and rabbit meat — farmed ethically in Goa with no antibiotics or hormones.",
       "ogImage": "/images/og_products.jpg"
     },
     "breeds": {
@@ -44,14 +44,6 @@
       "ogTitle": "Desi Country Eggs | Alliance Street Organic Farms",
       "ogDescription": "Free-range desi eggs from Goa — richer in Omega-3, Vitamin D & protein than any commercial egg. 100% natural.",
       "ogImage": "/images/og_eggs.jpg"
-    },
-    "goats": {
-      "title": "Goats & Milk",
-      "description": "Konkan Kanyal & Osmanabadi goats raised naturally in Goa for premium goat meat and A2 protein-rich goat milk. Chemical-free, free-range.",
-      "keywords": "goat milk goa, goat meat goa, konkan kanyal, osmanabadi goat, chevon goa, mutton goa",
-      "ogTitle": "Goat Meat & Milk | Alliance Street Organic Farms",
-      "ogDescription": "Konkan Kanyal & Osmanabadi goats raised free-range in Goa. Premium mutton & A2 goat milk with zero chemicals.",
-      "ogImage": "/images/og_goats.jpg"
     },
     "philosophy": {
       "title": "Why Organic?",
@@ -79,7 +71,7 @@
     },
     "contact": {
       "title": "Order Now",
-      "description": "Order farm-fresh desi chicken, goat meat, country eggs & goat milk directly from Alliance Street Organic Farms in Goa. WhatsApp or call us today.",
+      "description": "Order farm-fresh desi chicken, country eggs & rabbit meat directly from Alliance Street Organic Farms in Goa. WhatsApp or call us today.",
       "keywords": "order organic food goa, buy farm fresh food goa, contact alliance street organic farms",
       "ogTitle": "Order Fresh | Alliance Street Organic Farms",
       "ogDescription": "Get farm-fresh organic food delivered in Goa. WhatsApp or call Alliance Street Organic Farms directly — no middlemen.",

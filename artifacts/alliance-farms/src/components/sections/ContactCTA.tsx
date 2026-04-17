@@ -34,7 +34,7 @@ export function ContactCTA() {
           </h2>
 
           <p className="text-white/90 text-lg mb-12 max-w-xl mx-auto font-normal leading-relaxed">
-            Order directly from {settings.farmName} — Goa's most trusted source for organic desi chicken, eggs, goat meat, and more.
+            Order directly from {settings.farmName} — Goa's most trusted source for organic desi chicken, eggs, rabbit meat, and more.
           </p>
 
           <div className="flex flex-col sm:flex-row items-center justify-center gap-4 mb-12">

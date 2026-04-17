@@ -115,7 +115,6 @@ function ContentRenderer({ block, index }: { block: ContentBlock; index: number 
 const CATEGORY_COLORS: Record<string, string> = {
   Nutrition: "bg-emerald-100 text-emerald-800",
   Breeds: "bg-amber-100 text-amber-800",
-  "Goat Milk": "bg-sky-100 text-sky-800",
   Farming: "bg-purple-100 text-purple-800",
 };
 

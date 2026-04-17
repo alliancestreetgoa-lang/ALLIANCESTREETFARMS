@@ -26,7 +26,7 @@ export function Footer() {
         </p>
 
         <div className="flex flex-wrap justify-center gap-6 mb-12">
-          {["Animals", "Eggs", "Goats", "Rabbits", "Why Organic", "About", "Team"].map((link) => (
+          {["Animals", "Eggs", "Rabbits", "Why Organic", "About", "Team"].map((link) => (
             <a
               key={link}
               href={`#${link.toLowerCase().replace(" ", "-")}`}

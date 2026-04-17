@@ -1416,14 +1416,13 @@ function SettingsView() {
 // ─── SEO ──────────────────────────────────────────────────────────────────────
 
 const SEO_PAGE_IDS: SectionId[] = [
-  "home", "products", "breeds", "eggs", "goats", "philosophy", "about", "team", "contact",
+  "home", "products", "breeds", "eggs", "philosophy", "about", "team", "contact",
 ];
 const SEO_PAGE_LABELS: Record<SectionId, string> = {
   home: "Home",
   products: "Products",
   breeds: "Chicken Breeds",
   eggs: "Farm Eggs",
-  goats: "Goats & Milk",
   philosophy: "Philosophy",
   about: "About Us",
   team: "Our Team",

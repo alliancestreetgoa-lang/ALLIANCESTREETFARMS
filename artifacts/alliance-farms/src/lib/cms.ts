@@ -4,7 +4,6 @@ import pagesData from "@/data/pages.json";
 import cmsPagesData from "@/data/cms_pages.json";
 import productsData from "@/data/products.json";
 import breedsData from "@/data/breeds.json";
-import goatsData from "@/data/goats.json";
 import faqData from "@/data/faq.json";
 import testimonialsData from "@/data/testimonials.json";
 import blogData from "@/data/blog.json";
@@ -250,7 +249,6 @@ export function getCmsHero() {
 export const pages = pagesData;
 export const products = productsData;
 export const breeds = breedsData;
-export const goats = goatsData;
 export const faq = faqData;
 export const testimonials = testimonialsData;
 export const blog = blogData;

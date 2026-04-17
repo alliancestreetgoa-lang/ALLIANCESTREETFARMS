@@ -21,10 +21,10 @@ export interface SiteSettings {
 
 export const DEFAULT_SETTINGS: SiteSettings = {
   pageTitle: "Real Eggs. Real Farm. Real Goa.",
-  metaDescription: "Alliance Street Organic Farms — Premium desi chicken, goat meat, farm-fresh eggs & nutritious goat milk raised without antibiotics in Goa, India.",
-  metaKeywords: "organic farm goa, desi chicken, goat meat, fresh eggs, goat milk, organic food india",
+  metaDescription: "Alliance Street Organic Farms — Premium desi chicken, farm-fresh eggs & rabbit meat raised without antibiotics in Goa, India.",
+  metaKeywords: "organic farm goa, desi chicken, fresh eggs, rabbit meat, organic food india",
   ogTitle: "Alliance Street Organic Farms — Pure. Honest. Always Fresh.",
-  ogDescription: "Premium desi chicken, goat meat, farm-fresh eggs & nutritious goat milk. Raised ethically in Goa without antibiotics or hormones.",
+  ogDescription: "Premium desi chicken, farm-fresh eggs & rabbit meat. Raised ethically in Goa without antibiotics or hormones.",
   ogImage: "/images/og_default.jpg",
   heroHeadline: "Where Ethical Farming",
   heroSubheadline: "Meets Excellence",
