@@ -7,7 +7,7 @@ import {
   getCmsSeoPages, saveCmsSeoPages, getSectionSeo,
   type CmsSeoPage, type SectionId,
 } from "@/lib/cms";
-import { loadSettings, saveSettings, applySettingsPreview } from "@/lib/siteSettings";
+import { loadSettings, saveSettings, applySettingsPreview, type SiteSettings } from "@/lib/siteSettings";
 
 // ─── Types ────────────────────────────────────────────────────────────────────
 
@@ -295,6 +295,7 @@ function PageForm({
 }) {
   const [draft, setDraft] = useState(initial);
   const [slugTouched, setSlugTouched] = useState(!isNew);
+  const [errors, setErrors] = useState<Record<string, string>>({});
 
   const set = (key: keyof typeof BLANK_PAGE, val: string) => {
     setDraft((prev) => {
@@ -304,10 +305,12 @@ function PageForm({
       }
       return next;
     });
+    if (val.trim()) setErrors((e) => { const n = { ...e }; delete n[key]; return n; });
   };
 
   const inputCls =
     "w-full border border-black/12 rounded-xl px-4 py-2.5 text-sm focus:outline-none focus:ring-2 focus:ring-[#2d5a27]/40 focus:border-[#2d5a27] bg-white transition-colors";
+  const errCls = "border-red-400 focus:ring-red-400/40 focus:border-red-400";
 
   return (
     <div className="space-y-6">
@@ -334,8 +337,9 @@ function PageForm({
             value={draft.title}
             onChange={(e) => set("title", e.target.value)}
             placeholder="e.g. About Us"
-            className={inputCls}
+            className={`${inputCls} ${errors.title ? errCls : ""}`}
           />
+          {errors.title && <p className="text-xs text-red-500 mt-1">{errors.title}</p>}
         </div>
 
         <div>
@@ -413,7 +417,11 @@ function PageForm({
         <Btn
           variant="primary"
           onClick={() => {
-            if (!draft.title.trim()) return;
+            if (!draft.title.trim()) {
+              setErrors({ title: "Title is required" });
+              return;
+            }
+            setErrors({});
             onSave(draft);
           }}
         >
@@ -586,9 +594,11 @@ function BlogForm({
     contentText: initial.contentText ?? (initial.content ? blocksToText(initial.content) : ""),
   }));
   const [slugTouched, setSlugTouched] = useState(!isNew);
+  const [errors, setErrors] = useState<Record<string, string>>({});
 
   const inputCls =
     "w-full border border-black/12 rounded-xl px-4 py-2.5 text-sm focus:outline-none focus:ring-2 focus:ring-[#2d5a27]/40 focus:border-[#2d5a27] bg-white transition-colors";
+  const errCls = "border-red-400 focus:ring-red-400/40 focus:border-red-400";
 
   const set = (field: keyof CmsBlogPost, val: string) => {
     setDraft((d) => {
@@ -598,10 +608,15 @@ function BlogForm({
       return next;
     });
     if (field === "slug") setSlugTouched(true);
+    if (val.trim()) setErrors((e) => { const n = { ...e }; delete n[field as string]; return n; });
   };
 
   const handleSave = () => {
-    if (!draft.title.trim()) return;
+    if (!draft.title.trim()) {
+      setErrors({ title: "Post title is required" });
+      return;
+    }
+    setErrors({});
     onSave({
       ...draft,
       id: draft.id || Date.now(),
@@ -635,8 +650,9 @@ function BlogForm({
             value={draft.title}
             onChange={(e) => set("title", e.target.value)}
             placeholder="e.g. Why Desi Eggs Are Superior"
-            className={inputCls}
+            className={`${inputCls} ${errors.title ? errCls : ""}`}
           />
+          {errors.title && <p className="text-xs text-red-500 mt-1">{errors.title}</p>}
         </div>
 
         <div>
@@ -728,6 +744,16 @@ function BlogForm({
             placeholder="/images/your-photo.jpg"
             className={inputCls}
           />
+          {draft.featuredImage && (
+            <div className="mt-2 h-32 w-full max-w-xs rounded-xl overflow-hidden border border-black/8">
+              <img
+                src={draft.featuredImage}
+                alt="Preview"
+                className="w-full h-full object-cover"
+                onError={(e) => { (e.currentTarget as HTMLImageElement).style.display = "none"; }}
+              />
+            </div>
+          )}
         </div>
       </Card>
 
@@ -943,9 +969,11 @@ function ProductForm({
     highlightsText: (initial.highlights ?? []).join("\n"),
   }));
   const [slugTouched, setSlugTouched] = useState(!isNew);
+  const [errors, setErrors] = useState<Record<string, string>>({});
 
   const inputCls =
     "w-full border border-black/12 rounded-xl px-4 py-2.5 text-sm focus:outline-none focus:ring-2 focus:ring-[#2d5a27]/40 focus:border-[#2d5a27] bg-white transition-colors";
+  const errCls = "border-red-400 focus:ring-red-400/40 focus:border-red-400";
 
   const set = (field: string, val: string) => {
     setDraft((d) => {
@@ -954,10 +982,14 @@ function ProductForm({
       return next;
     });
     if (field === "slug") setSlugTouched(true);
+    if (val.trim()) setErrors((e) => { const n = { ...e }; delete n[field]; return n; });
   };
 
   const handleSave = () => {
-    if (!draft.name.trim()) return;
+    const errs: Record<string, string> = {};
+    if (!draft.name.trim()) errs.name = "Product name is required";
+    if (!draft.price.trim()) errs.price = "Price is required";
+    if (Object.keys(errs).length > 0) { setErrors(errs); return; }
     const highlights = draft.highlightsText
       .split("\n")
       .map((l) => l.trim())
@@ -1004,8 +1036,9 @@ function ProductForm({
             value={draft.name}
             onChange={(e) => set("name", e.target.value)}
             placeholder="e.g. Desi Chicken"
-            className={inputCls}
+            className={`${inputCls} ${errors.name ? errCls : ""}`}
           />
+          {errors.name && <p className="text-xs text-red-500 mt-1">{errors.name}</p>}
         </div>
 
         <div>
@@ -1042,14 +1075,17 @@ function ProductForm({
             />
           </div>
           <div>
-            <label className="block text-xs font-semibold text-[#1a3a14]/80 uppercase tracking-wider mb-1">Price</label>
+            <label className="block text-xs font-semibold text-[#1a3a14]/80 uppercase tracking-wider mb-1">
+              Price <span className="text-red-400">*</span>
+            </label>
             <input
               type="text"
               value={draft.price}
               onChange={(e) => set("price", e.target.value)}
               placeholder="e.g. ₹450 / kg"
-              className={inputCls}
+              className={`${inputCls} ${errors.price ? errCls : ""}`}
             />
+            {errors.price && <p className="text-xs text-red-500 mt-1">{errors.price}</p>}
           </div>
         </div>
 
@@ -1286,45 +1322,92 @@ function ProductsView() {
 
 function SettingsView() {
   const s = getCmsSettings();
+  const [draft, setDraft] = useState<SiteSettings>(loadSettings);
+  const [toast, setToast] = useState("");
+
+  const showToast = (msg: string) => {
+    setToast(msg);
+    setTimeout(() => setToast(""), 2500);
+  };
+
+  const set = (key: keyof SiteSettings, val: string) =>
+    setDraft((d) => ({ ...d, [key]: val }));
+
+  const handleSave = () => {
+    saveSettings(draft);
+    applySettingsPreview(draft);
+    showToast("Settings saved");
+  };
+
+  const inputCls =
+    "w-full border border-black/12 rounded-xl px-4 py-2.5 text-sm focus:outline-none focus:ring-2 focus:ring-[#2d5a27]/40 focus:border-[#2d5a27] bg-white transition-colors";
 
   return (
     <div className="space-y-6">
+      {toast && (
+        <div className="fixed bottom-6 right-6 z-50 bg-[#1a3a14] text-white text-sm font-semibold px-5 py-3 rounded-2xl shadow-xl">
+          {toast}
+        </div>
+      )}
+
       <div>
         <h1 className="text-xl font-bold text-[#1a3a14]">Settings</h1>
         <p className="text-sm text-black/40 mt-0.5">Site identity, contact details and social links</p>
       </div>
 
       <Card title="Site Identity">
-        <Field label="Farm / Business name" value={s.farmName} />
-        <Field label="Tagline" value={s.tagline} />
-        <Field label="Location" value={s.location} />
-        <Field label="Established year" value={s.established} />
+        <Field label="Farm / Business name" value={s.farmName} readOnly />
+        <Field label="Tagline" value={s.tagline} readOnly />
+        <Field label="Location" value={s.location} readOnly />
+        <Field label="Established year" value={s.established} readOnly />
+        <p className="text-xs text-black/30">Site name, tagline, location and year are configured in the codebase and cannot be changed here.</p>
         <div>
           <label className="block text-xs font-semibold text-[#1a3a14]/80 uppercase tracking-wider mb-1">Logo</label>
           <div className="flex items-center gap-4 p-4 border border-black/12 rounded-xl bg-[#faf6ef]">
-            <img src={s.logoUrl} alt={s.logoAlt} className="h-12 w-auto object-contain" />
+            <img
+              src={s.logoUrl}
+              alt={s.logoAlt}
+              className="h-12 w-auto object-contain"
+              onError={(e) => { (e.currentTarget as HTMLImageElement).style.opacity = "0.3"; }}
+            />
             <div className="min-w-0">
-              <p className="text-sm font-medium text-[#1a3a14]">{s.logoUrl}</p>
+              <p className="text-sm font-medium text-[#1a3a14] truncate">{s.logoUrl}</p>
               <p className="text-xs text-black/40 mt-0.5">{s.logoAlt}</p>
             </div>
-            <Btn>Replace</Btn>
           </div>
         </div>
       </Card>
 
       <Card title="Contact Details">
-        <Field label="Phone number" value={s.phone} type="tel" />
-        <Field label="Email address" value={s.email} type="email" />
-        <Field label="WhatsApp URL" hint="e.g. https://wa.me/917375096163 or a QR link" value={s.whatsappUrl} />
+        <div>
+          <label className="block text-xs font-semibold text-[#1a3a14]/80 uppercase tracking-wider mb-1">Phone number</label>
+          <input type="tel" value={draft.phone} onChange={(e) => set("phone", e.target.value)} className={inputCls} />
+        </div>
+        <div>
+          <label className="block text-xs font-semibold text-[#1a3a14]/80 uppercase tracking-wider mb-1">Email address</label>
+          <input type="email" value={draft.email} onChange={(e) => set("email", e.target.value)} className={inputCls} />
+        </div>
+        <div>
+          <label className="block text-xs font-semibold text-[#1a3a14]/80 uppercase tracking-wider mb-1">WhatsApp URL</label>
+          <p className="text-black/40 text-xs mb-1.5">e.g. https://wa.me/917375096163 or a QR link</p>
+          <input type="text" value={draft.whatsappUrl} onChange={(e) => set("whatsappUrl", e.target.value)} className={inputCls} />
+        </div>
       </Card>
 
       <Card title="Social Media">
-        <Field label="Instagram URL" value={s.instagramUrl} />
-        <Field label="Facebook URL" value={s.facebookUrl || ""} hint="Leave blank to hide" />
+        <div>
+          <label className="block text-xs font-semibold text-[#1a3a14]/80 uppercase tracking-wider mb-1">Instagram URL</label>
+          <input type="text" value={draft.instagramUrl} onChange={(e) => set("instagramUrl", e.target.value)} className={inputCls} />
+        </div>
+        <div>
+          <label className="block text-xs font-semibold text-[#1a3a14]/80 uppercase tracking-wider mb-1">Facebook URL</label>
+          <p className="text-black/40 text-xs mb-1.5">Leave blank to hide the Facebook link</p>
+          <input type="text" value={draft.facebookUrl} onChange={(e) => set("facebookUrl", e.target.value)} className={inputCls} />
+        </div>
       </Card>
 
       <div className="flex gap-3 justify-end">
-        <Btn variant="primary">Save Changes</Btn>
+        <Btn variant="primary" onClick={handleSave}>Save Changes</Btn>
       </div>
     </div>
   );
@@ -1669,62 +1752,92 @@ function Sidebar({
   active,
   onNavigate,
   onLogout,
+  open = false,
+  onClose = () => {},
 }: {
   active: Section;
   onNavigate: (s: Section) => void;
   onLogout: () => void;
+  open?: boolean;
+  onClose?: () => void;
 }) {
+  const navigate = (id: Section) => { onNavigate(id); onClose(); };
+
   return (
-    <aside className="w-56 flex-shrink-0 bg-[#0f1e0c] flex flex-col min-h-screen">
-      {/* Logo */}
-      <div className="px-5 py-5 border-b border-white/8">
-        <div className="flex items-center gap-2.5">
-          <img src="/logo.png" alt="Logo" className="h-8 w-auto object-contain" />
-          <div className="min-w-0">
-            <p className="text-white text-xs font-bold leading-tight truncate">Alliance Street</p>
-            <p className="text-white/40 text-[10px] leading-tight">Admin Panel</p>
+    <>
+      {/* Mobile backdrop */}
+      {open && (
+        <div
+          className="fixed inset-0 bg-black/50 z-30 md:hidden"
+          onClick={onClose}
+        />
+      )}
+
+      <aside
+        className={`
+          fixed inset-y-0 left-0 z-40 md:static md:z-auto md:inset-auto
+          w-64 md:w-56 flex-shrink-0 bg-[#0f1e0c] flex flex-col
+          transition-transform duration-200 ease-in-out
+          ${open ? "translate-x-0" : "-translate-x-full md:translate-x-0"}
+        `}
+      >
+        {/* Logo */}
+        <div className="px-5 py-5 border-b border-white/8 flex items-center justify-between">
+          <div className="flex items-center gap-2.5 min-w-0">
+            <img src="/logo.png" alt="Logo" className="h-8 w-auto object-contain flex-shrink-0" />
+            <div className="min-w-0">
+              <p className="text-white text-xs font-bold leading-tight truncate">Alliance Street</p>
+              <p className="text-white/40 text-[10px] leading-tight">Admin Panel</p>
+            </div>
           </div>
-        </div>
-      </div>
-
-      {/* Nav */}
-      <nav className="flex-1 px-3 py-4 space-y-0.5">
-        {NAV.map(({ id, label, icon }) => (
           <button
-            key={id}
-            onClick={() => onNavigate(id)}
-            className={`w-full flex items-center gap-3 px-3 py-2.5 rounded-xl text-sm font-medium transition-all duration-150 text-left ${
-              active === id
-                ? "bg-[#DBA319]/15 text-[#DBA319]"
-                : "text-white/50 hover:text-white/90 hover:bg-white/6"
-            }`}
+            onClick={onClose}
+            className="md:hidden text-white/40 hover:text-white/70 transition-colors p-1 ml-2 flex-shrink-0"
+            aria-label="Close menu"
           >
-            <span className="text-base w-5 text-center flex-shrink-0">{icon}</span>
-            {label}
+            ✕
           </button>
-        ))}
-      </nav>
+        </div>
 
-      {/* Footer */}
-      <div className="px-3 pb-5 space-y-1 border-t border-white/8 pt-3">
-        <a
-          href="/"
-          target="_blank"
-          rel="noopener noreferrer"
-          className="w-full flex items-center gap-3 px-3 py-2.5 rounded-xl text-sm font-medium text-white/40 hover:text-white/70 hover:bg-white/6 transition-colors"
-        >
-          <span className="text-base w-5 text-center">↗</span>
-          View Site
-        </a>
-        <button
-          onClick={onLogout}
-          className="w-full flex items-center gap-3 px-3 py-2.5 rounded-xl text-sm font-medium text-white/40 hover:text-red-400 hover:bg-red-400/8 transition-colors"
-        >
-          <span className="text-base w-5 text-center">⏻</span>
-          Log Out
-        </button>
-      </div>
-    </aside>
+        {/* Nav */}
+        <nav className="flex-1 px-3 py-4 space-y-0.5 overflow-y-auto">
+          {NAV.map(({ id, label, icon }) => (
+            <button
+              key={id}
+              onClick={() => navigate(id)}
+              className={`w-full flex items-center gap-3 px-3 py-2.5 rounded-xl text-sm font-medium transition-all duration-150 text-left ${
+                active === id
+                  ? "bg-[#DBA319]/15 text-[#DBA319]"
+                  : "text-white/50 hover:text-white/90 hover:bg-white/6"
+              }`}
+            >
+              <span className="text-base w-5 text-center flex-shrink-0">{icon}</span>
+              {label}
+            </button>
+          ))}
+        </nav>
+
+        {/* Footer */}
+        <div className="px-3 pb-5 space-y-1 border-t border-white/8 pt-3">
+          <a
+            href="/"
+            target="_blank"
+            rel="noopener noreferrer"
+            className="w-full flex items-center gap-3 px-3 py-2.5 rounded-xl text-sm font-medium text-white/40 hover:text-white/70 hover:bg-white/6 transition-colors"
+          >
+            <span className="text-base w-5 text-center">↗</span>
+            View Site
+          </a>
+          <button
+            onClick={onLogout}
+            className="w-full flex items-center gap-3 px-3 py-2.5 rounded-xl text-sm font-medium text-white/40 hover:text-red-400 hover:bg-red-400/8 transition-colors"
+          >
+            <span className="text-base w-5 text-center">⏻</span>
+            Log Out
+          </button>
+        </div>
+      </aside>
+    </>
   );
 }
 
@@ -1732,9 +1845,15 @@ function Sidebar({
 
 function AdminShell({ onLogout }: { onLogout: () => void }) {
   const [section, setSection] = useState<Section>("dashboard");
+  const [sidebarOpen, setSidebarOpen] = useState(false);
+
+  const navigate = (s: Section) => {
+    setSection(s);
+    setSidebarOpen(false);
+  };
 
   const views: Record<Section, React.ReactNode> = {
-    dashboard: <DashboardView onNavigate={setSection} />,
+    dashboard: <DashboardView onNavigate={navigate} />,
     pages:     <PagesView />,
     blog:      <BlogView />,
     products:  <ProductsView />,
@@ -1744,17 +1863,34 @@ function AdminShell({ onLogout }: { onLogout: () => void }) {
 
   return (
     <div className="flex min-h-screen bg-[#f2ede4]">
-      <Sidebar active={section} onNavigate={setSection} onLogout={onLogout} />
+      <Sidebar
+        active={section}
+        onNavigate={navigate}
+        onLogout={onLogout}
+        open={sidebarOpen}
+        onClose={() => setSidebarOpen(false)}
+      />
 
-      <main className="flex-1 overflow-auto">
+      <main className="flex-1 overflow-auto min-w-0">
         {/* Top bar */}
-        <header className="sticky top-0 z-30 bg-[#f2ede4]/80 backdrop-blur-md border-b border-black/6 px-8 py-4">
-          <p className="text-xs font-semibold text-black/30 uppercase tracking-widest">
-            {NAV.find((n) => n.id === section)?.label}
-          </p>
+        <header className="sticky top-0 z-20 bg-[#f2ede4]/90 backdrop-blur-md border-b border-black/6 px-4 sm:px-8 py-3.5">
+          <div className="flex items-center gap-3">
+            <button
+              onClick={() => setSidebarOpen(true)}
+              className="md:hidden flex flex-col gap-1.5 p-1.5 rounded-lg hover:bg-black/8 transition-colors"
+              aria-label="Open menu"
+            >
+              <span className="block w-5 h-0.5 bg-black/60 rounded-full" />
+              <span className="block w-5 h-0.5 bg-black/60 rounded-full" />
+              <span className="block w-4 h-0.5 bg-black/60 rounded-full" />
+            </button>
+            <p className="text-xs font-semibold text-black/30 uppercase tracking-widest">
+              {NAV.find((n) => n.id === section)?.label}
+            </p>
+          </div>
         </header>
 
-        <div className="px-8 py-8 max-w-4xl">
+        <div className="px-4 sm:px-8 py-6 sm:py-8 max-w-4xl">
           {views[section]}
         </div>
       </main>
