@@ -11,6 +11,7 @@ import blogData from "@/data/blog.json";
 
 const STORAGE_KEY = "asof_site_settings";
 const PAGES_STORAGE_KEY = "asof_cms_pages";
+const SEO_PAGES_KEY = "asof_cms_seo_pages";
 
 export interface CmsPage {
   id: string;
@@ -123,6 +124,29 @@ export function saveCmsProducts(items: CmsProduct[]): void {
 
 export type SectionId = keyof typeof seoData.pages;
 
+export interface CmsSeoPage {
+  title: string;
+  description: string;
+  keywords: string;
+  ogTitle: string;
+  ogDescription: string;
+  ogImage: string;
+}
+
+export function getCmsSeoPages(): Partial<Record<SectionId, CmsSeoPage>> {
+  try {
+    const raw = localStorage.getItem(SEO_PAGES_KEY);
+    return raw ? JSON.parse(raw) : {};
+  } catch {
+    return {};
+  }
+}
+
+export function saveCmsSeoPages(overrides: Partial<Record<SectionId, CmsSeoPage>>): void {
+  localStorage.setItem(SEO_PAGES_KEY, JSON.stringify(overrides));
+  window.dispatchEvent(new Event("storage"));
+}
+
 export interface ResolvedSeo {
   fullTitle: string;
   title: string;
@@ -178,8 +202,8 @@ export function getCmsSeo(): ResolvedSeo {
     description,
     keywords: o.metaKeywords || def.keywords,
     ogTitle,
-    ogDescription: def.ogDescription,
-    ogImage: def.ogImage,
+    ogDescription: o.ogDescription || def.ogDescription,
+    ogImage: o.ogImage || def.ogImage,
     ogType: def.ogType,
     twitterCard: def.twitterCard,
   };
@@ -189,20 +213,23 @@ export function getSectionSeo(sectionId: SectionId): ResolvedSeo {
   const o = getStoredOverrides();
   const def = seoData.default;
   const page = seoData.pages[sectionId];
-  const title = page.title;
-  const description = page.description;
-  const ogTitle = page.ogTitle;
-  const ogDescription = page.ogDescription;
-  const ogImage = page.ogImage;
+
+  const pageOverrides = getCmsSeoPages();
+  const po = pageOverrides[sectionId];
+
+  const title = po?.title || (sectionId === "home" ? (o.pageTitle || page.title) : page.title);
+  const description = po?.description || (sectionId === "home" ? (o.metaDescription || page.description) : page.description);
+  const keywords = po?.keywords || page.keywords;
+  const ogTitle = po?.ogTitle || (sectionId === "home" ? (o.ogTitle || page.ogTitle) : page.ogTitle);
+  const ogDescription = po?.ogDescription || (sectionId === "home" ? (o.ogDescription || page.ogDescription) : page.ogDescription);
+  const ogImage = po?.ogImage || (sectionId === "home" ? (o.ogImage || page.ogImage) : page.ogImage);
 
   return {
-    fullTitle: sectionId === "home"
-      ? buildFullTitle(o.pageTitle || title)
-      : buildFullTitle(title),
+    fullTitle: buildFullTitle(title),
     title,
-    description: sectionId === "home" ? (o.metaDescription || description) : description,
-    keywords: page.keywords,
-    ogTitle: sectionId === "home" ? (o.ogTitle || ogTitle) : ogTitle,
+    description,
+    keywords,
+    ogTitle,
     ogDescription,
     ogImage,
     ogType: def.ogType,

@@ -4,7 +4,10 @@ import {
   getCmsSettings, getCmsPages, saveCmsPages, type CmsPage,
   getCmsBlog, saveCmsBlog, type CmsBlogPost,
   getCmsProducts, saveCmsProducts, type CmsProduct,
+  getCmsSeoPages, saveCmsSeoPages, getSectionSeo,
+  type CmsSeoPage, type SectionId,
 } from "@/lib/cms";
+import { loadSettings, saveSettings, applySettingsPreview } from "@/lib/siteSettings";
 
 // ─── Types ────────────────────────────────────────────────────────────────────
 
@@ -1329,49 +1332,273 @@ function SettingsView() {
 
 // ─── SEO ──────────────────────────────────────────────────────────────────────
 
+const SEO_PAGE_IDS: SectionId[] = [
+  "home", "products", "breeds", "eggs", "goats", "philosophy", "about", "team", "contact",
+];
+const SEO_PAGE_LABELS: Record<SectionId, string> = {
+  home: "Home",
+  products: "Products",
+  breeds: "Chicken Breeds",
+  eggs: "Farm Eggs",
+  goats: "Goats & Milk",
+  philosophy: "Philosophy",
+  about: "About Us",
+  team: "Our Team",
+  contact: "Contact / Order",
+};
+const BLANK_SEO_PAGE: CmsSeoPage = {
+  title: "", description: "", keywords: "", ogTitle: "", ogDescription: "", ogImage: "",
+};
+
 function SeoView() {
+  const inputCls =
+    "w-full border border-black/12 rounded-xl px-4 py-2.5 text-sm focus:outline-none focus:ring-2 focus:ring-[#2d5a27]/40 focus:border-[#2d5a27] bg-white transition-colors";
+
+  const [editingPage, setEditingPage] = useState<SectionId | null>(null);
+  const [globalDraft, setGlobalDraft] = useState(() => loadSettings());
+  const [pageOverrides, setPageOverrides] = useState(() => getCmsSeoPages());
+  const [pageDraft, setPageDraft] = useState<CmsSeoPage>(BLANK_SEO_PAGE);
+  const [toast, setToast] = useState("");
+
+  function showToast(msg: string) {
+    setToast(msg);
+    setTimeout(() => setToast(""), 2500);
+  }
+
+  function setG(key: keyof ReturnType<typeof loadSettings>, val: string) {
+    setGlobalDraft(d => ({ ...d, [key]: val }));
+  }
+
+  function saveGlobal() {
+    saveSettings(globalDraft);
+    applySettingsPreview(globalDraft);
+    showToast("Global SEO saved & applied");
+  }
+
+  function startEditPage(id: SectionId) {
+    const override = pageOverrides[id];
+    if (override) {
+      setPageDraft(override);
+    } else {
+      const eff = getSectionSeo(id);
+      setPageDraft({
+        title: eff.title,
+        description: eff.description,
+        keywords: eff.keywords,
+        ogTitle: eff.ogTitle,
+        ogDescription: eff.ogDescription,
+        ogImage: eff.ogImage,
+      });
+    }
+    setEditingPage(id);
+  }
+
+  function savePage() {
+    if (!editingPage) return;
+    const updated = { ...pageOverrides, [editingPage]: pageDraft };
+    saveCmsSeoPages(updated);
+    setPageOverrides(updated);
+    showToast(`SEO saved for "${SEO_PAGE_LABELS[editingPage]}"`);
+    setEditingPage(null);
+  }
+
+  function resetPage(id: SectionId) {
+    if (!confirm(`Reset "${SEO_PAGE_LABELS[id]}" SEO to defaults?`)) return;
+    const updated = { ...pageOverrides };
+    delete updated[id];
+    saveCmsSeoPages(updated);
+    setPageOverrides({ ...updated });
+    showToast("Reset to defaults");
+  }
+
+  function SeoField({
+    label, hint, value, onChange, rows, limit,
+  }: {
+    label: string; hint?: string; value: string;
+    onChange: (v: string) => void; rows?: number; limit?: number;
+  }) {
+    return (
+      <div>
+        <label className="block text-xs font-semibold text-[#1a3a14]/80 uppercase tracking-wider mb-1">{label}</label>
+        {hint && <p className="text-black/40 text-xs mb-1.5">{hint}</p>}
+        {rows ? (
+          <textarea
+            rows={rows}
+            className={`${inputCls} resize-none`}
+            value={value}
+            onChange={e => onChange(e.target.value)}
+          />
+        ) : (
+          <input className={inputCls} value={value} onChange={e => onChange(e.target.value)} />
+        )}
+        {limit !== undefined && (
+          <p className={`text-right text-xs mt-1 ${value.length > limit ? "text-red-500" : "text-black/30"}`}>
+            {value.length} / {limit}
+          </p>
+        )}
+      </div>
+    );
+  }
+
+  // ── Per-page edit view ──────────────────────────────────────────────────────
+  if (editingPage) {
+    const label = SEO_PAGE_LABELS[editingPage];
+    return (
+      <div className="space-y-6">
+        {toast && (
+          <div className="fixed bottom-6 right-6 z-50 bg-[#1a3a14] text-white text-sm font-semibold px-5 py-3 rounded-2xl shadow-xl">
+            {toast}
+          </div>
+        )}
+        <div className="flex items-center gap-3">
+          <button
+            onClick={() => setEditingPage(null)}
+            className="text-sm text-black/40 hover:text-black/70 transition-colors"
+          >
+            ← SEO
+          </button>
+          <span className="text-black/20">/</span>
+          <h1 className="text-xl font-bold text-[#1a3a14]">{label}</h1>
+        </div>
+
+        <Card title="Search Engine">
+          <SeoField
+            label="Meta Title"
+            hint="60 chars recommended"
+            value={pageDraft.title}
+            onChange={v => setPageDraft(d => ({ ...d, title: v }))}
+            limit={60}
+          />
+          <SeoField
+            label="Meta Description"
+            hint="150–160 chars recommended"
+            value={pageDraft.description}
+            onChange={v => setPageDraft(d => ({ ...d, description: v }))}
+            rows={3}
+            limit={160}
+          />
+          <SeoField
+            label="Keywords"
+            hint="Comma-separated"
+            value={pageDraft.keywords}
+            onChange={v => setPageDraft(d => ({ ...d, keywords: v }))}
+          />
+        </Card>
+
+        <Card title="Open Graph / Social Sharing">
+          <SeoField
+            label="OG Title"
+            hint="Title shown on WhatsApp, Facebook, Twitter share cards"
+            value={pageDraft.ogTitle}
+            onChange={v => setPageDraft(d => ({ ...d, ogTitle: v }))}
+            limit={60}
+          />
+          <SeoField
+            label="OG Description"
+            value={pageDraft.ogDescription}
+            onChange={v => setPageDraft(d => ({ ...d, ogDescription: v }))}
+            rows={3}
+            limit={200}
+          />
+          <SeoField
+            label="OG Image URL"
+            hint="Recommended: 1200 × 630 px"
+            value={pageDraft.ogImage}
+            onChange={v => setPageDraft(d => ({ ...d, ogImage: v }))}
+          />
+          {pageDraft.ogImage && (
+            <img
+              src={pageDraft.ogImage}
+              alt="OG preview"
+              className="h-20 rounded-xl border border-black/10 object-cover"
+              onError={e => { (e.currentTarget as HTMLImageElement).style.display = "none"; }}
+            />
+          )}
+        </Card>
+
+        <div className="flex gap-3 justify-end">
+          <Btn onClick={() => setEditingPage(null)}>Cancel</Btn>
+          <Btn variant="primary" onClick={savePage}>Save Page SEO</Btn>
+        </div>
+      </div>
+    );
+  }
+
+  // ── Global list view ────────────────────────────────────────────────────────
   return (
     <div className="space-y-6">
+      {toast && (
+        <div className="fixed bottom-6 right-6 z-50 bg-[#1a3a14] text-white text-sm font-semibold px-5 py-3 rounded-2xl shadow-xl">
+          {toast}
+        </div>
+      )}
+
       <div>
         <h1 className="text-xl font-bold text-[#1a3a14]">SEO</h1>
         <p className="text-sm text-black/40 mt-0.5">Search engine and social sharing metadata</p>
       </div>
 
       <Card title="Global Defaults">
-        <Field
-          label="Site name"
-          hint="Used in the Page | Site Name title format"
-          value="Alliance Street Organic Farms"
+        <div className="px-4 py-3 bg-black/[0.02] rounded-xl border border-black/6">
+          <p className="text-xs text-black/50">
+            <span className="font-semibold text-black/70">Site Name:</span>{" "}
+            Alliance Street Organic Farms
+            <span className="ml-2 text-black/30">— appended to every page title</span>
+          </p>
+        </div>
+        <SeoField
+          label="Home Page Title"
+          hint="60 chars recommended — shown in browser tab & Google search result"
+          value={globalDraft.pageTitle}
+          onChange={v => setG("pageTitle", v)}
+          limit={60}
         />
-        <Field
-          label="Default meta description"
-          hint="Shown in Google search results when no page-specific description is set (150–160 chars)"
-          value="Alliance Street Organic Farms — Premium organic desi chicken, goat meat, country eggs & goat milk raised in Goa, India. Zero antibiotics. Zero shortcuts."
-          multiline
+        <SeoField
+          label="Default Meta Description"
+          hint="150–160 chars — used for pages without a specific description"
+          value={globalDraft.metaDescription}
+          onChange={v => setG("metaDescription", v)}
+          rows={3}
+          limit={160}
         />
-        <Field
-          label="Default keywords"
+        <SeoField
+          label="Default Keywords"
           hint="Comma-separated"
-          value="organic farm Goa, desi chicken Goa, country eggs Goa, goat meat Goa, organic meat India"
+          value={globalDraft.metaKeywords}
+          onChange={v => setG("metaKeywords", v)}
         />
       </Card>
 
       <Card title="Open Graph / Social Sharing">
-        <Field
-          label="OG title"
-          hint="Title shown when someone shares your site on WhatsApp, Facebook, etc."
-          value="Alliance Street Organic Farms — Pure, Honest, Always Fresh"
+        <SeoField
+          label="OG Title"
+          hint="Title shown when someone shares your site on WhatsApp, Facebook, Twitter"
+          value={globalDraft.ogTitle}
+          onChange={v => setG("ogTitle", v)}
+          limit={60}
         />
-        <Field
-          label="OG description"
-          value="Premium desi chicken, goat meat, country eggs & goat milk raised in Goa. No antibiotics. No shortcuts. Order fresh."
-          multiline
+        <SeoField
+          label="OG Description"
+          hint="Description shown in social share preview cards"
+          value={globalDraft.ogDescription}
+          onChange={v => setG("ogDescription", v)}
+          rows={3}
+          limit={200}
         />
-        <Field
-          label="OG image URL"
-          hint="Recommended: 1200 × 630 px"
-          value="/og-image.jpg"
+        <SeoField
+          label="OG Image URL"
+          hint="Recommended: 1200 × 630 px — shown as thumbnail when the link is shared"
+          value={globalDraft.ogImage}
+          onChange={v => setG("ogImage", v)}
         />
+        {globalDraft.ogImage && (
+          <img
+            src={globalDraft.ogImage}
+            alt="OG image preview"
+            className="h-20 rounded-xl border border-black/10 object-cover"
+            onError={e => { (e.currentTarget as HTMLImageElement).style.display = "none"; }}
+          />
+        )}
       </Card>
 
       <Card title="Per-Page SEO">
@@ -1380,32 +1607,48 @@ function SeoView() {
             <thead>
               <tr className="bg-black/2 border-b border-black/6">
                 <th className="text-left px-4 py-3 text-xs font-semibold text-black/40 uppercase tracking-wider">Page</th>
-                <th className="text-left px-4 py-3 text-xs font-semibold text-black/40 uppercase tracking-wider hidden md:table-cell">Meta Title</th>
+                <th className="text-left px-4 py-3 text-xs font-semibold text-black/40 uppercase tracking-wider hidden md:table-cell">Title in browser</th>
                 <th className="px-4 py-3" />
               </tr>
             </thead>
             <tbody className="divide-y divide-black/5">
-              {[
-                { page: "Home", title: "Alliance Street Organic Farms — Pure. Honest. Always Fresh." },
-                { page: "Blog", title: "From the Farm — Blog | Alliance Street Organic Farms" },
-                { page: "Products", title: "Our Products | Alliance Street Organic Farms" },
-              ].map(({ page, title }) => (
-                <tr key={page} className="hover:bg-black/[0.02]">
-                  <td className="px-4 py-3.5 font-medium text-[#1a3a14]">{page}</td>
-                  <td className="px-4 py-3.5 text-black/50 hidden md:table-cell text-xs truncate max-w-xs">{title}</td>
-                  <td className="px-4 py-3.5 text-right">
-                    <Btn>Edit</Btn>
-                  </td>
-                </tr>
-              ))}
+              {SEO_PAGE_IDS.map(id => {
+                const override = pageOverrides[id];
+                const effective = getSectionSeo(id);
+                return (
+                  <tr key={id} className="hover:bg-black/[0.02]">
+                    <td className="px-4 py-3.5">
+                      <span className="font-medium text-[#1a3a14]">{SEO_PAGE_LABELS[id]}</span>
+                      {override && (
+                        <span className="ml-2 text-[10px] bg-[#DBA319]/15 text-[#A87A0F] font-semibold px-1.5 py-0.5 rounded-full uppercase tracking-wide">
+                          custom
+                        </span>
+                      )}
+                    </td>
+                    <td className="px-4 py-3.5 text-black/45 hidden md:table-cell text-xs truncate max-w-xs">
+                      {effective.fullTitle}
+                    </td>
+                    <td className="px-4 py-3.5 text-right">
+                      <div className="flex items-center justify-end gap-2">
+                        {override && (
+                          <Btn onClick={() => resetPage(id)}>Reset</Btn>
+                        )}
+                        <Btn onClick={() => startEditPage(id)}>Edit</Btn>
+                      </div>
+                    </td>
+                  </tr>
+                );
+              })}
             </tbody>
           </table>
         </div>
-        <p className="text-xs text-black/40">Blog posts and products have individual SEO settings editable from the Blog and Products sections.</p>
+        <p className="text-xs text-black/40">
+          Blog posts and individual products have SEO settings editable from the Blog and Products sections.
+        </p>
       </Card>
 
       <div className="flex gap-3 justify-end">
-        <Btn variant="primary">Save Changes</Btn>
+        <Btn variant="primary" onClick={saveGlobal}>Save & Apply Global SEO</Btn>
       </div>
     </div>
   );

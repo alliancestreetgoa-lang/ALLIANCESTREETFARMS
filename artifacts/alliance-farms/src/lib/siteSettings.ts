@@ -7,6 +7,8 @@ export interface SiteSettings {
   metaDescription: string;
   metaKeywords: string;
   ogTitle: string;
+  ogDescription: string;
+  ogImage: string;
   heroHeadline: string;
   heroSubheadline: string;
   heroTagline: string;
@@ -22,6 +24,8 @@ export const DEFAULT_SETTINGS: SiteSettings = {
   metaDescription: "Alliance Street Organic Farms — Premium desi chicken, goat meat, farm-fresh eggs & nutritious goat milk raised without antibiotics in Goa, India.",
   metaKeywords: "organic farm goa, desi chicken, goat meat, fresh eggs, goat milk, organic food india",
   ogTitle: "Alliance Street Organic Farms — Pure. Honest. Always Fresh.",
+  ogDescription: "Premium desi chicken, goat meat, farm-fresh eggs & nutritious goat milk. Raised ethically in Goa without antibiotics or hormones.",
+  ogImage: "/images/og_default.jpg",
   heroHeadline: "Where Ethical Farming",
   heroSubheadline: "Meets Excellence",
   heroTagline: "Welcome to Alliance Street Organic Farms",
@@ -78,8 +82,8 @@ export function applySettingsPreview(settings: SiteSettings): void {
     description: settings.metaDescription,
     keywords: settings.metaKeywords,
     ogTitle: settings.ogTitle,
-    ogDescription: settings.metaDescription,
-    ogImage: "/images/og_default.jpg",
+    ogDescription: settings.ogDescription,
+    ogImage: settings.ogImage,
     ogType: "website",
     twitterCard: "summary_large_image",
   });
