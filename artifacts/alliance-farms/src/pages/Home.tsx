@@ -1,4 +1,3 @@
-import { useEffect } from "react";
 import { Navbar } from "@/components/Navbar";
 import { ScrollProgress } from "@/components/ScrollProgress";
 import { Hero } from "@/components/sections/Hero";
@@ -11,16 +10,10 @@ import { About } from "@/components/sections/About";
 import { Team } from "@/components/sections/Team";
 import { ContactCTA } from "@/components/sections/ContactCTA";
 import { Footer } from "@/components/layout/Footer";
-import { getCmsSeo } from "@/lib/cms";
-import { applyMetaTags } from "@/lib/siteSettings";
+import { useSectionSeo } from "@/hooks/useSectionSeo";
 
 export default function Home() {
-  useEffect(() => {
-    const apply = () => applyMetaTags(getCmsSeo() as Parameters<typeof applyMetaTags>[0]);
-    apply();
-    window.addEventListener("storage", apply);
-    return () => window.removeEventListener("storage", apply);
-  }, []);
+  useSectionSeo();
 
   return (
     <div className="min-h-screen bg-background font-sans selection:bg-secondary selection:text-white">

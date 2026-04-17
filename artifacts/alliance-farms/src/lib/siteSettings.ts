@@ -1,3 +1,5 @@
+import type { ResolvedSeo } from "@/lib/cms";
+
 const STORAGE_KEY = "asof_site_settings";
 
 export interface SiteSettings {
@@ -49,31 +51,54 @@ export function resetSettings(): void {
   localStorage.removeItem(STORAGE_KEY);
 }
 
-export function applyMetaTags(settings: SiteSettings): void {
-  document.title = settings.pageTitle;
+function setMeta(name: string, content: string): void {
+  let el = document.querySelector(`meta[name="${name}"]`) as HTMLMetaElement | null;
+  if (!el) {
+    el = document.createElement("meta");
+    el.setAttribute("name", name);
+    document.head.appendChild(el);
+  }
+  el.setAttribute("content", content);
+}
 
-  const setMeta = (name: string, content: string) => {
-    let el = document.querySelector(`meta[name="${name}"]`) as HTMLMetaElement;
-    if (!el) {
-      el = document.createElement("meta");
-      el.setAttribute("name", name);
-      document.head.appendChild(el);
-    }
-    el.setAttribute("content", content);
-  };
+function setOgMeta(property: string, content: string): void {
+  let el = document.querySelector(`meta[property="${property}"]`) as HTMLMetaElement | null;
+  if (!el) {
+    el = document.createElement("meta");
+    el.setAttribute("property", property);
+    document.head.appendChild(el);
+  }
+  el.setAttribute("content", content);
+}
 
-  const setOgMeta = (property: string, content: string) => {
-    let el = document.querySelector(`meta[property="${property}"]`) as HTMLMetaElement;
-    if (!el) {
-      el = document.createElement("meta");
-      el.setAttribute("property", property);
-      document.head.appendChild(el);
-    }
-    el.setAttribute("content", content);
-  };
+export function applySettingsPreview(settings: SiteSettings): void {
+  applyMetaTags({
+    fullTitle: `${settings.pageTitle} | Alliance Street Organic Farms`,
+    title: settings.pageTitle,
+    description: settings.metaDescription,
+    keywords: settings.metaKeywords,
+    ogTitle: settings.ogTitle,
+    ogDescription: settings.metaDescription,
+    ogImage: "/images/og_default.jpg",
+    ogType: "website",
+    twitterCard: "summary_large_image",
+  });
+}
 
-  setMeta("description", settings.metaDescription);
-  setMeta("keywords", settings.metaKeywords);
-  setOgMeta("og:title", settings.ogTitle);
-  setOgMeta("og:description", settings.metaDescription);
+export function applyMetaTags(seo: ResolvedSeo): void {
+  document.title = seo.fullTitle;
+
+  setMeta("description", seo.description);
+  setMeta("keywords", seo.keywords);
+
+  setOgMeta("og:title", seo.ogTitle);
+  setOgMeta("og:description", seo.ogDescription);
+  setOgMeta("og:image", seo.ogImage);
+  setOgMeta("og:type", seo.ogType);
+  setOgMeta("og:site_name", "Alliance Street Organic Farms");
+
+  setMeta("twitter:card", seo.twitterCard);
+  setMeta("twitter:title", seo.ogTitle);
+  setMeta("twitter:description", seo.ogDescription);
+  setMeta("twitter:image", seo.ogImage);
 }

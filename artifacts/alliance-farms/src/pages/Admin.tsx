@@ -1,6 +1,6 @@
 import { useState, useEffect } from "react";
 import { loginAdmin, isAdminLoggedIn, logoutAdmin } from "@/lib/adminAuth";
-import { loadSettings, saveSettings, resetSettings, applyMetaTags, DEFAULT_SETTINGS, type SiteSettings } from "@/lib/siteSettings";
+import { loadSettings, saveSettings, resetSettings, applySettingsPreview, DEFAULT_SETTINGS, type SiteSettings } from "@/lib/siteSettings";
 
 function LoginPage({ onLogin }: { onLogin: () => void }) {
   const [username, setUsername] = useState("");
@@ -128,7 +128,7 @@ function Dashboard({ onLogout }: { onLogout: () => void }) {
 
   const handleSave = () => {
     saveSettings(settings);
-    applyMetaTags(settings);
+    applySettingsPreview(settings);
     setSaved(true);
     setTimeout(() => setSaved(false), 3000);
   };
@@ -138,7 +138,7 @@ function Dashboard({ onLogout }: { onLogout: () => void }) {
       resetSettings();
       const def = { ...DEFAULT_SETTINGS };
       setSettings(def);
-      applyMetaTags(def);
+      applySettingsPreview(def);
     }
   };
 
@@ -281,7 +281,7 @@ export default function Admin() {
   useEffect(() => {
     if (loggedIn) {
       const settings = loadSettings();
-      applyMetaTags(settings);
+      applySettingsPreview(settings);
     }
   }, [loggedIn]);
 

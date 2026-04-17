@@ -1,6 +1,89 @@
 {
-  "pageTitle": "Real Eggs. Real Farm. Real Goa.",
-  "metaDescription": "Alliance Street Organic Farms — Premium desi chicken, goat meat, farm-fresh eggs & nutritious goat milk raised without antibiotics in Goa, India.",
-  "metaKeywords": "organic farm goa, desi chicken, goat meat, fresh eggs, goat milk, organic food india",
-  "ogTitle": "Alliance Street Organic Farms — Pure. Honest. Always Fresh."
+  "siteName": "Alliance Street Organic Farms",
+  "titleSuffix": "Alliance Street Organic Farms",
+  "titleFormat": "{pageTitle} | {siteName}",
+  "default": {
+    "title": "Real Eggs. Real Farm. Real Goa.",
+    "description": "Alliance Street Organic Farms — Premium desi chicken, goat meat, farm-fresh eggs & nutritious goat milk raised without antibiotics in Goa, India.",
+    "keywords": "organic farm goa, desi chicken, goat meat, fresh eggs, goat milk, organic food india",
+    "ogTitle": "Alliance Street Organic Farms — Pure. Honest. Always Fresh.",
+    "ogDescription": "Premium desi chicken, goat meat, farm-fresh eggs & nutritious goat milk. Raised ethically in Goa without antibiotics or hormones.",
+    "ogImage": "/images/og_default.jpg",
+    "ogType": "website",
+    "twitterCard": "summary_large_image"
+  },
+  "pages": {
+    "home": {
+      "title": "Real Eggs. Real Farm. Real Goa.",
+      "description": "Alliance Street Organic Farms — Premium desi chicken, goat meat, farm-fresh eggs & nutritious goat milk raised without antibiotics in Goa, India.",
+      "keywords": "organic farm goa, desi eggs, goat milk goa, desi chicken goa, organic food india",
+      "ogTitle": "Alliance Street Organic Farms — Pure. Honest. Always Fresh.",
+      "ogDescription": "Premium desi chicken, goat meat, farm-fresh eggs & nutritious goat milk. Raised ethically in Goa without antibiotics or hormones.",
+      "ogImage": "/images/og_default.jpg"
+    },
+    "products": {
+      "title": "Our Products",
+      "description": "Shop farm-fresh desi chicken, goat meat, country eggs and goat milk from Alliance Street Organic Farms, Goa. No antibiotics, no hormones — ever.",
+      "keywords": "buy desi chicken goa, goat meat goa, fresh country eggs goa, goat milk goa, organic products india",
+      "ogTitle": "Farm-Fresh Products | Alliance Street Organic Farms",
+      "ogDescription": "Desi chicken, goat meat, country eggs and goat milk — farmed ethically in Goa with no antibiotics or hormones.",
+      "ogImage": "/images/og_products.jpg"
+    },
+    "breeds": {
+      "title": "Native Chicken Breeds",
+      "description": "We raise Kadaknath, Aseel, and other indigenous desi chicken breeds in Goa — prized for superior meat quality, flavour, and natural nutrition.",
+      "keywords": "kadaknath chicken goa, aseel chicken india, desi breeds goa, native poultry india",
+      "ogTitle": "Indigenous Chicken Breeds | Alliance Street Organic Farms",
+      "ogDescription": "Kadaknath, Aseel & native desi breeds raised free-range in Goa. Unmatched flavour, zero chemicals.",
+      "ogImage": "/images/og_breeds.jpg"
+    },
+    "eggs": {
+      "title": "Farm-Fresh Desi Eggs",
+      "description": "Buy country chicken eggs from free-range desi hens in Goa. Higher Omega-3, Vitamin D & antioxidants — vastly superior to commercial cage eggs.",
+      "keywords": "country eggs goa, desi eggs india, free range eggs goa, organic eggs goa, buy farm eggs india",
+      "ogTitle": "Desi Country Eggs | Alliance Street Organic Farms",
+      "ogDescription": "Free-range desi eggs from Goa — richer in Omega-3, Vitamin D & protein than any commercial egg. 100% natural.",
+      "ogImage": "/images/og_eggs.jpg"
+    },
+    "goats": {
+      "title": "Goats & Milk",
+      "description": "Konkan Kanyal & Osmanabadi goats raised naturally in Goa for premium goat meat and A2 protein-rich goat milk. Chemical-free, free-range.",
+      "keywords": "goat milk goa, goat meat goa, konkan kanyal, osmanabadi goat, chevon goa, mutton goa",
+      "ogTitle": "Goat Meat & Milk | Alliance Street Organic Farms",
+      "ogDescription": "Konkan Kanyal & Osmanabadi goats raised free-range in Goa. Premium mutton & A2 goat milk with zero chemicals.",
+      "ogImage": "/images/og_goats.jpg"
+    },
+    "philosophy": {
+      "title": "Why Organic?",
+      "description": "Discover why choosing organic, free-range, chemical-free food from Alliance Street Organic Farms is better for your family, your health, and the planet.",
+      "keywords": "why organic food, benefits organic farming, chemical free food india, organic vs commercial food",
+      "ogTitle": "Why Organic? | Alliance Street Organic Farms",
+      "ogDescription": "Free-range, antibiotic-free, ethically raised — find out why organic food from our Goa farm makes a real difference.",
+      "ogImage": "/images/og_default.jpg"
+    },
+    "about": {
+      "title": "About Us",
+      "description": "Learn the story of Alliance Street Organic Farms — founded in 2024 in Goa, committed to ethical, antibiotic-free, sustainable farming of native livestock.",
+      "keywords": "alliance street organic farms goa, organic farm story goa, about organic farm india",
+      "ogTitle": "About Alliance Street Organic Farms | Goa, India",
+      "ogDescription": "Founded in 2024 in Goa, we raise native livestock without antibiotics or hormones — pure food, grown with pride.",
+      "ogImage": "/images/about_farm.jpg"
+    },
+    "team": {
+      "title": "Our Team",
+      "description": "Meet the founders of Alliance Street Organic Farms — Shaukin Phaterpekar & Stallone Shaikh — the people behind Goa's cleanest organic farm.",
+      "keywords": "alliance street organic farms founders, shaukin phaterpekar, stallone shaikh, goa organic farm team",
+      "ogTitle": "Meet Our Founders | Alliance Street Organic Farms",
+      "ogDescription": "Shaukin & Stallone built Alliance Street Organic Farms on friendship, ethical farming, and a commitment to clean food for every Goan family.",
+      "ogImage": "/images/og_default.jpg"
+    },
+    "contact": {
+      "title": "Order Now",
+      "description": "Order farm-fresh desi chicken, goat meat, country eggs & goat milk directly from Alliance Street Organic Farms in Goa. WhatsApp or call us today.",
+      "keywords": "order organic food goa, buy farm fresh food goa, contact alliance street organic farms",
+      "ogTitle": "Order Fresh | Alliance Street Organic Farms",
+      "ogDescription": "Get farm-fresh organic food delivered in Goa. WhatsApp or call Alliance Street Organic Farms directly — no middlemen.",
+      "ogImage": "/images/og_default.jpg"
+    }
+  }
 }

@@ -10,6 +10,20 @@ import blogData from "@/data/blog.json";
 
 const STORAGE_KEY = "asof_site_settings";
 
+export type SectionId = keyof typeof seoData.pages;
+
+export interface ResolvedSeo {
+  fullTitle: string;
+  title: string;
+  description: string;
+  keywords: string;
+  ogTitle: string;
+  ogDescription: string;
+  ogImage: string;
+  ogType: string;
+  twitterCard: string;
+}
+
 function getStoredOverrides(): Record<string, string> {
   try {
     const raw = localStorage.getItem(STORAGE_KEY);
@@ -17,6 +31,10 @@ function getStoredOverrides(): Record<string, string> {
   } catch {
     return {};
   }
+}
+
+function buildFullTitle(title: string): string {
+  return `${title} | ${seoData.siteName}`;
 }
 
 export function getCmsSettings() {
@@ -31,14 +49,47 @@ export function getCmsSettings() {
   };
 }
 
-export function getCmsSeo() {
+export function getCmsSeo(): ResolvedSeo {
   const o = getStoredOverrides();
+  const def = seoData.default;
+  const title = o.pageTitle || def.title;
+  const description = o.metaDescription || def.description;
+  const ogTitle = o.ogTitle || def.ogTitle;
   return {
-    ...seoData,
-    pageTitle: o.pageTitle || seoData.pageTitle,
-    metaDescription: o.metaDescription || seoData.metaDescription,
-    metaKeywords: o.metaKeywords || seoData.metaKeywords,
-    ogTitle: o.ogTitle || seoData.ogTitle,
+    fullTitle: buildFullTitle(title),
+    title,
+    description,
+    keywords: o.metaKeywords || def.keywords,
+    ogTitle,
+    ogDescription: def.ogDescription,
+    ogImage: def.ogImage,
+    ogType: def.ogType,
+    twitterCard: def.twitterCard,
+  };
+}
+
+export function getSectionSeo(sectionId: SectionId): ResolvedSeo {
+  const o = getStoredOverrides();
+  const def = seoData.default;
+  const page = seoData.pages[sectionId];
+  const title = page.title;
+  const description = page.description;
+  const ogTitle = page.ogTitle;
+  const ogDescription = page.ogDescription;
+  const ogImage = page.ogImage;
+
+  return {
+    fullTitle: sectionId === "home"
+      ? buildFullTitle(o.pageTitle || title)
+      : buildFullTitle(title),
+    title,
+    description: sectionId === "home" ? (o.metaDescription || description) : description,
+    keywords: page.keywords,
+    ogTitle: sectionId === "home" ? (o.ogTitle || ogTitle) : ogTitle,
+    ogDescription,
+    ogImage,
+    ogType: def.ogType,
+    twitterCard: def.twitterCard,
   };
 }
 

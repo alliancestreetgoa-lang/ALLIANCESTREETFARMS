@@ -36,7 +36,7 @@ export function Hero() {
   }, []);
 
   return (
-    <section ref={heroRef} className="relative min-h-screen flex flex-col overflow-hidden">
+    <section id="hero" ref={heroRef} className="relative min-h-screen flex flex-col overflow-hidden">
 
       {/* Parallax background */}
       <motion.div className="absolute inset-0" style={{ y: bgY }}>
