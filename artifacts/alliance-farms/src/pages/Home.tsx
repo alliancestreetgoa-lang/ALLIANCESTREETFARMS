@@ -11,11 +11,12 @@ import { About } from "@/components/sections/About";
 import { Team } from "@/components/sections/Team";
 import { ContactCTA } from "@/components/sections/ContactCTA";
 import { Footer } from "@/components/layout/Footer";
-import { loadSettings, applyMetaTags } from "@/lib/siteSettings";
+import { getCmsSeo } from "@/lib/cms";
+import { applyMetaTags } from "@/lib/siteSettings";
 
 export default function Home() {
   useEffect(() => {
-    const apply = () => applyMetaTags(loadSettings());
+    const apply = () => applyMetaTags(getCmsSeo() as Parameters<typeof applyMetaTags>[0]);
     apply();
     window.addEventListener("storage", apply);
     return () => window.removeEventListener("storage", apply);

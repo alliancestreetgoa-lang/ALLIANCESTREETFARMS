@@ -2,49 +2,9 @@ import { useState } from "react";
 import { motion, AnimatePresence } from "framer-motion";
 import { X } from "lucide-react";
 import { staggerContainer, fadeUp, fadeUpSoft, scalePop } from "@/lib/animations";
+import { products as cmsProducts } from "@/lib/cms";
 
-const PRODUCTS = [
-  {
-    name: "Desi Chicken",
-    tag: "Native Breed",
-    desc: "Free-range native breeds raised on clean feed and open grazing.",
-    image: "/images/desi_chicken.jpg",
-    color: "from-[#3d2b1a] to-[#1a3a14]",
-    fullDesc: "Our desi chickens are raised in free-range conditions on natural feed, without antibiotics or hormones. Native breeds like Kadaknath, Srinidhi, and Sonali are selected for their superior meat quality and nutritional content. The result is flavorful, protein-rich meat that's perfect for health-conscious families.",
-  },
-  {
-    name: "Desi Eggs",
-    tag: "Vitamin-Rich",
-    desc: "Country chicken eggs — hormone-free and naturally nutritious.",
-    image: "/images/desi_eggs.jpg",
-    color: "from-[#5c3d1e] to-[#A87A0F]",
-    fullDesc: "Our desi eggs come from free-range country chickens living in natural conditions. These eggs are 3x richer in omega-3 fatty acids and have significantly higher vitamin E compared to commercial eggs. The deep orange yolks indicate superior nutritional density and clean, natural feeding practices.",
-  },
-  {
-    name: "Goat Meat",
-    tag: "High Protein",
-    desc: "Tender meat from Osmanabadi & Konkan Kanyal breeds.",
-    image: "/images/goat_meat.jpg",
-    color: "from-[#1a3a14] to-[#2d5a27]",
-    fullDesc: "Premium goat meat from indigenous Indian breeds — Osmanabadi and Konkan Kanyal. These breeds are naturally adapted to Goa's climate and produce tender, lean meat with exceptional flavor. Low in fat and cholesterol, it's ideal for health-conscious diets while maintaining authentic taste.",
-  },
-  {
-    name: "Goat Milk",
-    tag: "A2 Protein",
-    desc: "Chemical-free, nutrient-dense milk from happy, healthy goats.",
-    image: "/images/goat_milk.jpg",
-    color: "from-[#2d5a27] to-[#7a9e6d]",
-    fullDesc: "Our goat milk is naturally rich in A2 protein, making it easier to digest than cow's milk. Sourced daily from free-grazing goats raised without chemicals, it's packed with calcium, vitamins, and essential nutrients. Perfect for families seeking alternatives to conventional dairy.",
-  },
-  {
-    name: "Rabbit Meat",
-    tag: "Low Cholesterol",
-    desc: "Lean, low-cholesterol protein from premium rabbit breeds.",
-    image: "/images/product_rabbit.png",
-    color: "from-[#5c3d1e] to-[#3d2b1a]",
-    fullDesc: "Rabbit meat is among the leanest meats available, with minimal cholesterol and maximum protein efficiency. Our premium rabbit breeds (Californian, New Zealand White, and Grey Giant) produce fine-textured, delicate meat ideal for gourmet cooking and therapeutic diets.",
-  },
-];
+const PRODUCTS = cmsProducts.items;
 
 export function Products() {
   const [selectedProduct, setSelectedProduct] = useState<string | null>(null);

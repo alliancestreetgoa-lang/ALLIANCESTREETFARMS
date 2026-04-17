@@ -1,0 +1,70 @@
+{
+  "breeds": [
+    {
+      "name": "Osmanabadi Goat",
+      "tag": "Premium Meat Breed",
+      "tagColor": "bg-secondary/15 text-secondary",
+      "image": "/images/osmanabadi_goat.jpg",
+      "desc": "A hardy, indigenous breed from Maharashtra known for its high-quality meat, adaptability, and excellent disease resistance. Highly valued for its rich, flavorful, and lean meat that is lower in fat compared to exotic breeds.",
+      "fullDesc": "The Osmanabadi is one of India's most prized desi goat breeds, originating from the Osmanabad district of Maharashtra. Raised entirely free-range on natural forage, these goats develop lean, deeply flavourful meat with a rich protein profile. Their natural disease resistance means zero antibiotics — exactly the clean-label quality Alliance Street Organic Farms stands for.",
+      "origin": "Osmanabad, Maharashtra, India",
+      "weight": "25–40 kg (adult)",
+      "products": ["Goat Meat (Mutton)", "Offal Cuts"],
+      "whyWeChose": "We selected the Osmanabadi for its dual advantage of superior meat quality and exceptional hardiness in our Goan climate. Its naturally lean carcass, high feed-conversion efficiency, and complete absence of dependence on synthetic supplements make it the ideal breed for clean, ethical farming.",
+      "traits": [
+        "High-protein, lean meat",
+        "Low fat, low cholesterol",
+        "Excellent disease resistance",
+        "Raised free-range, stress-free",
+        "Rich, authentic desi flavor"
+      ],
+      "nutrition": [
+        { "label": "Protein", "value": "27g", "per": "per 100g" },
+        { "label": "Fat", "value": "3.5g", "per": "per 100g" },
+        { "label": "Iron", "value": "3.7mg", "per": "per 100g" },
+        { "label": "Calories", "value": "143 kcal", "per": "per 100g" }
+      ],
+      "facts": [
+        { "label": "Breed Type", "value": "Desi / Indigenous" },
+        { "label": "Origin", "value": "Maharashtra" },
+        { "label": "Primary Use", "value": "Meat" },
+        { "label": "Raising Method", "value": "Free-range, Natural Forage" }
+      ],
+      "accentColor": "#DBA319",
+      "accentBg": "#fdf5e4"
+    },
+    {
+      "name": "Konkan Kanyal",
+      "tag": "Goa's Native Breed",
+      "tagColor": "bg-[#2d5a27]/15 text-[#2d5a27]",
+      "image": "/images/konkan_kanyal_goat.jpg",
+      "desc": "The primary, well-adapted goat breed in Goa — perfectly suited to the coastal climate and local terrain. Produces nutritious milk and quality meat, thriving on natural grazing with minimal external inputs.",
+      "fullDesc": "The Konkan Kanyal is Goa's own native goat breed, perfectly evolved for the coastal humidity, laterite terrain, and native vegetation of the Konkan region. Their milk is naturally rich in A2 protein and calcium, while the meat is tender and mildly flavoured — ideal for Goan cuisine. Thriving with minimal intervention, they are a cornerstone of sustainable, biodiversity-friendly farming.",
+      "origin": "Konkan Coast, Goa & Maharashtra",
+      "weight": "20–35 kg (adult)",
+      "products": ["Goat Milk", "Goat Meat (Chevon)", "Artisan Dairy"],
+      "whyWeChose": "The Konkan Kanyal is a living piece of Goa's agricultural heritage. We raise them to preserve a breed that's under threat from commercial crossbreeding, while providing our customers with the most locally authentic, chemical-free milk and meat available in the region.",
+      "traits": [
+        "Native to Goa's coastal climate",
+        "Nutritious, chemical-free milk",
+        "Naturally adapted — low maintenance",
+        "Supports biodiversity conservation",
+        "Tender, naturally flavored meat"
+      ],
+      "nutrition": [
+        { "label": "Milk Protein", "value": "3.8g", "per": "per 100ml" },
+        { "label": "Calcium", "value": "130mg", "per": "per 100ml" },
+        { "label": "Fat", "value": "4.2g", "per": "per 100ml" },
+        { "label": "A2 Protein", "value": "Yes", "per": "naturally" }
+      ],
+      "facts": [
+        { "label": "Breed Type", "value": "Native / Heritage" },
+        { "label": "Origin", "value": "Goa, Konkan Coast" },
+        { "label": "Primary Use", "value": "Milk & Meat" },
+        { "label": "Raising Method", "value": "Natural Grazing, No Inputs" }
+      ],
+      "accentColor": "#2d5a27",
+      "accentBg": "#eef4ec"
+    }
+  ]
+}

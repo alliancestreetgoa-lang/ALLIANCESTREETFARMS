@@ -1,6 +1,7 @@
 import { useEffect, useState, useRef } from "react";
 import { motion, useInView } from "framer-motion";
 import { staggerContainer, fadeUp, fadeUpSoft, slideLeft, slideRight, scalePop } from "@/lib/animations";
+import { pages } from "@/lib/cms";
 
 function Counter({ end, suffix = "", delay = 0 }: { end: number; suffix?: string; delay?: number }) {
   const [count, setCount] = useState(0);
@@ -26,23 +27,8 @@ function Counter({ end, suffix = "", delay = 0 }: { end: number; suffix?: string
   return <span ref={ref}>{count}{suffix}</span>;
 }
 
-const BENEFITS = [
-  "Higher Omega-3 Fatty Acids",
-  "Rich in Vitamin D & A",
-  "More Antioxidants",
-  "Higher Protein Quality",
-  "Better for Gut Health",
-  "No Hormones or Antibiotics",
-  "Supports Immunity",
-  "Better for Children",
-];
-
-const STATS = [
-  { end: 3, suffix: "×", label: "More Omega-3", delay: 0 },
-  { end: 2, suffix: "×", label: "More Vitamin E", delay: 200 },
-  { end: 0, suffix: "", label: "Antibiotics", delay: 400 },
-  { end: 100, suffix: "%", label: "Free Range", delay: 600 },
-];
+const BENEFITS = pages.eggs.benefits;
+const STATS = pages.eggs.stats;
 
 export function DesiEggs() {
   return (
@@ -118,7 +104,7 @@ export function DesiEggs() {
                 <div className="p-6 bg-[#1a3a14]/5 border-r border-black/5">
                   <h4 className="text-[#1a3a14] font-bold text-sm mb-4 tracking-wide">✦ OUR DESI EGGS</h4>
                   <ul className="space-y-2.5 text-sm text-[#1a3a14]/80">
-                    {["Deep orange yolk", "Thick, strong shell", "Rich natural diet", "Sunlight & exercise"].map((t, i) => (
+                    {pages.eggs.desiItems.map((t, i) => (
                       <li key={i} className="flex items-center gap-2"><span className="w-1 h-1 rounded-full bg-secondary" />{t}</li>
                     ))}
                   </ul>
@@ -126,7 +112,7 @@ export function DesiEggs() {
                 <div className="p-6 bg-gray-50/60">
                   <h4 className="text-red-500 font-bold text-sm mb-4 tracking-wide">✗ COMMERCIAL EGGS</h4>
                   <ul className="space-y-2.5 text-sm text-gray-500">
-                    {["Pale yellow yolk", "Thin, fragile shell", "Caged, zero sunlight"].map((t, i) => (
+                    {pages.eggs.commercialItems.map((t, i) => (
                       <li key={i} className="flex items-center gap-2 line-through decoration-red-300">
                         {t}
                       </li>

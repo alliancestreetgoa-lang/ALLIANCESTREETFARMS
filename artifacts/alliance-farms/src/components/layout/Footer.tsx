@@ -1,7 +1,7 @@
-import { loadSettings } from "@/lib/siteSettings";
+import { getCmsSettings } from "@/lib/cms";
 
 export function Footer() {
-  const settings = loadSettings();
+  const settings = getCmsSettings();
 
   const instagram = settings.instagramUrl || "https://www.instagram.com/alliancestreetorganicfarms/";
   const facebook = settings.facebookUrl || null;

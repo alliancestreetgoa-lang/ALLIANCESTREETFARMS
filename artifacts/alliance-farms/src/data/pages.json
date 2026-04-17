@@ -1,0 +1,98 @@
+{
+  "hero": {
+    "badgeLabel": "Goa, India — Est. 2024",
+    "tagline": "Welcome to Alliance Street Organic Farms",
+    "headline": "Where Ethical Farming",
+    "subheadline": "Meets Excellence",
+    "description": "Premium desi chicken, goat meat, farm-fresh eggs & nutritious goat milk — raised without antibiotics, hormones, or artificial chemicals.",
+    "ctaPrimary": "Explore Products",
+    "ctaSecondary": "Our Story",
+    "badges": ["100% Organic", "Native Breeds", "No Antibiotics", "Free Range"]
+  },
+  "about": {
+    "sectionLabel": "Our Story",
+    "heading": "Pure. Honest.\nAlways Fresh.",
+    "paragraphs": [
+      "At Alliance Street Organic Farms, we are dedicated to producing premium-quality desi chicken, goat meat, farm-fresh desi eggs, and nutritious goat milk using ethical, eco-conscious farming practices in Goa.",
+      "We specialize in raising native breeds carefully selected for Goa's climate — reared without antibiotics, growth hormones, or artificial chemicals. Every animal is raised on clean feed, open grazing, and natural care.",
+      "Our products aren't just food — they're part of a healthier lifestyle, sourced with integrity and delivered with pride."
+    ],
+    "values": [
+      { "icon": "🌿", "label": "100% Organic Methods" },
+      { "icon": "🐾", "label": "Animal Welfare" },
+      { "icon": "🌍", "label": "Local Sustainability" },
+      { "icon": "🏘️", "label": "Community First" }
+    ],
+    "stats": [
+      { "value": "2024", "label": "Est. in Goa" },
+      { "value": "15+", "label": "Native Breeds" }
+    ],
+    "image": "/images/about_farm.jpg"
+  },
+  "team": {
+    "sectionLabel": "Our Team",
+    "heading": "The Hands Behind the Harvest",
+    "intro": "\"Raised on Friendship, Built on Farming. Our mission is rooted in sustainable practices, native livestock, and full transparency. No hormones. No shortcuts. Just clean farming.\"",
+    "members": [
+      {
+        "name": "Shaukin Phaterpekar",
+        "initials": "SP",
+        "image": "/images/team_shaukin.jpg",
+        "role": "Partner & Co-Founder",
+        "quote": "Good food begins with good farming. We're here to bring that promise to every family in Goa.",
+        "color": "from-[#1a3a14] to-[#2d5a27]"
+      },
+      {
+        "name": "Stallone Shaikh",
+        "initials": "SS",
+        "image": "/images/team_stallone.jpg",
+        "role": "Partner & Co-Founder",
+        "quote": "We didn't build a business. We built a farm that we'd be proud to feed our own children from.",
+        "color": "from-[#5c3d1e] to-[#DBA319]"
+      }
+    ]
+  },
+  "eggs": {
+    "sectionLabel": "Farm-Fresh Desi Eggs",
+    "heading": "The Power of\nCountry Chicken Eggs",
+    "description": "Our desi eggs are laid by free-range native breeds living in open spaces — vastly superior in nutrition to commercial cage-reared eggs.",
+    "benefits": [
+      "Higher Omega-3 Fatty Acids",
+      "Rich in Vitamin D & A",
+      "More Antioxidants",
+      "Higher Protein Quality",
+      "Better for Gut Health",
+      "No Hormones or Antibiotics",
+      "Supports Immunity",
+      "Better for Children"
+    ],
+    "stats": [
+      { "end": 3, "suffix": "×", "label": "More Omega-3", "delay": 0 },
+      { "end": 2, "suffix": "×", "label": "More Vitamin E", "delay": 200 },
+      { "end": 0, "suffix": "", "label": "Antibiotics", "delay": 400 },
+      { "end": 100, "suffix": "%", "label": "Free Range", "delay": 600 }
+    ],
+    "desiLabel": "OUR DESI EGGS",
+    "desiItems": ["Deep orange yolk", "Thick, strong shell", "Rich natural diet", "Sunlight & exercise"],
+    "commercialLabel": "COMMERCIAL EGGS",
+    "commercialItems": ["Pale yellow yolk", "Thin, fragile shell", "Caged, zero sunlight"],
+    "image": "/images/eggs_section.jpg"
+  },
+  "goats": {
+    "sectionLabel": "Our Goat Breeds",
+    "heading": "Premium Goat Breeds, Born for Goa",
+    "milkHeading": "The Goodness of Goat Milk",
+    "milkDescription": "Easier to digest than cow's milk and naturally rich in A2 protein, calcium, and essential vitamins. Sourced daily from our free-grazing, chemical-free goats.",
+    "milkTags": ["🦴 Calcium-Rich", "💊 Easy to Digest", "🛡️ Immunity Building", "❤️ Heart-Healthy", "🧒 Great for Kids", "🌿 Zero Chemicals"]
+  },
+  "whyOrganic": {
+    "sectionLabel": "Our Philosophy",
+    "heading": "Why We Choose Organic Farming",
+    "intro": "\"This isn't industrial farming. This is real farming — done right, for you, your family, and future generations.\""
+  },
+  "contact": {
+    "sectionLabel": "Order Now",
+    "heading": "Ready for Real\nFarm-Fresh Food?",
+    "description": "Order directly from Alliance Street Organic Farms — Goa's most trusted source for organic desi chicken, eggs, goat meat, and more."
+  }
+}

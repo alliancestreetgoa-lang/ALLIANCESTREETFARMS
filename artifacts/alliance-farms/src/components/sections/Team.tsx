@@ -1,24 +1,8 @@
 import { motion } from "framer-motion";
 import { staggerContainer, fadeUp, fadeUpSoft, scalePop } from "@/lib/animations";
+import { pages } from "@/lib/cms";
 
-const TEAM = [
-  {
-    name: "Shaukin Phaterpekar",
-    initials: "SP",
-    image: "/images/team_shaukin.jpg",
-    role: "Partner & Co-Founder",
-    quote: "Good food begins with good farming. We're here to bring that promise to every family in Goa.",
-    color: "from-[#1a3a14] to-[#2d5a27]",
-  },
-  {
-    name: "Stallone Shaikh",
-    initials: "SS",
-    image: "/images/team_stallone.jpg",
-    role: "Partner & Co-Founder",
-    quote: "We didn't build a business. We built a farm that we'd be proud to feed our own children from.",
-    color: "from-[#5c3d1e] to-[#DBA319]",
-  },
-];
+const TEAM = pages.team.members;
 
 const VIEWPORT = { once: true, margin: "-80px" };
 

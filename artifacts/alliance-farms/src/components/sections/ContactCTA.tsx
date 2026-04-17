@@ -1,8 +1,8 @@
 import { motion } from "framer-motion";
-import { loadSettings } from "@/lib/siteSettings";
+import { getCmsSettings } from "@/lib/cms";
 
 export function ContactCTA() {
-  const settings = loadSettings();
+  const settings = getCmsSettings();
 
   const phone = settings.phone || "+91 73750 96163";
   const email = settings.email || "alliancestreetorganicfarms@gmail.com";

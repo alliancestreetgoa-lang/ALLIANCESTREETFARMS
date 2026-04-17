@@ -1,7 +1,7 @@
 import { useEffect, useState, useRef } from "react";
 import { motion, useScroll, useTransform } from "framer-motion";
 import { staggerContainer, fadeUp, fadeUpSoft, blurClear, EASE_OUT_EXPO } from "@/lib/animations";
-import { loadSettings, DEFAULT_SETTINGS, type SiteSettings } from "@/lib/siteSettings";
+import { getCmsHero } from "@/lib/cms";
 
 const STATS = [
   { value: "100%", label: "Certified Organic" },
@@ -12,7 +12,7 @@ const STATS = [
 
 export function Hero() {
   const [particles, setParticles] = useState<Array<{ id: number; left: string; delay: string; duration: string }>>([]);
-  const [settings, setSettings] = useState<SiteSettings>(() => loadSettings());
+  const [heroData, setHeroData] = useState(() => getCmsHero());
   const heroRef = useRef<HTMLElement>(null);
 
   /* Parallax: background drifts at 40% scroll speed */
@@ -30,7 +30,7 @@ export function Hero() {
     }));
     setParticles(arr);
 
-    const onStorage = () => setSettings(loadSettings());
+    const onStorage = () => setHeroData(getCmsHero());
     window.addEventListener("storage", onStorage);
     return () => window.removeEventListener("storage", onStorage);
   }, []);
@@ -92,14 +92,14 @@ export function Hero() {
 
           {/* Script tagline */}
           <motion.h2 variants={blurClear} className="font-script text-3xl md:text-4xl text-secondary mb-4 drop-shadow-lg">
-            {settings.heroTagline || DEFAULT_SETTINGS.heroTagline}
+            {heroData.tagline}
           </motion.h2>
 
           {/* Main headline */}
           <motion.h1 variants={fadeUp} className="font-heading text-5xl md:text-7xl lg:text-8xl text-white leading-tight max-w-5xl">
-            {settings.heroHeadline || DEFAULT_SETTINGS.heroHeadline}
+            {heroData.headline}
             <br />
-            <span className="text-secondary italic">{settings.heroSubheadline || DEFAULT_SETTINGS.heroSubheadline}</span>
+            <span className="text-secondary italic">{heroData.subheadline}</span>
           </motion.h1>
 
           {/* Divider */}

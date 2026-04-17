@@ -1,12 +1,8 @@
 import { motion } from "framer-motion";
 import { staggerContainer, fadeUp, fadeUpSoft, slideLeft, slideRight, scalePop } from "@/lib/animations";
+import { pages } from "@/lib/cms";
 
-const VALUES = [
-  { icon: "🌿", label: "100% Organic Methods" },
-  { icon: "🐾", label: "Animal Welfare" },
-  { icon: "🌍", label: "Local Sustainability" },
-  { icon: "🏘️", label: "Community First" },
-];
+const VALUES = pages.about.values;
 
 const VIEWPORT = { once: true, margin: "-80px" };
 
@@ -37,11 +33,7 @@ export function About() {
             </motion.h2>
 
             <motion.div variants={staggerContainer(0.1)} className="space-y-5 text-[#5c3d1e] text-base mb-10 leading-relaxed font-normal">
-              {[
-                "At Alliance Street Organic Farms, we are dedicated to producing premium-quality desi chicken, goat meat, farm-fresh desi eggs, and nutritious goat milk using ethical, eco-conscious farming practices in Goa.",
-                "We specialize in raising native breeds carefully selected for Goa's climate — reared without antibiotics, growth hormones, or artificial chemicals. Every animal is raised on clean feed, open grazing, and natural care.",
-                "Our products aren't just food — they're part of a healthier lifestyle, sourced with integrity and delivered with pride.",
-              ].map((text, i) => (
+              {pages.about.paragraphs.map((text, i) => (
                 <motion.p key={i} variants={fadeUpSoft}>{text}</motion.p>
               ))}
             </motion.div>
