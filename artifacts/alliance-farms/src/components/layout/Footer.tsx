@@ -26,13 +26,21 @@ export function Footer() {
         </p>
 
         <div className="flex flex-wrap justify-center gap-6 mb-12">
-          {["Animals", "Eggs", "Rabbits", "Why Organic", "About", "Team"].map((link) => (
+          {[
+            { label: "Products",    href: "/#products"   },
+            { label: "Breeds",      href: "/#breeds"     },
+            { label: "Eggs",        href: "/#eggs"       },
+            { label: "Rabbits",     href: "/#products"   },
+            { label: "Why Organic", href: "/#philosophy" },
+            { label: "About",       href: "/#about"      },
+            { label: "Team",        href: "/#team"       },
+          ].map(({ label, href }) => (
             <a
-              key={link}
-              href={`#${link.toLowerCase().replace(" ", "-")}`}
+              key={label}
+              href={href}
               className="text-white/50 hover:text-secondary text-sm transition-colors duration-200"
             >
-              {link}
+              {label}
             </a>
           ))}
         </div>
