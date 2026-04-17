@@ -34,6 +34,46 @@ export function saveCmsPages(pages: CmsPage[]): void {
   localStorage.setItem(PAGES_STORAGE_KEY, JSON.stringify(pages));
 }
 
+// ─── Blog CMS ─────────────────────────────────────────────────────────────────
+
+const BLOG_STORAGE_KEY = "asof_cms_blog";
+
+export interface CmsBlogPost {
+  id: number | string;
+  slug: string;
+  title: string;
+  date: string;
+  author: string;
+  readTime: string;
+  category: string;
+  excerpt: string;
+  featuredImage: string;
+  metaTitle: string;
+  metaDescription: string;
+  content?: Array<Record<string, unknown>>;
+  contentText?: string;
+}
+
+export function getCmsBlog(): { heading: string; subheading: string; posts: CmsBlogPost[] } {
+  try {
+    const raw = localStorage.getItem(BLOG_STORAGE_KEY);
+    if (raw) {
+      const stored = JSON.parse(raw);
+      return {
+        heading: blogData.heading,
+        subheading: blogData.subheading,
+        posts: stored,
+      };
+    }
+  } catch { /* fall through */ }
+  return blogData as { heading: string; subheading: string; posts: CmsBlogPost[] };
+}
+
+export function saveCmsBlog(posts: CmsBlogPost[]): void {
+  localStorage.setItem(BLOG_STORAGE_KEY, JSON.stringify(posts));
+  window.dispatchEvent(new Event("storage"));
+}
+
 export type SectionId = keyof typeof seoData.pages;
 
 export interface ResolvedSeo {

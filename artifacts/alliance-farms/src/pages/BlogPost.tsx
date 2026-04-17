@@ -1,10 +1,10 @@
-import { useEffect } from "react";
+import { useEffect, useState } from "react";
 import { motion } from "framer-motion";
 import { Link, useParams } from "wouter";
 import { Calendar, Clock, Tag, ArrowRight, ArrowLeft } from "lucide-react";
 import { BlogNavbar } from "@/components/BlogNavbar";
 import { PageFooter } from "@/components/PageFooter";
-import { blog, getCmsSettings } from "@/lib/cms";
+import { getCmsBlog, getCmsSettings } from "@/lib/cms";
 import { applyMetaTags } from "@/lib/siteSettings";
 import { fadeUp, fadeUpSoft, staggerContainer } from "@/lib/animations";
 
@@ -119,9 +119,62 @@ const CATEGORY_COLORS: Record<string, string> = {
   Farming: "bg-purple-100 text-purple-800",
 };
 
+function PlainTextRenderer({ text }: { text: string }) {
+  const paragraphs = text.split(/\n\n+/).filter(Boolean);
+  return (
+    <>
+      {paragraphs.map((para, i) => {
+        if (para.startsWith("## ")) {
+          return (
+            <h2 key={i} className="font-heading text-[#1a3a14] text-2xl md:text-3xl mt-12 mb-4 leading-snug">
+              {para.slice(3)}
+            </h2>
+          );
+        }
+        if (para.startsWith("> ")) {
+          const body = para.slice(2);
+          const [quote, attr] = body.split(" — ");
+          return (
+            <blockquote key={i} className="my-10 bg-[#1a3a14]/5 border-l-4 border-secondary rounded-r-xl px-6 py-5">
+              <p className="font-heading text-[#1a3a14] text-xl italic leading-snug mb-2">"{quote.trim()}"</p>
+              {attr && <cite className="text-secondary text-sm font-semibold not-italic">— {attr.trim()}</cite>}
+            </blockquote>
+          );
+        }
+        const lines = para.split("\n");
+        if (lines.every((l) => l.startsWith("- "))) {
+          return (
+            <ul key={i} className="mb-6 space-y-3">
+              {lines.map((l, j) => (
+                <li key={j} className="flex gap-3 text-[#5c3d1e] text-sm leading-relaxed">
+                  <span className="mt-1.5 w-1.5 h-1.5 rounded-full bg-secondary flex-shrink-0" />
+                  <span>{l.slice(2)}</span>
+                </li>
+              ))}
+            </ul>
+          );
+        }
+        return (
+          <p key={i} className="text-[#5c3d1e] text-base leading-relaxed mb-5 font-normal">
+            {para}
+          </p>
+        );
+      })}
+    </>
+  );
+}
+
 export default function BlogPost() {
+  const [cmsData, setCmsData] = useState(getCmsBlog);
+
+  useEffect(() => {
+    const refresh = () => setCmsData(getCmsBlog());
+    window.addEventListener("storage", refresh);
+    return () => window.removeEventListener("storage", refresh);
+  }, []);
+
   const { slug } = useParams<{ slug: string }>();
-  const post = blog.posts.find((p) => p.slug === slug);
+  const post = cmsData.posts.find((p) => p.slug === slug);
 
   useEffect(() => {
     if (!post) return;
@@ -160,7 +213,7 @@ export default function BlogPost() {
     );
   }
 
-  const otherPosts = blog.posts.filter((p) => p.slug !== slug).slice(0, 2);
+  const otherPosts = cmsData.posts.filter((p) => p.slug !== slug).slice(0, 2);
 
   return (
     <div className="min-h-screen bg-[#faf6ef] font-sans">
@@ -220,9 +273,14 @@ export default function BlogPost() {
 
       {/* Article Body */}
       <article className="max-w-3xl mx-auto px-4 sm:px-6 py-14">
-        {(post.content as ContentBlock[]).map((block, i) => (
-          <ContentRenderer key={i} block={block} index={i} />
-        ))}
+        {post.contentText
+          ? <PlainTextRenderer text={post.contentText} />
+          : post.content
+            ? (post.content as ContentBlock[]).map((block, i) => (
+                <ContentRenderer key={i} block={block} index={i} />
+              ))
+            : null
+        }
       </article>
 
       {/* Divider */}

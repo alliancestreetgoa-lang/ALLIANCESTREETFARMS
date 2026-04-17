@@ -1,7 +1,10 @@
 import { useState } from "react";
 import { loginAdmin, isAdminLoggedIn, logoutAdmin } from "@/lib/adminAuth";
-import { getCmsSettings, getCmsPages, saveCmsPages, type CmsPage } from "@/lib/cms";
-import { blog, products } from "@/lib/cms";
+import {
+  getCmsSettings, getCmsPages, saveCmsPages, type CmsPage,
+  getCmsBlog, saveCmsBlog, type CmsBlogPost,
+  products,
+} from "@/lib/cms";
 
 // ─── Types ────────────────────────────────────────────────────────────────────
 
@@ -180,7 +183,7 @@ function Btn({
 
 function DashboardView({ onNavigate }: { onNavigate: (s: Section) => void }) {
   const s = getCmsSettings();
-  const posts = blog.posts;
+  const posts = getCmsBlog().posts;
   const prods = products.items;
 
   return (
@@ -528,52 +531,365 @@ function PagesView() {
 
 // ─── Blog ─────────────────────────────────────────────────────────────────────
 
-function BlogView() {
-  const posts = blog.posts;
+function slugifyBlog(str: string): string {
+  return str.toLowerCase().trim().replace(/[^a-z0-9]+/g, "-").replace(/^-|-$/g, "");
+}
+
+function blocksToText(content: Array<Record<string, unknown>>): string {
+  return content.map((block) => {
+    if (block.type === "h2") return `## ${block.text}`;
+    if (block.type === "ul") return (block.items as string[]).map((i) => `- ${i}`).join("\n");
+    if (block.type === "quote") {
+      return `> ${block.text}${block.attribution ? ` — ${block.attribution}` : ""}`;
+    }
+    return (block.text as string) ?? "";
+  }).join("\n\n");
+}
+
+function estimateReadTime(text: string): string {
+  const words = text.trim().split(/\s+/).filter(Boolean).length;
+  const mins = Math.max(1, Math.round(words / 200));
+  return `${mins} min read`;
+}
+
+const BLANK_POST: CmsBlogPost = {
+  id: "",
+  slug: "",
+  title: "",
+  date: new Date().toISOString().split("T")[0],
+  author: "Alliance Street Organic Farms",
+  readTime: "",
+  category: "",
+  excerpt: "",
+  featuredImage: "",
+  metaTitle: "",
+  metaDescription: "",
+  contentText: "",
+};
+
+function BlogForm({
+  initial,
+  onSave,
+  onCancel,
+  isNew,
+}: {
+  initial: CmsBlogPost;
+  onSave: (p: CmsBlogPost) => void;
+  onCancel: () => void;
+  isNew: boolean;
+}) {
+  const [draft, setDraft] = useState<CmsBlogPost>(() => ({
+    ...initial,
+    contentText: initial.contentText ?? (initial.content ? blocksToText(initial.content) : ""),
+  }));
+  const [slugTouched, setSlugTouched] = useState(!isNew);
+
+  const inputCls =
+    "w-full border border-black/12 rounded-xl px-4 py-2.5 text-sm focus:outline-none focus:ring-2 focus:ring-[#2d5a27]/40 focus:border-[#2d5a27] bg-white transition-colors";
+
+  const set = (field: keyof CmsBlogPost, val: string) => {
+    setDraft((d) => {
+      const next: CmsBlogPost = { ...d, [field]: val };
+      if (field === "title" && !slugTouched) next.slug = slugifyBlog(val);
+      if (field === "contentText") next.readTime = estimateReadTime(val);
+      return next;
+    });
+    if (field === "slug") setSlugTouched(true);
+  };
+
+  const handleSave = () => {
+    if (!draft.title.trim()) return;
+    onSave({
+      ...draft,
+      id: draft.id || Date.now(),
+      readTime: draft.readTime || estimateReadTime(draft.contentText ?? ""),
+      content: undefined,
+    });
+  };
 
   return (
     <div className="space-y-6">
+      <div className="flex items-center gap-3">
+        <button
+          onClick={onCancel}
+          className="flex items-center gap-1.5 text-sm font-medium text-black/40 hover:text-black/70 transition-colors"
+        >
+          ← Back
+        </button>
+        <span className="text-black/20">/</span>
+        <h1 className="text-xl font-bold text-[#1a3a14]">
+          {isNew ? "New Post" : `Edit: ${draft.title || "Post"}`}
+        </h1>
+      </div>
+
+      <Card title="Post Details">
+        <div>
+          <label className="block text-xs font-semibold text-[#1a3a14]/80 uppercase tracking-wider mb-1">
+            Title <span className="text-red-400">*</span>
+          </label>
+          <input
+            type="text"
+            value={draft.title}
+            onChange={(e) => set("title", e.target.value)}
+            placeholder="e.g. Why Desi Eggs Are Superior"
+            className={inputCls}
+          />
+        </div>
+
+        <div>
+          <label className="block text-xs font-semibold text-[#1a3a14]/80 uppercase tracking-wider mb-1">
+            Slug
+            <span className="ml-2 text-[10px] font-normal text-black/30 normal-case tracking-normal">
+              {!slugTouched && "auto-generated from title"}
+            </span>
+          </label>
+          <div className="relative">
+            <span className="absolute left-4 top-1/2 -translate-y-1/2 text-sm text-black/30 select-none">/blog/</span>
+            <input
+              type="text"
+              value={draft.slug}
+              onChange={(e) => {
+                setSlugTouched(true);
+                set("slug", e.target.value.toLowerCase().replace(/[^a-z0-9-]/g, ""));
+              }}
+              placeholder="post-url-here"
+              className={`${inputCls} pl-14`}
+            />
+          </div>
+        </div>
+
+        <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
+          <div>
+            <label className="block text-xs font-semibold text-[#1a3a14]/80 uppercase tracking-wider mb-1">Date</label>
+            <input
+              type="date"
+              value={draft.date}
+              onChange={(e) => set("date", e.target.value)}
+              className={inputCls}
+            />
+          </div>
+          <div>
+            <label className="block text-xs font-semibold text-[#1a3a14]/80 uppercase tracking-wider mb-1">Category</label>
+            <input
+              type="text"
+              value={draft.category}
+              onChange={(e) => set("category", e.target.value)}
+              placeholder="e.g. Nutrition, Breeds, Farming"
+              className={inputCls}
+            />
+          </div>
+        </div>
+
+        <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
+          <div>
+            <label className="block text-xs font-semibold text-[#1a3a14]/80 uppercase tracking-wider mb-1">Author</label>
+            <input
+              type="text"
+              value={draft.author}
+              onChange={(e) => set("author", e.target.value)}
+              className={inputCls}
+            />
+          </div>
+          <div>
+            <label className="block text-xs font-semibold text-[#1a3a14]/80 uppercase tracking-wider mb-1">
+              Read Time
+              <span className="ml-2 text-[10px] font-normal text-black/30 normal-case tracking-normal">auto-estimated from content</span>
+            </label>
+            <input
+              type="text"
+              value={draft.readTime}
+              onChange={(e) => set("readTime", e.target.value)}
+              placeholder="e.g. 5 min read"
+              className={inputCls}
+            />
+          </div>
+        </div>
+
+        <div>
+          <label className="block text-xs font-semibold text-[#1a3a14]/80 uppercase tracking-wider mb-1">Excerpt</label>
+          <textarea
+            rows={3}
+            value={draft.excerpt}
+            onChange={(e) => set("excerpt", e.target.value)}
+            placeholder="Short description shown in blog cards…"
+            className={`${inputCls} resize-none`}
+          />
+        </div>
+
+        <div>
+          <label className="block text-xs font-semibold text-[#1a3a14]/80 uppercase tracking-wider mb-1">Featured Image URL</label>
+          <input
+            type="text"
+            value={draft.featuredImage}
+            onChange={(e) => set("featuredImage", e.target.value)}
+            placeholder="/images/your-photo.jpg"
+            className={inputCls}
+          />
+        </div>
+      </Card>
+
+      <Card title="Content">
+        <div>
+          <p className="text-xs text-black/40 mb-3 leading-relaxed">
+            Use <code className="bg-black/6 px-1.5 py-0.5 rounded-md font-mono">## Heading</code> for section headings,{" "}
+            <code className="bg-black/6 px-1.5 py-0.5 rounded-md font-mono">- item</code> for bullet lists
+            (one per line, grouped together),{" "}
+            <code className="bg-black/6 px-1.5 py-0.5 rounded-md font-mono">&gt; quote text — Author</code> for pull quotes.
+            Separate paragraphs and sections with a blank line.
+          </p>
+          <textarea
+            rows={20}
+            value={draft.contentText}
+            onChange={(e) => set("contentText", e.target.value)}
+            placeholder={"Write your article here...\n\n## A Section Heading\n\nA paragraph of text.\n\n- Bullet point one\n- Bullet point two\n\n> A great quote — Author Name"}
+            className={`${inputCls} resize-y font-mono text-xs leading-relaxed`}
+          />
+          {draft.contentText && (
+            <p className="text-xs text-black/30 mt-1">
+              ~{estimateReadTime(draft.contentText)} · {draft.contentText.trim().split(/\s+/).filter(Boolean).length} words
+            </p>
+          )}
+        </div>
+      </Card>
+
+      <Card title="SEO">
+        <div>
+          <label className="block text-xs font-semibold text-[#1a3a14]/80 uppercase tracking-wider mb-1">Meta Title</label>
+          <input
+            type="text"
+            value={draft.metaTitle}
+            onChange={(e) => set("metaTitle", e.target.value)}
+            placeholder="Post Title | Alliance Street Organic Farms"
+            className={inputCls}
+          />
+          <p className={`text-xs mt-1 ${draft.metaTitle.length > 60 ? "text-orange-500" : "text-black/30"}`}>
+            {draft.metaTitle.length}/60 characters recommended
+          </p>
+        </div>
+        <div>
+          <label className="block text-xs font-semibold text-[#1a3a14]/80 uppercase tracking-wider mb-1">Meta Description</label>
+          <textarea
+            rows={3}
+            value={draft.metaDescription}
+            onChange={(e) => set("metaDescription", e.target.value)}
+            placeholder="Short description for Google search results (150–160 chars)…"
+            className={`${inputCls} resize-none`}
+          />
+          <p className={`text-xs mt-1 ${draft.metaDescription.length > 160 ? "text-orange-500" : "text-black/30"}`}>
+            {draft.metaDescription.length}/160 characters recommended
+          </p>
+        </div>
+      </Card>
+
+      <div className="flex items-center gap-3 justify-end">
+        <Btn onClick={onCancel}>Cancel</Btn>
+        <Btn variant="primary" onClick={handleSave}>
+          {isNew ? "Publish Post" : "Save Changes"}
+        </Btn>
+      </div>
+    </div>
+  );
+}
+
+function BlogView() {
+  const [posts, setPosts] = useState<CmsBlogPost[]>(() => getCmsBlog().posts);
+  const [view, setView] = useState<"list" | "add" | "edit">("list");
+  const [editing, setEditing] = useState<CmsBlogPost | null>(null);
+  const [toast, setToast] = useState("");
+
+  const persist = (updated: CmsBlogPost[]) => {
+    saveCmsBlog(updated);
+    setPosts(updated);
+  };
+
+  const showToast = (msg: string) => {
+    setToast(msg);
+    setTimeout(() => setToast(""), 2500);
+  };
+
+  const handleSaveNew = (post: CmsBlogPost) => {
+    persist([...posts, post]);
+    showToast("Post published");
+    setView("list");
+  };
+
+  const handleSaveEdit = (post: CmsBlogPost) => {
+    persist(posts.map((p) => (String(p.id) === String(post.id) ? post : p)));
+    showToast("Post saved");
+    setView("list");
+  };
+
+  const handleDelete = (id: number | string) => {
+    if (!confirm("Delete this post? This cannot be undone.")) return;
+    persist(posts.filter((p) => String(p.id) !== String(id)));
+    showToast("Post deleted");
+  };
+
+  if (view === "add") {
+    return <BlogForm initial={BLANK_POST} onSave={handleSaveNew} onCancel={() => setView("list")} isNew />;
+  }
+
+  if (view === "edit" && editing) {
+    return <BlogForm initial={editing} onSave={handleSaveEdit} onCancel={() => setView("list")} isNew={false} />;
+  }
+
+  return (
+    <div className="space-y-6">
+      {toast && (
+        <div className="fixed bottom-6 right-6 z-50 bg-[#1a3a14] text-white text-sm font-semibold px-5 py-3 rounded-2xl shadow-xl">
+          {toast}
+        </div>
+      )}
+
       <div className="flex items-center justify-between">
         <div>
           <h1 className="text-xl font-bold text-[#1a3a14]">Blog</h1>
-          <p className="text-sm text-black/40 mt-0.5">{posts.length} posts published</p>
+          <p className="text-sm text-black/40 mt-0.5">{posts.length} post{posts.length !== 1 ? "s" : ""}</p>
         </div>
-        <Btn variant="primary">+ New Post</Btn>
+        <Btn variant="primary" onClick={() => setView("add")}>+ New Post</Btn>
       </div>
 
       <div className="bg-white rounded-2xl border border-black/6 shadow-sm overflow-hidden">
-        <table className="w-full text-sm">
-          <thead>
-            <tr className="border-b border-black/6 bg-black/2">
-              <th className="text-left px-5 py-3.5 text-xs font-semibold text-black/40 uppercase tracking-wider">Title</th>
-              <th className="text-left px-5 py-3.5 text-xs font-semibold text-black/40 uppercase tracking-wider hidden md:table-cell">Category</th>
-              <th className="text-left px-5 py-3.5 text-xs font-semibold text-black/40 uppercase tracking-wider hidden md:table-cell">Date</th>
-              <th className="text-left px-5 py-3.5 text-xs font-semibold text-black/40 uppercase tracking-wider hidden sm:table-cell">Read time</th>
-              <th className="px-5 py-3.5" />
-            </tr>
-          </thead>
-          <tbody className="divide-y divide-black/5">
-            {posts.map((post) => (
-              <tr key={post.slug} className="hover:bg-black/[0.02] transition-colors">
-                <td className="px-5 py-4">
-                  <p className="font-medium text-[#1a3a14]">{post.title}</p>
-                  <p className="text-xs text-black/40 mt-0.5 line-clamp-1">{post.excerpt}</p>
-                </td>
-                <td className="px-5 py-4 hidden md:table-cell">
-                  <Badge color="green">{post.category}</Badge>
-                </td>
-                <td className="px-5 py-4 text-black/50 hidden md:table-cell">{post.date}</td>
-                <td className="px-5 py-4 text-black/50 hidden sm:table-cell">{post.readTime}</td>
-                <td className="px-5 py-4">
-                  <div className="flex items-center gap-2 justify-end">
-                    <Btn>Edit</Btn>
-                    <Btn variant="danger">Delete</Btn>
-                  </div>
-                </td>
+        {posts.length === 0 ? (
+          <div className="py-16 text-center text-black/30">
+            <p className="text-4xl mb-3">✏️</p>
+            <p className="text-sm font-medium">No posts yet</p>
+            <p className="text-xs mt-1">Click "+ New Post" to write your first article</p>
+          </div>
+        ) : (
+          <table className="w-full text-sm">
+            <thead>
+              <tr className="border-b border-black/6 bg-black/2">
+                <th className="text-left px-5 py-3.5 text-xs font-semibold text-black/40 uppercase tracking-wider">Title</th>
+                <th className="text-left px-5 py-3.5 text-xs font-semibold text-black/40 uppercase tracking-wider hidden md:table-cell">Category</th>
+                <th className="text-left px-5 py-3.5 text-xs font-semibold text-black/40 uppercase tracking-wider hidden md:table-cell">Date</th>
+                <th className="text-left px-5 py-3.5 text-xs font-semibold text-black/40 uppercase tracking-wider hidden sm:table-cell">Read time</th>
+                <th className="px-5 py-3.5" />
               </tr>
-            ))}
-          </tbody>
-        </table>
+            </thead>
+            <tbody className="divide-y divide-black/5">
+              {posts.map((post) => (
+                <tr key={String(post.id)} className="hover:bg-black/[0.015] transition-colors group">
+                  <td className="px-5 py-4">
+                    <p className="font-medium text-[#1a3a14]">{post.title}</p>
+                    <p className="text-xs text-black/30 mt-0.5 line-clamp-1">{post.excerpt}</p>
+                  </td>
+                  <td className="px-5 py-4 hidden md:table-cell">
+                    <Badge color="green">{post.category || "—"}</Badge>
+                  </td>
+                  <td className="px-5 py-4 text-black/50 hidden md:table-cell">{post.date}</td>
+                  <td className="px-5 py-4 text-black/50 hidden sm:table-cell">{post.readTime}</td>
+                  <td className="px-5 py-4">
+                    <div className="flex items-center gap-2 justify-end">
+                      <Btn onClick={() => { setEditing(post); setView("edit"); }}>Edit</Btn>
+                      <Btn variant="danger" onClick={() => handleDelete(post.id)}>Delete</Btn>
+                    </div>
+                  </td>
+                </tr>
+              ))}
+            </tbody>
+          </table>
+        )}
       </div>
     </div>
   );

@@ -1,10 +1,10 @@
-import { useEffect } from "react";
+import { useEffect, useState } from "react";
 import { motion } from "framer-motion";
 import { Link } from "wouter";
 import { Calendar, Clock, Tag, ArrowRight } from "lucide-react";
 import { BlogNavbar } from "@/components/BlogNavbar";
 import { PageFooter } from "@/components/PageFooter";
-import { blog, getCmsSettings } from "@/lib/cms";
+import { getCmsBlog, getCmsSettings } from "@/lib/cms";
 import { applyMetaTags } from "@/lib/siteSettings";
 import { staggerContainer, fadeUp, fadeUpSoft } from "@/lib/animations";
 
@@ -26,6 +26,14 @@ function formatDate(dateStr: string) {
 }
 
 export default function Blog() {
+  const [cmsData, setCmsData] = useState(getCmsBlog);
+
+  useEffect(() => {
+    const refresh = () => setCmsData(getCmsBlog());
+    window.addEventListener("storage", refresh);
+    return () => window.removeEventListener("storage", refresh);
+  }, []);
+
   useEffect(() => {
     applyMetaTags({
       fullTitle: "From the Farm — Blog | Alliance Street Organic Farms",
@@ -43,7 +51,7 @@ export default function Blog() {
     });
   }, []);
 
-  const posts = blog.posts;
+  const posts = cmsData.posts;
 
   return (
     <div className="min-h-screen bg-[#faf6ef] font-sans">
@@ -64,19 +72,19 @@ export default function Blog() {
             variants={fadeUpSoft}
             className="inline-block text-secondary font-semibold tracking-[0.2em] text-xs uppercase mb-4"
           >
-            ✦ {blog.heading}
+            ✦ {cmsData.heading}
           </motion.span>
           <motion.h1
             variants={fadeUp}
             className="font-heading text-4xl md:text-6xl text-white mb-5 leading-tight"
           >
-            {blog.heading}
+            {cmsData.heading}
           </motion.h1>
           <motion.p
             variants={fadeUpSoft}
             className="text-white/70 text-lg max-w-xl mx-auto font-normal leading-relaxed"
           >
-            {blog.subheading}
+            {cmsData.subheading}
           </motion.p>
         </motion.div>
       </section>
