@@ -1,4 +1,4 @@
-import { useState } from "react";
+import { useState, useRef } from "react";
 import { loginAdmin, isAdminLoggedIn, logoutAdmin } from "@/lib/adminAuth";
 import {
   getCmsSettings, getCmsPages, saveCmsPages, type CmsPage,
@@ -272,6 +272,77 @@ function slugify(str: string): string {
     .replace(/\s+/g, "-")
     .replace(/-+/g, "-")
     .replace(/^-|-$/g, "");
+}
+
+const IMG_INPUT_CLS =
+  "w-full px-4 py-2.5 text-sm rounded-xl border border-black/12 focus:outline-none focus:ring-2 focus:ring-[#1a3a14]/20 focus:border-[#1a3a14]/40 bg-white transition-all";
+
+function ImageUploadField({
+  label,
+  value,
+  onChange,
+  previewSize = "blog",
+}: {
+  label: string;
+  value: string;
+  onChange: (val: string) => void;
+  previewSize?: "blog" | "product";
+}) {
+  const fileRef = useRef<HTMLInputElement>(null);
+
+  const handleFile = (e: React.ChangeEvent<HTMLInputElement>) => {
+    const file = e.target.files?.[0];
+    if (!file) return;
+    const reader = new FileReader();
+    reader.onload = () => onChange(reader.result as string);
+    reader.readAsDataURL(file);
+    e.target.value = "";
+  };
+
+  return (
+    <div>
+      <label className="block text-xs font-semibold text-[#1a3a14]/80 uppercase tracking-wider mb-1">
+        {label}
+      </label>
+      <div className="flex gap-2">
+        <input
+          type="text"
+          value={value}
+          onChange={(e) => onChange(e.target.value)}
+          placeholder="/images/your-photo.jpg"
+          className={`${IMG_INPUT_CLS} flex-1 min-w-0`}
+        />
+        <button
+          type="button"
+          onClick={() => fileRef.current?.click()}
+          className="shrink-0 px-4 py-2.5 text-sm font-semibold bg-[#1a3a14] text-white rounded-xl hover:bg-[#2d5a27] transition-colors whitespace-nowrap"
+        >
+          Upload ↑
+        </button>
+        <input
+          ref={fileRef}
+          type="file"
+          accept="image/*"
+          className="hidden"
+          onChange={handleFile}
+        />
+      </div>
+      {value && (
+        <div
+          className={`mt-2 rounded-xl overflow-hidden border border-black/8 ${
+            previewSize === "product" ? "h-24 w-32" : "h-32 w-full max-w-xs"
+          }`}
+        >
+          <img
+            src={value}
+            alt="Preview"
+            className="w-full h-full object-cover"
+            onError={(e) => { (e.currentTarget as HTMLImageElement).style.display = "none"; }}
+          />
+        </div>
+      )}
+    </div>
+  );
 }
 
 const BLANK_PAGE: Omit<CmsPage, "id"> = {
@@ -735,26 +806,12 @@ function BlogForm({
           />
         </div>
 
-        <div>
-          <label className="block text-xs font-semibold text-[#1a3a14]/80 uppercase tracking-wider mb-1">Featured Image URL</label>
-          <input
-            type="text"
-            value={draft.featuredImage}
-            onChange={(e) => set("featuredImage", e.target.value)}
-            placeholder="/images/your-photo.jpg"
-            className={inputCls}
-          />
-          {draft.featuredImage && (
-            <div className="mt-2 h-32 w-full max-w-xs rounded-xl overflow-hidden border border-black/8">
-              <img
-                src={draft.featuredImage}
-                alt="Preview"
-                className="w-full h-full object-cover"
-                onError={(e) => { (e.currentTarget as HTMLImageElement).style.display = "none"; }}
-              />
-            </div>
-          )}
-        </div>
+        <ImageUploadField
+          label="Featured Image"
+          value={draft.featuredImage}
+          onChange={(val) => set("featuredImage", val)}
+          previewSize="blog"
+        />
       </Card>
 
       <Card title="Content">
@@ -1100,26 +1157,12 @@ function ProductForm({
           />
         </div>
 
-        <div>
-          <label className="block text-xs font-semibold text-[#1a3a14]/80 uppercase tracking-wider mb-1">Image URL</label>
-          <input
-            type="text"
-            value={draft.image}
-            onChange={(e) => set("image", e.target.value)}
-            placeholder="/images/your-photo.jpg"
-            className={inputCls}
-          />
-          {draft.image && (
-            <div className="mt-2 h-24 w-32 rounded-xl overflow-hidden border border-black/8">
-              <img
-                src={draft.image}
-                alt="Preview"
-                className="w-full h-full object-cover"
-                onError={(e) => { (e.currentTarget as HTMLImageElement).style.display = "none"; }}
-              />
-            </div>
-          )}
-        </div>
+        <ImageUploadField
+          label="Product Image"
+          value={draft.image}
+          onChange={(val) => set("image", val)}
+          previewSize="product"
+        />
 
         <div>
           <label className="block text-xs font-semibold text-[#1a3a14]/80 uppercase tracking-wider mb-1">Card Gradient Color</label>
